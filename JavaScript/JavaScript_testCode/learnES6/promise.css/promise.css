@@ -1,0 +1,12 @@
+a {
+  text-decoration: none;
+  color: inherit;
+  color: #000
+}
+a:hover{
+  color: rgb(8, 240, 220);
+  font-size: 20px;
+}
+a:focus{
+  color: blue;
+}

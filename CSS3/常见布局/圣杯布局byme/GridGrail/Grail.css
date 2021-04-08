@@ -1,0 +1,40 @@
+* {
+  margin: 0px;
+}
+.container {
+  height: auto;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+.container .header {
+  height: 10vh;
+  background-color: pink;
+  text-align: center;
+}
+.container .admin {
+  background-color: #fff;
+  height: 560px;
+  width: 90vw;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.container .admin .leftSiderbar {
+  width: 90px;
+  background-color: aqua;
+}
+.container .admin .content {
+  background-color: #ccc;
+  padding: 30px;
+}
+.container .admin .rightSiderbar {
+  width: 90px;
+  background-color: red;
+}
+.container .footer {
+  height: 10vh;
+  background-color: #702acc;
+  text-align: center;
+}

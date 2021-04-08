@@ -1,0 +1,21 @@
+* {
+  margin: 0;
+}
+.container {
+  height: 90vh;
+  width: 90vw;
+  background-color: #fff;
+  /* Safari */
+  display: -webkit-flex;
+  display: flex;
+  flex: 0 1 auto;
+}
+.container .left-siderbar {
+  width: 90px;
+  background-color: pink;
+}
+.container .content {
+  background-color: aqua;
+  flex: auto;
+  text-align: center;
+}

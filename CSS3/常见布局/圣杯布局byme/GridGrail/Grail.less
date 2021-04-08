@@ -1,0 +1,51 @@
+* {
+  margin: 0px;
+}
+
+.container {
+  height: auto;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+
+  .header {
+    height: 10vh;
+    background-color: pink;
+    text-align: center;
+  }
+
+  .admin {
+    background-color: #fff;
+    height: 560px;
+    width: 90vw;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    text-align: center;
+    // justify-content: center;
+    // 中间的admin部分实现垂直方向居中对齐
+    margin-left: auto;
+    margin-right: auto;
+
+    // width: 100vw;
+    .leftSiderbar {
+      // 右边的导航栏宽度固定
+      width: 90px;
+      background-color: aqua;
+    }
+
+    .content {
+      background-color: #ccc;
+      padding: 30px;
+    }
+
+    .rightSiderbar {
+      width: 90px;
+      background-color: red;
+    }
+  }
+
+  .footer {
+    height: 10vh;
+    background-color: rgb(112, 42, 204);
+    text-align: center;
+  }
+}

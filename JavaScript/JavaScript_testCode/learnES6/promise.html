@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./promise.css/promise.css">
+</head>
+
+<body>
+
+  <div class="box">
+    <div id='Linkname'>
+
+      <!-- <a href="https://blog.csdn.net/fundebug/article/details/81011125">
+        JavaScript异步编程史：回调函数到Promise到Async/Await
+      </a>
+      <br> -->
+      <!-- <Alink/> -->
+      <a href="https://blog.csdn.net/fundebug/article/details/81011125">
+        JavaScript异步编程史：回调函数到Promise到Async/Await
+      </a>
+      <br>
+      <a href="https://segmentfault.com/a/1190000013396601">
+        promise实现原理
+      </a>
+      <br>
+      <a href="https://www.fundebug.com">
+        及时发现Bug，提高Debug效率
+      </a>
+      <br>
+      <a href="https://wangdoc.com/es6/index.html">
+        ECMAScript 6 教程
+      </a>
+      <br>
+      <a href="https://blog.csdn.net/weixin_40682842/article/details/78727266">
+        sublime text 3下载与安装详细教程
+      </a>
+      <br>
+      <a href="https://www.w3cschool.cn/ajax/ajax-xmlhttprequest-send.html">
+        AJAX如何工作？
+      </a>
+      <br>
+      <a href="https://www.cnblogs.com/GOOGnine/p/12390369.html">
+        使用消息订阅(subscribe)-发布(publish)机制
+      </a>
+      <br>
+      <a href="https://www.cnblogs.com/ghostwu/p/7587327.html">
+        [js高手之路] es6系列教程 - 迭代器与生成器详解
+      </a>
+      <br>
+      <a href="https://github.com/mroderick/PubSubJS">
+        Learn Git and GitHub without any code!
+      </a>
+      <br>
+      <a href="https://www.cnblogs.com/xiaomili/p/10514079.html">
+        yarn的安装和使用
+      </a>
+      <br>
+      <!-- <a href="https://blog.csdn.net/qq_39100704/article/details/89456782">
+        关于npm和yarn在react项目中的使用
+      </a> -->
+      
+    </div>
+
+  </div>
+
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script type="text/babel">
+    // class Alink extends React.Component {
+    //   const {ahref,name} = this.props;
+    //   render(){
+        
+    //   }
+    // }
+    class Showlink extends React.Component {
+      state = {items:[
+        {ahref:'https://blog.csdn.net/qq_39100704/article/details/89456782',
+        name:'黄水请'}
+        // 关于npm和yarn在react项目中的使用
+      ]}
+
+      render() {
+        const {items} = this.state
+        return (
+          <div>
+            <h2>Hello!!!</h2>
+            <ul className="item-main">
+              { items.map((item)=>{
+                const {ahref,name} = item;
+                return (
+                  <a href="ahref">
+                    {name}
+                  </a>
+                )
+              })
+              }
+            </ul>
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<Showlink/>,document.getElementsById('Linkname'))
+  </script>
+</body>
+
+</html>

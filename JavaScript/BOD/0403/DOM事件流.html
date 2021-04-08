@@ -1,0 +1,47 @@
+<html onclick="console.log('html')">
+
+<head>
+  <meta charset="UTF-8">
+
+  <title>Test</title>
+  <script type="text/javascript">
+    window.onload = function () {
+      const parent = document.getElementById("parent");
+      const child = document.getElementById("child");
+
+      
+      // capture 默认为 false, 冒泡
+      // parent.addEventListener('click', function () { console.log('parent event') });
+      // child.addEventListener('click', function () { console.log('child event') });
+
+      child.onclick = function () { console.log('child onclick 替代child html') };
+      // 下面是输出结果，结合15和17行代码说明，即使addEvent在onclick前面，但是onclick先执行，这说明下面的道理
+      // 第二点, child onclick 的优先级也是高于 addEventListener 的.
+/*       parent event capture
+      DOM事件流.html: 17 child onclick 替代child html
+      DOM事件流.html: 15 child event
+      DOM事件流.html: 21 child event capture
+      DOM事件流.html: 30 parent html
+      DOM事件流.html: 14 parent event
+      DOM事件流.html: 29 body
+      DOM事件流.html: 1 html
+      DOM事件流.html: 24 window */
+
+      // 捕获
+      parent.addEventListener('click', function () { console.log('parent event capture') }, { capture: true });
+      child.addEventListener('click', function () { console.log('child event capture') }, { capture: true });
+    }
+    window.onclick = function () {
+      console.log('window');
+    }
+  </script>
+</head>
+
+<body onclick="console.log('body')">
+  <div id="parent" onclick="console.log('parent html:',new Date())">parent
+    <div id="child" onclick="console.log('child html:',new Date())">child</div>
+  </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>calendar</title>
+</head>
+
+<body>
+  <div>
+    <table>
+      <tr>
+        <td>
+          <input type="date" name="生日" id="">
+        </td>
+        <td>
+          男：<input type="checkbox" name="男" id="nan">
+          女：<input type="checkbox" name="女" id='nv'>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+  </div>
+  <div>
+    <script>
+      var str = "andy"
+      for (k in str) {
+        console.log(str[k]);
+
+      }
+      if (str['length']) {
+        console.log('there has a length');
+      } else {
+        console.log('there has nothing');
+
+      }
+      // str.push("44")
+
+      console.log(str);
+
+
+
+      date = new Date()
+      // alert(date)
+      h = date.getHours()
+      h = h < 10 ? '0' + h : h
+      m = date.getMinutes()
+      m = m < 10 ? '0' + m : m
+      s = date.getSeconds()
+      s = s < 10 ? '0' + s : s
+                // alert(h + " : " + m + " : " + s) // alert(Date.now()) console.log(Date.now());
+    </script>
+  </div>
+</body>
+
+</html>

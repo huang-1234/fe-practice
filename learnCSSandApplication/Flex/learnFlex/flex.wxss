@@ -1,0 +1,19 @@
+.container .box1 {
+  width: 500px;
+  height: 500px;
+  background: #dededf;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: space-between;
+  text-align: center;
+}
+.container .box1 .c1 {
+  width: 100px;
+  height: 100px;
+  background-color: #2ace6e;
+  padding: 5px;
+  border: dashed red;
+  border-radius: 5px;
+}

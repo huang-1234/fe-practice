@@ -1,0 +1,28 @@
+.container{
+  .box1{
+    width: 500px;
+    height: 500px;
+    background: rgb(222, 222, 223);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    // align-content: space-around;要想起作用。 必须得有flex-wrap!=nowrap
+  
+    align-content: space-between;
+    text-align: center;
+    // justify-content: space-around;
+    .c1{
+      width: 100px;
+      height: 100px;
+      background-color: rgb(42, 206, 110);
+      padding: 5px;
+      border: dashed red;
+      border-radius: 5px;
+      // flex-grow: 1;
+    }
+    #c1{
+      // flex-grow: 1;
+    }
+  }
+}

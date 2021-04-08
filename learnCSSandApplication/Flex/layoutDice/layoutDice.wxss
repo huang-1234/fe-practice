@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+.container .box1 {
+  width: 200px;
+  height: 200px;
+  border: 1px solid green;
+  border-radius: 20px;
+  display: flex;
+  flex-flow: row wrap;
+  /*     justify-content: center;
+    align-items: center; */
+  justify-content: space-between;
+}
+.container .box1 .item {
+  width: 50px;
+  height: 50px;
+  background-color: black;
+  border-radius: 25px;
+  margin: 5px;
+}
+.container .box1 #item2 {
+  align-self: center;
+}
+.container .box1 #item3 {
+  align-self: flex-end;
+}

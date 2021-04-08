@@ -1,0 +1,29 @@
+a {
+  text-decoration: none;
+  color: aqua;
+}
+a:hover {
+  color: red;
+  font-size: 1.3em;
+}
+.second-face {
+  width: 100px;
+  height: 100px;
+  background-color: pink;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.second-face span {
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border: 1px solid;
+  border-radius: 5px;
+}
+.second-face .pip1 {
+  align-self: flex-start;
+}
+.second-face .pip2 {
+  align-self: flex-end;
+}

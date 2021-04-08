@@ -1,0 +1,34 @@
+* {
+  padding: 0%;
+  margin: 0%;
+}
+.box1 {
+  width: 100vw;
+  text-align: center;
+}
+.box1 #header {
+  height: 10vh;
+  background-color: rgba(74, 182, 182, 0.5);
+}
+.box1 .box-item {
+  display: flex;
+  min-height: 90vh;
+  text-align: center;
+}
+.box1 .box-item .HolyGrail-nav {
+  min-width: 10vw;
+  background: #406283;
+}
+.box1 .box-item .HolyGrail-content {
+  min-width: 80vw;
+  background: #b6babd;
+  display: flex;
+}
+.box1 .box-item .HolyGrail-ads {
+  min-width: 10vw;
+  background: #41b668;
+}
+.box1 #footer {
+  height: 10vh;
+  background: rgba(104, 88, 150, 0.9);
+}

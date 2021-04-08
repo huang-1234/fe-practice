@@ -1,0 +1,35 @@
+.container {
+  display:flex;
+  justify-content: center;
+  margin-top: 100px;
+  .box1 {
+    @box-width:200px;
+    @box-height:200px;
+    @item-margin:5px; // 点item的外边距
+    width: @box-width;
+    height: @box-height;
+    // background-color: aquamarine;
+    border: 1px solid green;
+    border-radius: 20px;
+    display: flex;
+    flex-flow: row wrap;
+    // 下面两句话让只有一点的骰子放在最中间
+/*     justify-content: center;
+    align-items: center; */
+    justify-content: space-between;
+    .item {
+      width: 0.25*@box-height;
+      height: 0.25*@box-height;
+      background-color: black;
+      // box-sizing: border-box; //可用可不用
+      border-radius: 25px;
+      margin: @item-margin;
+    }
+     #item2{
+      align-self: center;
+    }
+     #item3{
+      align-self: flex-end;
+    }
+  }
+}
