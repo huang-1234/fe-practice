@@ -7,12 +7,13 @@
   <title>Document</title>
 </head>
 <body>
+  <script defer>
+    function showMe(){
+      console.log('hello world!');
+    }
+  </script>
   <div class="container">
-    <form action="handler.php" id="file-form" method="POST">
-      <input type="file" id="file-select" name="photos[]" multiple="multiple"/>
-      <button type="submit" id="upload-select">upload</button>
-    </form>
+    <input type="button" value="Click" onclick="showMe()"/>
   </div>
-  <script src="./xhr.js"></script>
 </body>
 </html>

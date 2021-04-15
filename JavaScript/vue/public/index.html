@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <cpn></cpn>
+  </div>
+  <!-- <script defer src="https://cdn.bootcss.com/vue/2.5.2/vue.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <template id='cross'>
+    <div>
+      <button @click="postMessage">给http://crossDomain.com:9099发消息</button>
+      <iframe name="crossDomainIframe" src="http://crossdomain.com:9099"></iframe>
+    </div>
+  </template>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      template: cross,
+      components: {
+        // 'cpn':cross
+      },
+      mounted() {
+        window.addEventListener('message', (e) => {
+          // 这里一定要对来源做校验
+          if (e.origin === 'http://crossdomain.com:9099') {
+            // 来自http://crossdomain.com:9099的结果回复
+            console.log(e.data)
+          }
+        })
+      },
+      methods: {
+        postMessage() {
+          console.log('psot');
+          const iframe = window.frames['crossDomainIframe']
+          iframe.postMessage('我是[http://localhost:9099], 麻烦你查一下你那边有没有id为app的Dom', 'http://crossdomain.com:9099')
+          console.log('ending----------')
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
