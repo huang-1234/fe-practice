@@ -1,0 +1,116 @@
+<html>
+
+<head>
+  <style type="text/css">
+    .res {
+      color: Red;
+    }
+
+    .result {
+      background: yellow;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    var oldKey = "";
+    var index = -1;
+    var pos = new Array();//用于记录每个关键词的位置，以方便跳转
+    var oldCount = 0;//记录搜索到的所有关键词总数
+
+    function previous() {
+      index--;
+      index = index < 0 ? oldCount - 1 : index;
+      search();
+    }
+    function next() {
+      index++;
+      //index = index == oldCount ? 0 : index;
+      if (index == oldCount) {
+        index = 0;
+      }
+      search();
+    }
+
+    function search() {
+      $(".result").removeClass("res");//去除原本的res样式
+      var key = $("#key").val(); //取key值
+      if (!key) {
+        console.log("key为空则退出");
+        $(".result").each(function () {//恢复原始数据
+          $(this).replaceWith($(this).html());
+        });
+        oldKey = "";
+        return; //key为空则退出
+      }
+      if (oldKey != key) {
+        console.log("进入重置方法");
+        //重置
+        index = 0;
+        $(".result").each(function () {
+          $(this).replaceWith($(this).html());
+        });
+        pos = new Array();
+        var regExp = new RegExp(key + '(?!([^<]+)?>)', 'ig');//正则表达式匹配
+        $("body").html($("body").html().replace(regExp, "<span id='result" + index + "' class='result'>" + key + "</span>")); // 高亮操作
+        $("#key").val(key);
+        oldKey = key;
+        $(".result").each(function () {
+          pos.push($(this).offset().top);
+        });
+        oldCount = $(".result").length;
+        console.log("oldCount值：", oldCount);
+      }
+
+      $(".result:eq(" + index + ")").addClass("res");//当前位置关键词改为红色字体
+
+      $("body").scrollTop(pos[index]);//跳转到指定位置
+    }
+  </script>
+</head>
+
+<body>
+  <div style="position: fixed; right: 20px; top: 0;">
+    <input id="key" type="text" style="width: 100px;" />
+    <input type="button" value="下一个" onclick="next()" />
+    <input type="button" value="上一个" onclick="previous()" />
+  </div>
+  <div style="height: 100px;">
+  </div>
+  <div style="height: 100px;">
+    1、45648897454。
+  </div>
+  <div style="height: 100px;">
+    2、据 Ben Geskin 推文显示，三星 S10 果真具有早先已传闻的“打孔屏”设计。对此，营长并不觉得是什么稀奇的事，因为近几年手机市场的厂商们，几乎都在盘算着如何“以貌取胜”，同时，配备让智能手机更智能的 AI
+    技术也是如今手机的一大卖点。
+  </div>
+  <div style="height: 100px;">
+    2015年，三星风投投资了区块链消费设备ADEPT；。
+  </div>
+  <div style="height: 100px;">
+    2016年，三星集团旗下最大子公司三星数据系统（Samsung SDS）宣布，将投资一家为公司提供基于区块链开发平台的当地公司，理由是区块链技术是足以改变世界的金融创新技术；
+  </div>
+  <div style="height: 100px;">
+    2017年，三星建立以云计算为主的企业级区块链平台 Nexledger；
+  </div>
+  <div style="height: 100px;">
+    2018年1月，三星数据系统宣布投资两家初创公司，其中一家为韩国区块链公司 Blocko，另一家为英国网络安全公司 Darktrace；
+  </div>
+  <div style="height: 100px;">
+    2018年4月，三星开始为 Halong Mining 的 DragonMint T1 矿机生产 10nm 芯片。
+  </div>
+  <div style="height: 100px;">
+    2018年9月，三星 SDS 与韩国海关、韩国银行等合作开发区块链认证平台，
+  </div>
+  <div style="height: 100px;">
+    2018年10月，三星与荷兰银行 ABN AMRO 展开区块链贸易试点项目。
+  </div>
+  <div style="height: 100px;">
+    2019年1月23日，据一位名为 Ben Geskin 的推特网友爆料，三星 Galaxy S10 手机将内置区块链数字钱包服务，并首次报道于三星新闻网站
+    SamMobile。但截止到撰稿时间，三星对此并没有做出任何回应。但种种迹象表明，这次真有点实锤的意思！
+  </div>
+  <div style="height: 100px;">
+    6666666666666
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>flex</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    a {
+      text-decoration: none;
+      text-align: center;
+      color: rgb(43, 38, 33);
+    }
+
+    .header {
+      background-color: aquamarine;
+    }
+    .center{
+      display: flex;
+      width: 100%;
+    }
+    .nav-left {
+      width: 100px;
+      min-height: 500px;
+      display: flex;
+      /* flex-direction: column; */
+      flex-flow: column nowrap;
+      background-color: rgb(221, 240, 154);
+    }
+
+    .nav-left nav-item {
+
+      width: 100%;
+      height: 100px;
+      text-align: center;
+      border-bottom: 1px sodivd #ffff;
+    }
+    .center .content header{
+      width: 100%;
+      height: auto;
+      text-align: center;
+    }
+
+    .sidebar-right {
+      background-color: blue;
+      display: none;
+    }
+
+    .footer {
+      width: 100%;
+      height: 3rem;
+      background-color: rgb(137, 137, 153);
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <h1>header</h1>
+  </header>
+  <div class="center">
+    <nav name="select-left" id="select-left" class="nav-left">
+
+      <div class="nav-item"> <a href="#/">默认菜单</a> </div>
+      <div class="nav-item"> <a href="#/flex-self">flex</a> </div>
+      <div class="nav-item"> <a href="#/flex-item">flex子元素</a> </div>
+      <div class="nav-item"> <a href="#/css">css</a> </div>
+      <div class="nav-item"> <a href="#/html">html</a> </div>
+    </nav>
+    <div class="content">
+      <header >header</header>
+    </div>
+  </div>
+  <sidebar class="sidebar-right">
+    <h1>sidebar</h1>
+  </sidebar>
+  <footer class="footer">
+    <h2>footer</h2>
+  </footer>
+  <script>
+    console.log(document)
+  </script>
+</body>
+
+</html>

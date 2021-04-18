@@ -112,6 +112,6 @@ if (iterator.next().done===true) {
 */
 //#endregion
 
-import nanoid from 'nanoid'
-const id = nanoid();
-console.log(id)
+// import nanoid from 'nanoid'
+// const id = nanoid();
+// console.log(id)
