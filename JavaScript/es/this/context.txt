@@ -1,0 +1,46 @@
+GlobalExectionContext = {
+
+  ThisBinding: <Global Object>,
+
+    LexicalEnvironment: {
+      EnvironmentRecord: {
+      Type: "Object",
+    // 在这里绑定标识符
+    a: < uninitialized >,
+      b: < uninitialized >,
+        multiply: < func >
+    }
+          outer: <null>
+  },
+
+  VariableEnvironment: {
+    EnvironmentRecord: {
+    Type: "Object",
+  // 在这里绑定标识符
+    c: undefined,
+    }
+    outer: <null>,
+  }
+}
+
+              FunctionExectionContext = {
+                ThisBinding: <Global Object>,
+
+                  LexicalEnvironment: {
+                  EnvironmentRecord: {
+                  Type: "Declarative",
+                // 在这里绑定标识符
+                Arguments: {0: 20, 1: 30, length: 2},
+    },
+                outer: <GlobalLexicalEnvironment>
+  },
+
+                  VariableEnvironment: {
+                    EnvironmentRecord: {
+                    Type: "Declarative",
+                  // 在这里绑定标识符
+                  g: undefined
+    },
+                  outer: <GlobalLexicalEnvironment>
+  }
+}
