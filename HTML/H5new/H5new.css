@@ -1,0 +1,56 @@
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  header,
+  nav,
+  article,
+  aside,
+  main,
+  footer {
+    display: block;
+  }
+
+  header {
+    width: 1000px;
+    height: 100px;
+    margin: 0 auto;
+    background-color: yellowgreen;
+  }
+
+  nav {
+    width: 1000px;
+    height: 50px;
+    margin: 10px auto 0;
+    background-color: yellowgreen;
+  }
+
+  main {
+    width: 1000px;
+    height: 400px;
+    margin: 10px auto 0;
+    background-color: yellowgreen;
+  }
+
+  main aside {
+    float: left;
+    width: 150px;
+    height: 300px;
+    margin-right: 10px;
+    background-color: pink;
+  }
+
+  main article {
+    float: left;
+    width: 840px;
+    height: 400px;
+    background-color: pink;
+  }
+
+  footer {
+    width: 1000px;
+    height: 80px;
+    margin: 10px auto 0;
+    background-color: yellowgreen;
+  }

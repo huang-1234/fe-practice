@@ -1,4 +1,15 @@
 {
   "compile-hero.disable-compile-files-on-did-save-code": true,
-  "git.ignoreLimitWarning": true
+  "git.ignoreLimitWarning": true,
+  "python.testing.unittestArgs": [
+    "-v",
+    "-s",
+    "./MachineLearning",
+    "-p",
+    "*test.py"
+  ],
+  "python.testing.pytestEnabled": false,
+  "python.testing.nosetestsEnabled": false,
+  "python.testing.unittestEnabled": false,
+  "python.testing.promptToConfigure": false,
 }

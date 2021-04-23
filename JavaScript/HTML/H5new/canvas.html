@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <header>
+    <h2>header</h2>
+  </header>
+  <main class="main">
+    <div class="left">
+      <nav class="left-nav">
+        <h2>nav</h2>
+      </nav>
+    </div>
+    <div class="container">
+      <div class="item">box
+        <canvas id="myCanvas" width="200" height="100" style="border:1px solid #c3c3c3;">
+          Your browser does not support the canvas element.
+        </canvas>
+        <script type="text/javascript">
+
+          var c = document.getElementById("myCanvas");
+          var cxt = c.getContext("2d");
+          var grd = cxt.createLinearGradient(0, 0, 175, 50);
+          grd.addColorStop(0, "#FF0000");
+          grd.addColorStop(1, "#00FF00");
+          cxt.fillStyle = grd;
+          cxt.fillRect(0, 0, 175, 50);
+
+        </script>
+      </div>
+      <div class="item">
+        <h2>花草</h2>
+        <img id="scream" width="224" height="162" src="./img/flower.png" alt="The Scream">
+        <p>Canvas:</p>
+        
+        <canvas id="myCanvas" width="244" height="182" style="border:1px solid #d3d3d3;">
+          Your browser does not support the HTML5 canvas tag.
+        </canvas>
+        
+        <script>
+          window.onload = function () {
+            var canvas = document.getElementById("myCanvas");
+            var ctx = canvas.getContext("2d");
+            var img = document.getElementById("scream");
+            ctx.drawImage(img, 10, 10);
+          };
+        </script>
+      </div>
+      <div class="item">box
+
+      </div>
+      <div class="item">box
+
+      </div>
+      <div class="item">box
+
+      </div>
+      <div class="item">box
+
+      </div>
+    </div>
+  </main>
+</body>
+</html>

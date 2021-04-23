@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./H5new.css">
+</head>
+
+<body>
+  <!--HTML新增语义化标签-->
+
+
+
+  <header>头部</header>
+
+  <nav>导航</nav>
+
+  <main>
+
+    <aside>侧边栏</aside>
+
+    <article>主体内容</article>
+
+  </main>
+
+  <footer>底部</footer>
+
+
+
+  <!--音频标签-->
+
+  <!-- 音频的标签和属性 -->
+  <!-- h5 中如果标签属性的属性名和属性值是一样的，那么可以省略属性值不写 -->
+
+  <audio src="media/snow.mp3" controls="controls" preload="preload" loop></audio>
+<!-- //音频在就绪后马上播放。 -->
+  autoplay="autoplay"; 
+ <!-- //向用户显示控件，比如播放按钮。 -->
+  controls="controls";
+<!-- //每当音频结束时重新开始播放。 -->
+  loop="loop"; 
+<!-- //音频在页面加载时进行加载，并预备播放。 -->
+  preload="preload"; 
+
+  <!-- 如果使用 "autoplay"，则忽略该属性。
+ //路径 -->
+  src="url";
+
+  <!-- 多种音频格式的兼容写法 -->
+
+  <audio controls>
+
+    <source src="media/snow.mp3" type="audio/mpeg">
+
+    <source src="media/snow.ogg" type="audio/ogg">
+
+    <!-- 您的浏览器版本过低，不支持音频播放 -->
+
+  </audio>
+
+  <!--视频标签-->
+
+  视频文件的标签和属性
+
+  <video 
+  src="E:/音乐视频图片软件+视频+图片/视频/2018年度优秀大电影/我不是药神/我不是药神-国语流畅.qsv" 
+  controls muted="muted" width="200px" height="300px" poster="images/pig.jpg"
+  >
+  </video> -->
+
+  autoplay="autoplay"; //视频在就绪后马上播放。（谷歌浏览器需要添加muted来解决自动播放问题）
+
+  controls="controls"; //向用户显示控件，比如播放控件。
+
+  loop="loop"; //每当视频结束时重新开始播放。
+
+  preload="auto"(预先加载视频)
+
+  preload="none"(不应加载视频) //规定是否预加载视频(如果有了autoplay 就忽略该属性）
+
+  src="路径"; //路径
+
+  width="" //设置播放器宽度
+
+  height=""; //设置播放器高度
+
+  poster="路径"; //加载等待的画面图片
+
+  muted="muted"; //静止播放
+
+  <!--不同的浏览器兼容写法，需要添加多个视频资源文件 -->
+
+  <video controls width="200px">
+
+    <source src="media/video.mp4" type="video/mp4">
+
+    <source src="media/video.ogg" type="video/ogg">
+
+    您的浏览器版本过低，不支持 video 视频标签
+
+  </video>
+
+
+
+  <!--h5新增input表单类型-->
+
+  type="email" //限制用户输入必须为Email类型
+
+  type="url" //限制用户输入必须为URL类型
+
+  type="date" //限制用户输入必须为日期类型
+
+  type="time" //限制用户输入必须为时间类型
+
+  type="month" //限制用户输入必须为月类型
+
+  type="week" //限制用户输入必须为周类型
+
+  type="number" //限制用户输入必须为数字类型
+
+  type="range" //滑动条
+
+  年龄：<input type="number" max="100" min="0" step="4" value="4">
+
+  年龄范围：<input type="range" max="100" min="0" step="4" value="4">
+
+  type="tel" //手机号码
+
+  type="search" //搜索框
+
+  type="color" //生成一个颜色选择表单
+
+  <datalist> 标签
+
+    <datalist> 标签规定了 <input> 元素可能的选项列表。
+
+      <datalist>元素包含了一组<option>元素，这些元素表示预定义可选值，在<input>元素输入
+
+          过程中，会自动响应
+        <option>元素的值。
+
+          绑定的<input>标签必须设置 list 属性，属性值等于<datalist>标签的 id 属性值。
+
+            城市：<input type="text" list="list01">
+
+            <!-- 预定义一些选项 -->
+
+            <datalist id="list01">
+
+              <option value="广州">gz</option>
+
+              <option value="深圳">sz</option>
+
+              <option value="北京">bj</option>
+
+              <option value="上海">
+
+            </datalist>
+
+
+
+            新增表单属性
+
+            required="required"; //表单拥有该属性表示其内容不能为空，必填
+
+            placeholder="提示文本"; //表单的提示信息，存在默认值将不显示
+
+            autofocus="autofocus"; //自动聚焦属性，页面加载完成自动聚焦到指定表单，一般页
+
+            面中放1个
+
+            multiple="multiple";
+
+            文件： <input type="file" multiple="multiple">
+
+            <input type="submit" value="提交">
+</body>
+
+</html>
