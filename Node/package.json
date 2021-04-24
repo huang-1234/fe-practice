@@ -1,0 +1,19 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "index.js",
+  "scripts": {
+    "test": "Test",
+    "dev":"node http/firstServer.js"
+  },
+  "keywords": [
+    "huang"
+  ],
+  "author": "hsq",
+  "license": "ISC",
+  "dependencies": {
+    "querystring": "^0.2.1",
+    "url": "^0.11.0"
+  }
+}
