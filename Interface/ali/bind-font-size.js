@@ -43,7 +43,7 @@ console.log(tranStr(str1));
  */
 
 
-/* //别人实现的
+//别人实现的
 function cssStyle2DomStyle(sName) {
   let pname = sName.split('-')
   console.log(pname);
@@ -67,28 +67,10 @@ function cssStyle2DomStyle(sName) {
 }
 let str = '-webkit-border-image'
 console.log(cssStyle2DomStyle(str))
- */
 
 
 
-/* 
-new Promise((resolve, reject) => {
-  console.log('Promsie start');
-  setTimeout(() => {
-    resolve('success');
-  }, 1000);
-  
-  // reject('reason');
-}).then(res => {
-  console.log(res);
-}, err => {
-  console.log(err);
-}).then(res => {
-  console.log(res);
-}, err => {
-  console.log(err);
-})
- */
+
 
 // bind
 function bindThis(func, oTarget) {

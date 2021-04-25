@@ -21,6 +21,7 @@ function tranStr(str1) {
       break;
     }
   }
+  // 去掉首尾的'---'
   let strTemp = str1.slice(L, R);
 
   let Arr = strTemp.split('-');
