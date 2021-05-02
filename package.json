@@ -1,0 +1,23 @@
+{
+  "name": "code-of-learing-front-end",
+  "version": "1.0.0",
+  "description": "code-learning",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "bash deploy.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huang-1234/learnFrontTest.git"
+  },
+  "keywords": [
+    "code"
+  ],
+  "author": "hsq",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/huang-1234/learnFrontTest/issues"
+  },
+  "homepage": "https://github.com/huang-1234/learnFrontTest#readme"
+}
