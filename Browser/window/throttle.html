@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      #box1 {
+        height: 800vh;
+        width: 50%;
+        background-color: aqua;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box1"></div>
+    <script>
+      function showScrollTop() {
+        var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+        console.log('防抖后滚动条的位置：' + scrollTop);
+      }
+      // 当我们一直滚动，浏览器会一直帮我们调用，下面的函数，所以我们要在延迟函数里面传递业务函数和延迟
+      // delay的话，就需要在debounce函数内返回一个函数，
+      // 这个函数的目的就在于无论里滑动多少次都不会立即调用，而是会延迟delay毫秒
+      function throttle(fn, delay) {
+        let valve = true;
+        return function () {
+          if (!valve) {
+            return false;// 时间delay未到，不执行fn
+          } else {
+            // 如果不设置微false，在下一个定时执行fn的时间内会大量的激活onscroll事件，
+            //也就是执行throttle函数
+            valve = false;
+            setTimeout(() => {
+              fn();
+              //fn执行完以后，就相当于技能用完以后，开启冷却倒计时
+              // valve = fales 就相当于在王者荣耀里面技能已经好了，你还没使用，一旦使用，就设置valve=true
+              valve = true;
+            },delay)
+          }
+        }
+      }
+      window.onscroll = throttle(showScrollTop, 1500)
+    </script>
+  </body>
+</html>

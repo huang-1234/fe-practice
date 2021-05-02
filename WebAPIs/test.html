@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>childNodes.length</title>
+  </head>
+
+  <body>
+    <ul id="ul">1
+      2<li>3</li>4
+      <li>5</li>6
+      <li>7</li>8
+    </ul>
+    <script>
+      var ul = document.getElementById('ul');
+      console.log(ul.childNodes)//是7不是3
+      let a = new Object()
+      a.fc = ul.firstChild.baseURI;
+      console.log(a)
+    </script>
+  </body>
+
+</html>

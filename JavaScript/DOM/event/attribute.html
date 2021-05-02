@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+      #main {
+        width: 200px;
+        height: 100px;
+        background: pink;
+        color: #fff;
+      }
+
+    </style>
+
+  </head>
+
+  <body>
+    <div id="main" class="sb js node">
+      <span>测试文字</span>
+    </div>
+    <script type="text/javascript">
+      window.onload = function () {
+        document.getElementById("main").onclick = function (e) {
+          console.log(e.target);//<div id="main" class="sb js node"><span>测试文字</span></div>
+          console.log(e.target.id);//main
+          console.log(e.target.tagName);//DIV
+          console.log(e.target.nodeName);//DIV
+          console.log(e.target.classList);// ["sb", "js", "node", value: "sb js node"]
+          console.log(e.target.className);//sb js node
+          console.log(e.target.innerHTML);//<span>测试文字</span>
+          console.log(e.target.innerText);//测试文字
+        }
+      }
+    </script>
+  </body>
+
+</html>

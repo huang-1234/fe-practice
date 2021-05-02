@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var y = 0;
+      var x = new Date().getTime();
+      var d = setInterval(a, 500);
+      function a() {
+        y++;
+        sleep(1000);
+        if (y >= 4) {
+          clearInterval(d)
+        }
+        console.info('time：',new Date().getTime() - x);
+
+      }
+      function sleep(sleepTime) {
+        var start = new Date().getTime();
+        while (true) {
+          if (new Date().getTime() - start > sleepTime) {
+            break;
+          }
+        }
+      }
+  </script>
+</body>
+</html>

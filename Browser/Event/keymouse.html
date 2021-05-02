@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+
+  <body>
+<!--     <script type="text/javascript" defer>
+      document.onkeydown = function (event) {
+        // 键盘按下时触发
+        console.log('key down');
+        console.log(event.code);
+      };
+
+      document.onkeypress = function (event) {
+        // 键盘按住时触发
+        console.log('key press');
+      };
+
+      document.onkeyup = function (event) {
+        // 键盘弹起时触发
+        console.log('key up');
+      };
+      document.onmouseup = function(event){
+        console.log(event.clientX);
+      }
+    </script> -->
+    <script type="text/javascript">
+      function appendText(str) {
+        document.body.innerHTML += str + "<br/>";
+      }
+      document.onmousedown = function () {
+        appendText("onmousedown");
+        appendText("button = " + event.button);
+        appendText("(x,y) = " + event.x + "," + event.y);
+        appendText("(x,y) = " + event.screenX + "," + event.screenY);
+      }
+      document.onmouseup = function () {
+        appendText("onmouseup");
+      }
+      document.onclick = function () {
+        appendText("onclick");
+      }
+      document.ondblclick = function () {
+        appendText("ondblclick");
+      }
+      document.oncontextmenu = function () {
+        appendText("oncontextmenu");
+      }
+      // document.onmouseover = function () {
+      //   appendText("onmouseover");
+      // }
+      // document.onmouseout = function () {
+      //   appendText("onmouseout");
+      // }
+      // document.onmousemove = function () {
+      //   appendText("mousemove");
+      // }
+    </script>
+  </body>
+
+</html>

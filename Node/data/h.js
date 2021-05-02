@@ -1,0 +1,30 @@
+exports.weather =  {
+  "result": {
+    "weaid": "1",
+    "days": "2021-04-28",
+    "week": "星期三",
+    "cityno": "beijing",
+    "citynm": "北京",
+    "cityid": "101010100",
+    "temperature": "23℃/11℃",
+    "temperature_curr": "19℃",
+    "humidity": "16%",
+    "aqi": "57",
+    "weather": "多云",
+    "weather_curr": "阴",
+    "weather_icon": "http://api.k780.com/upload/weather/d/2.gif",
+    "weather_icon1": "",
+    "wind": "西南风",
+    "winp": "3级",
+    "temp_high": "23",
+    "temp_low": "11",
+    "temp_curr": "19",
+    "humi_high": "0",
+    "humi_low": "0",
+    "weatid": "3",
+    "weatid1": "",
+    "windid": "5",
+    "winpid": "3",
+    "weather_iconid": "2"
+  }
+}

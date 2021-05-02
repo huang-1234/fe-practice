@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./a.css">
+  <style>
+  #box1{
+    width: 50%;
+    height: 500vh;
+    background-color:pink;
+  }
+  #box1 #gotoTop{
+    height: 1.5rem;
+    width: fit-content;
+    background-color: rgb(180, 180, 206);
+    border-radius:0.3rem;
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+    
+  }
+  </style>
+</head>
+<body>
+  <div id="box1">
+    <div id="gotoTop">
+      <button id="gotoTop-text" data-v-49f63007 title="回到顶部" onclick="gotoTop(0,100)">
+        <i data-v-49f63007 >回到顶部</i>
+      </button>
+    </div>
+  </div>
+</body>
+<script>
+  function gotoTop(x,y){
+    console.log('回到坐标：X:',x,'Y:',y)
+    window.scrollTo(x,y)
+  }
+</script>
+</html>

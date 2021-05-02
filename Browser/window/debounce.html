@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      #box1 {
+        height: 800vh;
+        width: 50%;
+        background-color: aqua;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <div id="box1"></div>
+    <script>
+      function showScrollTop() {
+          var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+          console.log('防抖后滚动条的位置：' + scrollTop);
+      }
+      function debounce(fn, delay) { // 延迟执行fn，fn就是我们的业务代码
+        let timeId = null // 用来取消定时器的，也就是意味着下一次滑动会重新延迟调用业务函数fn
+        return function () {
+          if (timeId) {
+            // 我们把下面的取消定时器的代码注释掉，会发现，虽然fn延迟调用，但是确实一瞬间吊用了十几次
+            clearTimeout(timeId);
+          }
+          timeId = setTimeout(fn, delay)
+        }
+      }
+
+      // 当我们一直滚动，浏览器会一直帮我们调用，下面的函数，所以我们要在debounce里面传递业务函数和延迟
+      // delay的话，就需要在debounce函数内返回一个函数，
+      // 这个函数的目的就在于无论里滑动多少次都不会立即调用，而是会延迟delay毫秒
+      window.onscroll = debounce(showScrollTop,1000)
+    </script>
+  </body>
+
+</html>

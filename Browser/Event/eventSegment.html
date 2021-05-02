@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      #out {
+        width: 25rem;
+        height: 25rem;
+        background-color: aqua;
+      }
+
+      #out #inner {
+        width: 20rem;
+        height: 20rem;
+        background-color: rgb(0, 4, 255);
+      }
+      #out #inner #inner3{
+        width: 15rem;
+        height: 15rem;
+        background-color: brown;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <div id="out" class="test" onclick="out()">out1
+      <div id="inner" class="test-inner" onclick="inner()">inner2
+        <div id="inner3" onclick="inner3()">inner3
+        
+        </div>
+      </div>
+    </div>
+    <script>
+      const out = function(){console.log('out')}
+      const inner = function(){console.log('inner')}
+      const inner3 = function(){console.log('inner3')}
+      
+      const btn = document.getElementById("out");
+      //捕获事件
+      btn.addEventListener("click", function (e) {
+        console.log("capture is ok");
+      }, true);
+
+      //冒泡事件
+      btn.addEventListener("click", function (e) {
+        console.log("bubble is ok");
+      }, false);
+    </script>
+  </body>
+
+</html>

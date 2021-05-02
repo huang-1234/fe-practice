@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class=container>1
+    <header class="header">2
+      <h2>header</h2>3
+    </header>4
+    <main class="main">5
+      <h2>main</h2>6
+    </main>7
+    <footer class="footer">8
+      <h2>footer</h2>9
+    </footer>0
+  </div>
+  <div id="box2">box2</div>
+  <script defer>
+    // 第一个Element
+    const el = document.getElementsByTagName('div');
+    console.log(el) //HTMLCollection(2) [div.container, div#box2, box2: div#box2]
+    // 	返回元素属性的 NamedNodeMap。
+    let attributes = el[0].attributes;
+    console.log(attributes);// NamedNodeMap {0: class, class: class, length: 1}    
+    // 返回元素子节点的 NodeList。
+    let childNodes = el[0].childNodes;
+    console.log(childNodes); // NodeList(7) [text, header.header, text, main.main, text, footer.footer, text]
+
+    //
+    let children = el[0].children;
+    console.log(children); // HTMLCollection(3) [header.header, main.main, footer.footer]
+    // 返回元素的可见高度。
+    let clientHeight1 = el[0].clientHeight;
+    console.log(clientHeight1); //42
+
+
+
+    // 第二个Element
+    let clientHeight2 = el[1].clientHeight;
+    console.log(clientHeight2); // 21
+
+    let accessKey = el[0].accessKey;
+    console.log(accessKey); 
+
+    
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+  a {
+    color: hotpink;
+    text-decoration: none;
+  }
+
+  /* 未被访问的链接 */
+  a:link {
+    color: red;
+  }
+
+  /* 已被访问的链接 */
+  a:visited {
+    color: green;
+  }
+
+  /* 将鼠标悬停在链接上 */
+  a:hover {
+    color: hotpink;
+  }
+
+  /* 被选择的链接 */
+  a:active {
+    color: blue;
+  }

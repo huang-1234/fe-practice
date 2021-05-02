@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "Test",
-    "dev":"node http/firstServer.js"
+    "dev": "node http/firstServer.js",
+    "mysql":"node server/MySQL/connectingMysql.js"
   },
   "keywords": [
     "huang"
@@ -13,6 +14,7 @@
   "author": "hsq",
   "license": "ISC",
   "dependencies": {
+    "mysql": "^2.18.1",
     "querystring": "^0.2.1",
     "url": "^0.11.0"
   }

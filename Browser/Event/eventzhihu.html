@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      .btnCon {
+        width: 300px;
+        height: 300px;
+        border: 1px solid yellow;
+      }
+      .btn {
+        width: 200px;
+        height: 200px;
+      }
+      .btn div {
+        width: 100px;
+        height: 100px;
+        border: 1px solid red;
+      }
+      .btn div span {
+        background-color: #ccc;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="btnCon">
+      <button class="btn">
+        <div>
+          <span>按钮</span>
+        </div>
+      </button>
+    </div>
+
+    <script>
+      let btnCon = document.querySelector('.btnCon');
+      let btn = document.querySelector('.btnCon div');
+      // btn.onclick = c;
+
+      btnCon.addEventListener('click', c);
+      btn.addEventListener('click', c);
+      // btn.addEventListener('click', c, true);
+
+      function c(event) {
+        event = event || wind
+        console.log(event);
+        //事件的目标
+        console.log('事件的目标 =>', event.target);
+        //绑定事件的元素，与 'this' 的指向相同
+        console.log("绑定事件的元素 =>", event.currentTarget);
+        console.log(event.currentTarget === event.target);
+        //被触发的事件类型
+        console.log("被触发的事件类型 => ", event.type);
+        //调用事件处理程序的阶段：0表示这个时间没有事件正在被处理，1表示捕获阶段，2表示“处于目标”，3表示冒泡阶段
+        console.log('调用事件处理程序的阶段：0表示这个时间没有事件正在被处理，1表示捕获阶段，2表示“处于目标”，3表示冒泡阶段');
+        console.log(event.eventPhase);
+
+        //取消事件的进一步捕获或冒泡。如果bubbles为true，则可以使用这个方法
+        event.stopPropagation();
+        //取消事件的进一步捕获或冒泡，同时阻止任何事件处理程序被调用（DOM3级事件中新增）
+        event.stopImmediatePropagation();
+        //取消事件的默认行为，比如点击链接跳转。如果 cancelable 是 true，则可以使用这个方法
+        event.preventDefault();
+      }
+    </script>
+  </body>
+</html>
