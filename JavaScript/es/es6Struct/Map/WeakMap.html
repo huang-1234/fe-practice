@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="box1">
+    <h1>title1</h1>
+  </div>
+  <script>
+    let wm = new WeakMap();
+    let map = new Map();
+      wm.set([1], 2);
+      // wm.set('hsq', 'es');
+      console.log(wm);
+      map.set('hsq', new Date());
+      function fn(x,y){
+        console.log('fn');
+        return x*y;
+      }
+      function callback(x,y){
+        console.log('callback...');
+        return y-x
+      }
+      map.set(fn, callback);
+      console.log('map.fn:',map.get(callbak)(10,6))
+      console.log(map);
+      // wm.clear() //报错不支持clear方法
+      // wm.size() //报错不支持size方法 wm也不支持遍历 
+
+      //弱引用 引用次数不会增加 若当前h1dom元素被删除，垃圾机制也不会回收，会自动消失，有助于防止内存泄漏
+      let wm1 = new WeakMap()
+      let elem = document.getElementsByTagName('h1')
+      wm1.set(elem, 'info')
+      console.log(wm1,wm1.get(elem));
+  </script>
+</body>
+</html>

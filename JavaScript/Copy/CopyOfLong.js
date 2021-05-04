@@ -108,9 +108,46 @@ const deepClone = (target, map = new WeakMap()) => {
   return cloneTarget;
 }
 
-let o = {
-  name: 'hsq'
+/* let obj = {
+  val: 100,
+  fn: (a, b) => {
+    console.log(a + b);
+    return this.a + this.b;
+  },
+  obj: [
+    {
+      name: 'hsq',
+      age: 18
+    }
+  ],
+  date: new Date(),
+  // sayName() {
+  //   console.log(object);
+  // }
+};
+obj.out = obj;
+// console.log(obj);
+let out = deepClone(obj);
+// console.log('out:', out);//报错: RangeError: Maximum call stack size exceeded
+out.obj = out;
+console.log(out.obj.out);
+ */
+
+
+// 测试栈溢出
+function createData(deep, breadth) {
+  var data = {};
+  var temp = data;
+
+  for (var i = 0;i < deep;i++) {
+    temp = temp['data'] = {};
+    for (var j = 0;j < breadth;j++) {
+      temp[j] = j;
+    }
+  }
+
+  return data;
 }
-o.link = o;
-let out = deepClone(o)
+let obj = createData(10000, 1000);
+let out = deepClone(obj);
 console.log(out);

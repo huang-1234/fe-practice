@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script type="text/javascript">
+    window.onload = function () { // 需要等到页面加载完以后再执行这个函数
+      alert('onload')
+    }
+  </script>
+  
+  <!-- 如果想给脚本增加defer属性让其延迟加载的话，最好是外部脚本，
+    内联的defer不仅多数浏览器不支持，而且IE6的表现也不一致。
+    所以将脚本放在body底部比给脚本增加defer属性让脚本延迟加载更好 -->
+  <script type="text/javascript" defer src="defer.js">
+  </script>
+  
+  <script type="text/javascript" async src="async.js">
+    // alert('async')
+  </script>
+  <script type="text/javascript">
+    alert('script')
+  </script>
+</body>
+</html>

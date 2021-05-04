@@ -36,7 +36,7 @@ const deepClone = (target) => {
   while (myStack.size()) {
     let value = myStack.pop();
     if (checkType(value)==='Object' || checkType(value)==='Array') {
-      oReturn[]
+      // oReturn[]
     }
   }
   return oResult;

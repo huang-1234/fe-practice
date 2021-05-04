@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let newsList;
+    fetch('http://127.0.0.1:7001/news', {
+      method: 'get', // *GET, POST, PUT, DELETE, etc.
+      mode: 'no-cors', // no-cors, cors, *same-origin
+      credentials: 'same-origin', // include, same-origin, *omit
+      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      redirect: 'follow', // manual, *follow, error
+      referrer: 'no-referrer', // *client, no-referrer
+      headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+      // body: JSON.stringify(data) // must match 'Content-Type' header
+    })
+      .then(response => {
+        // reject on network failure or if anything prevented the request from completing.
+        // won’t reject on HTTP error status even if the response is an HTTP 404 or 500,
+        // it will resolve normally (with ok status set to false)
+        const { status} = response
+        if (response.status >= 200 && response.status < 300) {
+          console.log('status:----', status)
+          return Promise.resolve(response);
+        }
+    
+        return Promise.reject(new Error(response.statusText));
+      })
+      .then(response => {
+        console.log('response:',response)
+        return response.json()
+      }) // parses response to JSON
+      .then(result => {
+        console.log(result)
+        // custom error
+        newsList = result;
+      })
+      .catch(error => {
+        // common error
+        return null;
+      });
+    console.log(newsList)
+  </script>
+</body>
+</html>

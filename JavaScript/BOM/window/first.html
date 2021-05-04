@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    console.log(document.location);
+    console.log(window);
+  function loadPageVar(sVar) {
+    return decodeURI(
+      window.location.search.replace(new RegExp("^(?:.*[&\\?]"
+      + encodeURI(sVar).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1")
+    );
+  }
+  const url = `https://developer.mozilla.org/zh-CN/docs/Web/API/Window/location?hsq=boy&place=changsha`;
+  let search = url.search;
+  const out = loadPageVar(search);console.log(out)
+  </script>
+</body>
+</html>

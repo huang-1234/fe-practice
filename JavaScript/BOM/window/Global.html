@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
+</head>
+<body>
+  <script defer>
+    var a = 15;
+    window.b = 20;
+    console.log(window.a,window.b) // 15 20
+    // delete window.a;
+    // delete window.b;
+    // console.log(window.a, window.b) // 15 undefined
+    let outa = Object.getOwnPropertyDescriptor(window, 'a');
+    console.log(outa)//{value: 15, writable: true, enumerable: true, configurable: false}
+    let outb = Object.getOwnPropertyDescriptor(window, 'b');
+    console.log(outb)// {value: 20, writable: true, enumerable: true, configurable: true}
+  </script>
+</body>
+</html>

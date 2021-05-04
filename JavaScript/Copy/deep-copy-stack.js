@@ -47,5 +47,6 @@ let a = {
   a2:18,
 }
 a.a3 = a;
+console.log(a);
 let b = deepClone(a);
 console.log(b)

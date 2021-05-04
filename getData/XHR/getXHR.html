@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      const xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        switch (xhr.readyState) {
+          case 0:
+            console.log(0, '未初始化....');
+            break;
+          case 1:
+            console.log(1, '请求参数已准备，尚未发送请求...');
+            break;
+          case 2:
+            console.log(2, '已经发送请求,尚未接收响应');
+            break;
+          case 3:
+            console.log(3, '正在接受部分响应.....');
+            data.innerHTML = xhr.responseText;
+            break;
+          case 4:
+            console.log(4, '响应全部接受完毕');
+            if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+              console.log(xhr.responseText)
+              document.write(xhr.responseText);
+            } else {
+              document.write('error:' + xhr.status);
+            }
+            break;
+        }
+      }
+      const url1 = `https://huang-1234.github.io/Browser/HTTP/aHTTPLife.html`;
+      const url2 = '/products/getProduct?id=1'
+      xhr.open('get',url1);
+      xhr.send(null);
+    </script>
+  </body>
+
+</html>

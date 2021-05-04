@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/huang-1234/learnFrontTest/issues"
   },
-  "homepage": "https://github.com/huang-1234/learnFrontTest#readme"
+  "homepage": "https://github.com/huang-1234/learnFrontTest#readme",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
 }

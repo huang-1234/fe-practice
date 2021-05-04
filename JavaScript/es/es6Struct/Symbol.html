@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<script>
+  let s1 = Symbol('foo');
+  let s2 = Symbol('foo');
+  const stu1 = Symbol('hsq')
+  const stu2 = Symbol('hsq')
+  console.log(stu1,stu2) // Symbol(hsq) Symbol(hsq)
+  const grade = {
+    [stu1]: { address: 'changsha', tel: '137707531' },
+    [stu2]: { address: 'changsha', tel: '137707531' }
+  }
+  console.log(grade); //{Symbol('hsq'):{...},Symbol('hsq'):{...}} 不会覆盖，显示两个
+  console.log(grade[stu1]);
+  console.log(grade[stu2]);
+</script>
+<script>
+  let sym = Symbol('hello')
+    class User {
+      constructor(name) {
+        this.name = name
+        this[sym] = 'hello.com'
+      }
+      getName() {
+        return this.name + this[sym]
+      }
+    }
+    let user = new User('daji')
+    console.log(user.getName()); //dajihello.com
+
+    for (let key in user) {
+      console.log(key);  //name 无法读到Symbol('hello')属性
+    }
+    for (let key of Object.keys(user)) {
+      console.log(key);  //name 无法读到Symbol('hello')属性
+    }
+    for (let key of Object.getOwnPropertyNames(user)) {
+      console.log(key);  //name 无法读到Symbol('hello')属性
+    }
+    for (let key of Object.getOwnPropertySymbols(user)) {
+      console.log(key);  //Symbol(hello)   只能读到symbol属性，读不到name
+    }
+    for (let key of Reflect.ownKeys(user)) {
+      console.log(key);   //name Symbol(hello)  都能读到
+    }
+</script>
+</body>
+</html>
