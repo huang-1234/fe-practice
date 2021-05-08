@@ -128,12 +128,10 @@ Promise.prototype.then = function (onFulfilled, onRejected) {
   const that = this;
   let newPromise;
   // 处理参数默认值 保证参数后续能够继续执行
-  onFulfilled =
-    typeof onFulfilled === "function" ? onFulfilled : value => value;
-  onRejected =
-    typeof onRejected === "function" ? onRejected : reason => {
-      throw reason;
-    };
+  onFulfilled =typeof onFulfilled === "function" ? onFulfilled : value => value;
+  onRejected =typeof onRejected === "function" ? onRejected : reason => {
+    throw reason;
+  };
 
   // then里面的FULFILLED/REJECTED状态时 为什么要加setTimeout ?
   // 原因:

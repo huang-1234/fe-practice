@@ -4,10 +4,10 @@ const getData = function (url) {
   const ax = axios({
     method:'get',
     url,
-    header: {
-      "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-      "Accept":"application/json"
-    }
+    // header: {
+    //   "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+    //   "Accept":"application/json"
+    // }
   }).then((res) => {
     console.log('res:',res)
   }).catch((err) => {

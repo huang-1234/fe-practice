@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+      .pic {
+        width: 790px;
+        height: 340px;
+        margin: 10px auto;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .content {
+        width: 99999px;
+        height: 340px;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+
+      }
+
+      .content img {
+        float: left;
+      }
+
+      .index {
+        position: absolute;
+        left: 300px;
+        bottom: 5px;
+        width: 200px;
+        height: 20px;
+        list-style: none;
+      }
+
+      .index li {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        float: left;
+        margin-left: 10px;
+        background-color: rgba(100, 100, 100, 0.3);
+      }
+
+      .left {
+        width: 30px;
+        height: 50px;
+        background-color: rgba(100, 100, 100, 0.5);
+        position: absolute;
+        left: 0px;
+        top: 150px;
+        line-height: 50px;
+        text-align: center;
+        font-size: 20px;
+        color: #fff;
+        display: none;
+      }
+
+      .right {
+        width: 30px;
+        height: 50px;
+        background-color: rgba(100, 100, 100, 0.5);
+        position: absolute;
+        right: 0px;
+        top: 150px;
+        line-height: 50px;
+        text-align: center;
+        font-size: 20px;
+        color: #fff;
+        display: none;
+      }
+
+      .index .first {
+        background-color: red;
+      }
+
+    </style>
+    <script type="text/javascript" src="jquery/jquery-3.0.0.min.js"></script>
+  </head>
+
+  <body>
+    <div class="pic">
+      <div class="content">
+        ![](img/(1).jpg)
+        ![](img/(2).jpg)
+        ![](img/(3).jpg)
+        ![](img/(4).jpg)
+        ![](img/(5).jpg)
+        ![](img/(6).jpg)
+        ![](img/(7).jpg)
+        ![](img/(8).jpg)
+      </div>
+      <ul class="index">
+        <li class="first"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+      <div class="right">></div>
+      <div class="left">
+        << /div>
+      </div>
+      <script type="text/javascript">
+        $(function () {
+          //每个固定的时间移动图片
+          var timer = setInterval(picLoop, 1000);
+          var index = 0;
+          function picLoop() {
+            index++;
+            if (index == 8) { index = 0; }
+            $(".content").animate({ "left": -790 * index }, 300);
+            $("li").eq(index).css("background-color", "red")
+              .siblings().css("background-color", "rgba(100,100,100,0.3)");
+          }
+
+          //定时器的控制
+          $(".pic").hover(function () {
+            clearInterval(timer);
+            $(".left").show();
+            $(".right").show();
+          }, function () {
+            timer = setInterval(picLoop, 1000);
+            $(".left").hide();
+            $(".right").hide();
+          })
+
+          $("li").mouseover(function () {
+            $(this).css("background-color", "red")
+              .siblings().css("background-color", "rgba(100,100,100,0.3)");
+            index = $(this).index();
+            $(".content").animate({ "left": -790 * index }, 300);
+
+          })
+
+          $(".left").click(function () {
+            index--;
+            if (index == -1) { index = 7; }
+            $(".content").animate({ "left": -790 * index }, 300);
+            $("li").eq(index).css("background-color", "red")
+              .siblings().css("background-color", "rgba(100,100,100,0.3)");
+          })
+          $(".right").click(function () {
+            index++;
+            if (index == 8) { index = 0 }
+            $(".content").animate({ "left": -790 * index }, 300);
+            $("li").eq(index).css("background-color", "red")
+              .siblings().css("background-color", "rgba(100,100,100,0.3)");
+          })
+
+
+        })
+      </script>
+  </body>
+
+</html>

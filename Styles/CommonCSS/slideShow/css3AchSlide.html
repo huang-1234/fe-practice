@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      .loop {
+        position: relative;
+        margin: 30px auto;
+        width: 600px;
+        height: 300px;
+      }
+
+      #wrap {
+        position: relative;
+        width: 600px;
+        height: 300px;
+        border: 1px solid #9cc5ef;
+        overflow: hidden;
+      }
+
+      #slider {
+        width: 300%;
+        height: 100%;
+        font: 100px/400px Microsoft Yahei;
+        text-align: center;
+        color: #fff;
+        margin-left: 0;
+        -webkit-animation: slide1 3s ease-out infinite;
+      }
+
+      #slider li {
+        float: left;
+        width: 600px;
+        height: 100%;
+      }
+
+      #slider img {
+        width: 600px;
+        height: 100%;
+      }
+
+      /*创建三种动画策略*/
+      @-webkit-keyframes slide1 {
+        0% {
+          margin-left: 0;
+        }
+
+        23% {
+          margin-left: 0;
+        }
+
+        33% {
+          margin-left: -600px;
+        }
+
+        56% {
+          margin-left: -600px;
+        }
+
+        66% {
+          margin-left: -1200px;
+        }
+
+        90% {
+          margin-left: -1200px;
+        }
+
+        100% {
+          margin-left: 0;
+        }
+      }
+
+      @-webkit-keyframes slide2 {
+        0% {
+          margin-left: -600px;
+        }
+
+        23% {
+          margin-left: -600px;
+        }
+
+        33% {
+          margin-left: -1200px;
+        }
+
+        56% {
+          margin-left: -1200px;
+        }
+
+        66% {
+          margin-left: 0;
+        }
+
+        90% {
+          margin-left: 0;
+        }
+
+        100% {
+          margin-left: -600px;
+        }
+      }
+
+      @-webkit-keyframes slide3 {
+        0% {
+          margin-left: -1200px;
+        }
+
+        23% {
+          margin-left: -1200px;
+        }
+
+        33% {
+          margin-left: 0;
+        }
+
+        56% {
+          margin-left: 0;
+        }
+
+        66% {
+          margin-left: -600px;
+        }
+
+        90% {
+          margin-left: -600px;
+        }
+
+        100% {
+          margin-left: -1200px;
+        }
+      }
+
+
+      /*当我们点击对应按钮时显示对应的动画*/
+      #first:checked~#wrap #slider {
+        -webkit-animation-name: slide1;
+      }
+
+      #second:checked~#wrap #slider {
+        -webkit-animation-name: slide2;
+      }
+
+      #third:checked~#wrap #slider {
+        -webkit-animation-name: slide3;
+      }
+
+
+      /*短暂地取消动画名称，模拟重启动画*/
+      #first:active~#wrap #slider {
+        -webkit-animation-name: none;
+        margin-left: 0;
+      }
+
+      #second:active~#wrap #slider {
+        -webkit-animation-name: none;
+        margin-left: -600px;
+      }
+
+      #third:active~#wrap #slider {
+        -webkit-animation-name: none;
+        margin-left: -1200px;
+      }
+
+      #opts {
+        width: 600px;
+        height: 40px;
+        margin: auto;
+        color: #fff;
+        text-align: center;
+        font: 16px/30px Microsoft Yahei;
+        position: absolute;
+        top: 260px;
+        left: 250px;
+      }
+
+      #opts label {
+        float: left;
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+        background: #cccccc;
+        cursor: pointer;
+        border-radius: 50%;
+      }
+
+      #opts label:hover {
+        background: #405871;
+      }
+
+      /* 隐藏Input按钮*/
+      #first,
+      #second,
+      #third {
+        display: none;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <div class="loop">
+      <input type="radio" name="slider" id="first">
+      <input type="radio" name="slider" id="second">
+      <input type="radio" name="slider" id="third">
+
+      <div id="wrap">
+        <ul id="slider">
+          <li>![](img/0.jpg)</li>
+          <li>![](img/1.jpg)</li>
+          <li>![](img/2.jpg)</li>
+        </ul>
+      </div>
+      <div id="opts">
+        <label for="first">1</label>
+        <label for="second">2</label>
+        <label for="third">3</label>
+      </div>
+    </div>
+  </body>
+
+</html>
