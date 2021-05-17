@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title></title>
+    <style type="text/css">
+      .week {
+        display: flex;
+        padding: 0px 15px;
+        background-color: #eeeeee;
+        height: 30px;
+        line-height: 30px;
+        color: #666666;
+        font-size: 14px;
+      }
+
+      .week p {
+        flex: 1;
+        text-align: center;
+      }
+
+      .date .day {
+        display: flex;
+        padding: 0px 15px;
+        font-size: 14px;
+      }
+
+      .date .day p.left {
+        border-left: 1px solid #eeeeee;
+      }
+
+      .date .day p.top {
+        border-top: 1px solid #eeeeee;
+      }
+
+      .date .day p.item {
+        flex: 1;
+        text-align: center;
+        border-bottom: 1px solid #eeeeee;
+        border-right: 1px solid #eeeeee;
+        height: 50px;
+        color: #333333;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <section class="week">
+      <p>日</p>
+      <p>一</p>
+      <p>二</p>
+      <p>三</p>
+      <p>四</p>
+      <p>五</p>
+      <p>六</p>
+    </section>
+    <section class="date date-two">
+      <p class="datalist"></p>
+    </section>
+  </body>
+  <script type="text/javascript" src="./jquery-3.2.1.min.js"></script>
+  <script type="text/javascript">
+    //计算对应的年月  
+    var day = new Date()
+    var month = day.getMonth() + 1;
+    month = month < 10 ? '0' + month : month;
+    //计算当前月份的总天数  
+    var day = new Date(day.getFullYear(), day.getMonth() + 1, 0);
+    var allDay = day.getDate();
+    //判断本月第一天是星期几  
+    day.setDate(1); //时间调整到本月第一天  
+    var firstday = day.getDay(); //读取本月第一天是星期几   0表示周日  
+    var rows = Math.ceil((allDay + firstday) / 7); //当前月天数+第一天是星期几的数值 获得表格行数  
+    var i, k, idx, date_str;
+    var item = ''
+    for (i = 0;i < rows;i++) { //表格的行  
+      var item = "<p class='day'>";
+      for (k = 0;k < 7;k++) { //表格每行的单元格  
+        idx = i * 7 + k; //单元格自然序列号  
+        date_str = idx - firstday + 1; //计算日期  
+        date_str = (date_str <= 0 || date_str > allDay) ? " " : date_str; //过滤无效日期（小于等于零的、大于月总天数的）  
+        date_str_2 = date_str < 10 ? '0' + date_str : date_str;
+        _date = day.getFullYear() + '-' + month + '-' + date_str_2;
+        if (i == 0) {   //第一行  
+          if (k == 0) {
+            第一列
+            item += "<p  class='item top  left'><p>" + date_str + "</p></p>";
+          } else {
+            item += "<p  class='item top '><p>" + date_str + "</p></p>";
+          }
+        } else {
+          if (k == 0) {
+            第一列
+            item += "<p  class='item  left'><p>" + date_str + "</p></p>";
+          } else {
+            item += "<p  class='item '><p>" + date_str + "</p></p>";
+          }
+        }
+      }
+      item += "</p>"
+      $(".datalist").append(item)
+    }
+
+  </script>
+
+
+</html>

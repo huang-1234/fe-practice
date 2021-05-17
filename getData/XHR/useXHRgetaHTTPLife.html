@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>useXHRgetaHTTPLife</title>
   </head>
 
   <body>
@@ -24,20 +24,20 @@
             break;
           case 3:
             console.log(3, '正在接受部分响应.....');
-            data.innerHTML = xhr.responseText;
+            // document.body.innerHTML = xhr.responseText;
             break;
           case 4:
             console.log(4, '响应全部接受完毕');
             if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
-              console.log(xhr.responseText)
-              document.write(xhr.responseText);
+              console.log('xhr:',xhr)
+              // document.write(xhr.responseText);
             } else {
               document.write('error:' + xhr.status);
             }
             break;
         }
       }
-      const url1 = `https://huang-1234.github.io/Browser/HTTP/aHTTPLife.html`;
+      const url1 = `https://huang-1234.github.io/BrowserCore/Render/bRenderEngine.html`;
       const url2 = '/products/getProduct?id=1'
       xhr.open('get',url1);
       xhr.send(null);

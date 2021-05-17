@@ -1,5 +1,11 @@
 
 
+function getJSfromJSON(jsonString) {
+  let jsObj = JSON.parse(jsonString)
+  console.log(jsObj)
+}
+
+
 function getWeather(cityid) {
   
   const urlWeather = `http://api.k780.com/?app=weather.today&weaid=${cityid}&appkey=10003&sign=b59bc3ef6191eb9f747dd4e83c99f2a4&format=json`
@@ -13,17 +19,20 @@ function getWeather(cityid) {
     // if (xhr.readyState == 2) {
     //   console.log('middle:',xhr.readyState);
     // }
-    console.log('onready1', xhr.readyState); // 1
+    console.log('onready1:----------', xhr.readyState); // 1
     if (xhr.readyState == 3) { // 没输出
       console.log('middle3:',xhr.readyState);
     }
     if (xhr.readyState === 4) {
-      console.log('httpStatus',xhr.status);
+      console.log('httpStatus:----------',xhr.status);
       if (xhr.status >= 200 && xhr.status < 300 || 304 === xhr.status) {
         // xhr.abort(); // 终止 XMLHttpRequest 请求，也会造成readyState属性变化，
 
-        // console.log('httpData:', xhr.responseText);
-        // console.log(xhr);
+        console.log('responseText:----------', xhr.responseText);
+        getJSfromJSON(xhr.responseText);
+        console.log('response:----------', xhr.response);
+        getJSfromJSON(xhr.response)
+        // console.log('xhr:',xhr);
         return xhr.responseText;
       }
       else {

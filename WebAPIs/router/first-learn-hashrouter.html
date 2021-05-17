@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    a{
+      color: aqua;
+      text-decoration: none;
+    }
+    a:hover{
+      color: blue;
+    }
+    ul>li{
+      list-style: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <ul>
+      <li>
+        <a href="#/home">home</a>
+      </li>
+      <li>
+        <a href="#/recommend">recommend</a>
+      </li>
+      <h2 id="routerView">Hello world!</h2>
+    </ul>
+  </div>
+  <script>
+    window.addEventListener('DOMContentLoaded', onLoad);
+
+    window.addEventListener('popstate', onPopChange);
+
+    function onLoad(){
+      onPopChange();
+      let linkList = document.querySelectorAll('a[href]');
+      linkList.forEach((el)=>{el.addEventListener('click',function(e){
+        // block the default event of a 
+        e.preventDefault();
+        // create
+        history.pushState(null,'',el.getAttribute('href'));
+        onPopChange();
+      })})
+    }
+
+    let routerView = document.querySelector('#routerView')
+    function onPopChange(){
+      console.log(location)
+      switch (location.hash) {
+        case '#/home':
+          routerView.innerHTML = location.hash;
+          break;
+        case '#/recommend':
+          routerView.innerHTML = location.hash;
+        default:
+          break;
+      }
+    }
+    
+  </script>
+</body>
+</html>

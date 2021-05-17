@@ -1,6 +1,12 @@
-let ccc: string = 'sdgzf';
-console.log(ccc)
+interface Person {
+    firstName: string;
+    lastName: string;
+}
 
-// function a2() {
-//   console.log(this)
-// }
+function greeter(person: Person) {
+    return "Hello, " + person.firstName + " " + person.lastName;
+}
+
+let user = { firstName: "Jane", lastName: "User" };
+
+document.body.innerHTML = greeter(user);
