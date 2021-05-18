@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- 
+   -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 
+    毫不意外，浏览器将 --text-color 的值替换给了 var(--text-color)，但是 16px 并不是 color 的合法属性值。
+    代换之后，该属性不会产生任何作用。浏览器会执行如下两个步骤：
+检查属性 color 是否为继承属性。是，但是 <p> 没有任何父元素定义了 color 属性。转到下一步。
+将该值设置为它的默认初始值，比如 black。
+     */
+    :root { --text-color: 16px; }
+    p { color: blue; }
+    p { color: var(--text-color); }
+    /* 段落颜色并不是蓝色，因为无效代换导致了它被替换成了默认初始值的黑色。如果你直接写n color: 16px 的话，
+    则会导致语法错误，而前面的定义则会生效（段落显示为蓝色）
+    注意：当CSS属性-值对中存在语法错误，该行则会被忽略。然而如果自定义属性的值无效，
+    它并不会被忽略，从而会导致该值被覆盖为默认值。
+     */
+  </style>
+</head>
+<body>
+  <p>This paragraph is initial black.</p>
+
+</body>
+</html>

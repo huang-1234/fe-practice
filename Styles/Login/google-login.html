@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>google-login</title>
+  <style>
+    body{
+    background-color:#acacac;
+  }
+  .form-container{
+    display: block;
+    position: relative;
+    width: 400px;
+    background: #fff;
+    margin: 50px auto;
+    padding: 60px;
+  }
+
+  input{
+    display: block;
+    position: relative;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+    font-weight: bold;
+    font-size: 16px;
+    z-index: 2;
+  }
+
+  label{
+    display: block;
+    position: relative;
+    top: -20px;
+    left: 0px;
+    color: #999;
+    font-size: 16px;
+    z-index: 1;
+    transition: all 0.3s ease-out;
+    margin-bottom:40px;
+  }
+
+  input:focus, input:valid{
+    outline: none;
+    border-bottom: 1px solid #00aced;
+  }
+
+  input:focus + label, input:valid + label{
+    top: -50px;
+    font-size: 16px;
+    color: #00aced;
+    background-color:#fff;
+  }
+
+  </style>
+</head>
+<body>
+    <div class="main">
+    <div class="form-container">
+      <input type="text" name="input1" required>
+      <label for="input1">Account</label>
+      <input type="text" name="input2" required>
+      <label for="input2">Password</label>
+    </div>
+  </div>
+</body>
+</html>

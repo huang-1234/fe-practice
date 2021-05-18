@@ -1,0 +1,227 @@
+<!doctype html>
+<html>
+
+  <head>
+    <style>
+      #gameBoard {
+        display: inline-block;
+        width: 200px;
+        height: 400px;
+        background: black;
+        line-height: 0px;
+        border: 2px solid red;
+      }
+
+      .divItem {
+        color: white;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        font-size: 8px;
+        line-height: 20px;
+        box-shadow: 2px 2px 0 rgba(255, 255, 255, .5) inset, -2px -2px 0 rgba(0, 0, 0, .5) inset;
+      }
+
+      .divItem[val="0"] {
+        background: black;
+        box-shadow: 0px 0px 0 rgba(255, 255, 255, .5) inset, -0px -0px 0 rgba(0, 0, 0, .5) inset;
+      }
+
+      .divItem[val="1"],
+      .divItem[val="-1"] {
+        background: #ff0000;
+      }
+
+      .divItem[val="2"],
+      .divItem[val="-2"] {
+        background: #0000ff;
+      }
+
+      .divItem[val="3"],
+      .divItem[val="-3"] {
+        background: #00ff00;
+      }
+
+      .divItem[val="4"],
+      .divItem[val="-4"] {
+        background: #00ffff;
+      }
+
+      .divItem[val="5"],
+      .divItem[val="-5"] {
+        background: #ff00ff;
+      }
+
+      .divItem[val="6"],
+      .divItem[val="-6"] {
+        background: #ffff00;
+      }
+
+      .divItem[val="7"],
+      .divItem[val="-7"] {
+        background: #ffffff;
+      }
+
+    </style>
+  </head>
+
+  <body style="background:black">
+    <div id="gameBoard"></div>
+    <script>
+      var items = { '1': [[0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]], '2': [[0, 0, 0, 0, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0], [0, 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0]], '3': [[0, 0, 0, 0, 3, 3, 3, 0, 0, 0, 3, 0, 0, 0, 0, 0], [0, 0, 3, 0, 0, 0, 3, 0, 0, 3, 3, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 3, 0, 0, 0, 3, 3, 3, 0, 0, 0, 0], [0, 0, 0, 0, 0, 3, 3, 0, 0, 3, 0, 0, 0, 3, 0, 0,]], '4': [[0, 0, 0, 0, 4, 4, 4, 0, 4, 0, 0, 0, 0, 0, 0, 0], [4, 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 4, 0, 4, 4, 4, 0, 0, 0, 0, 0], [4, 0, 0, 0, 4, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0,]], '5': [[0, 5, 5, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [5, 0, 0, 0, 5, 5, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0]], '6': [[6, 6, 0, 0, 0, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 6, 0, 0, 6, 6, 0, 0, 6, 0, 0, 0, 0, 0, 0]], '7': [[0, 0, 0, 0, 7, 7, 7, 0, 0, 7, 0, 0, 0, 0, 0, 0], [0, 7, 0, 0, 7, 7, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0], [0, 7, 0, 0, 7, 7, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 7, 0, 0, 0, 7, 7, 0, 0, 7, 0, 0, 0, 0, 0, 0]] };
+      var itemsStart = { "1": items[1][0], "5": items[5][0], "6": items[6][0], '2': [2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], '3': [3, 3, 3, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0], '4': [4, 4, 4, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], '7': [7, 7, 7, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] };
+      var statue = null, divStr = '';
+      for (var i = 0;i < 20;i++) for (var j = 0;j < 10;j++) divStr += '<div id="item' + (i * 15 + j + 2) + '" class="divItem" val="0"></div>';
+      document.getElementById("gameBoard").innerHTML = divStr;
+      function move(moveType) {
+        if (moveType < -5 || moveType == 0 || moveType > 7) return;
+        statue = (moveType > 0) ? { no: moveType, x: 5, y: 0, rotate: -1 } : statue;
+        var boardArr = [], canMove = true, pic = [], picBefore = [], item = null, itemBefore = null
+          , tmpStatue = moveType == -1 ? { no: statue.no, x: statue.x - 1, y: statue.y, rotate: statue.rotate } : moveType == -2 ? { no: statue.no, x: statue.x, y: statue.y + 1, rotate: statue.rotate } : moveType == -3 ? { no: statue.no, x: statue.x + 1, y: statue.y, rotate: statue.rotate } : moveType == -4 ? { no: statue.no, x: statue.x, y: statue.y, rotate: (statue.rotate < 1 ? 1 : statue.rotate + 1) % items[statue.no].length } : { no: statue.no, x: statue.x, y: statue.y, rotate: statue.rotate };
+        pic = tmpStatue.rotate == -1 ? itemsStart[tmpStatue.no] : items[tmpStatue.no][tmpStatue.rotate];
+        picBefore = statue.rotate == -1 ? itemsStart[statue.no] : items[statue.no][statue.rotate];
+        for (var i = 0;i < 4;i++) for (var j = 0;j < 4;j++) {
+          boardArr.push({ b: document.getElementById("item" + ((tmpStatue.y + i) * 15 + tmpStatue.x + j)), c: document.getElementById("item" + ((statue.y + i) * 15 + statue.x + j)) });
+          canMove = canMove && !((boardArr[boardArr.length - 1].b === null && pic[i * 4 + j] !== 0) || (boardArr[boardArr.length - 1].b !== null && parseInt(boardArr[boardArr.length - 1].b.getAttribute("val")) < 0 && pic[i * 4 + j] !== 0));
+        }
+        if (canMove) {
+          boardArr.forEach(function (boardItem, index) { if (boardItem.c !== null && picBefore[index] !== 0) boardItem.c.setAttribute("val", 0); });
+          boardArr.forEach(function (boardItem, index) { if (boardItem.b !== null && pic[index] !== 0) boardItem.b.setAttribute("val", pic[index]); });
+          statue = { no: tmpStatue.no, x: tmpStatue.x, y: tmpStatue.y, rotate: tmpStatue.rotate };
+        } else {
+          if (moveType == -2) {
+            boardArr.forEach(function (boardItem, index) { if (boardItem.c !== null && picBefore[index] !== 0) boardItem.c.setAttribute("val", pic[index] * -1); });
+            move(parseInt(Math.random() * 7) + 1);
+            return;
+          }
+        }
+      }
+      document.onkeydown = function (e) {
+        var k = (e ? e : event).keyCode;
+        move(k == 38 ? -4 : k == 37 ? -1 : k == 39 ? -3 : k == 40 ? -2 : 0);
+      };
+      move(parseInt(Math.random() * 7) + 1);
+    </script>
+    <script>
+      //这个函数未运行，且说明之用
+      function aaaa() {
+        var items = { '1': [[0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]], '2': [[0, 0, 0, 0, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0], [0, 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0]], '3': [[0, 0, 0, 0, 3, 3, 3, 0, 0, 0, 3, 0, 0, 0, 0, 0], [0, 0, 3, 0, 0, 0, 3, 0, 0, 3, 3, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 3, 0, 0, 0, 3, 3, 3, 0, 0, 0, 0], [0, 0, 0, 0, 0, 3, 3, 0, 0, 3, 0, 0, 0, 3, 0, 0,]], '4': [[0, 0, 0, 0, 4, 4, 4, 0, 4, 0, 0, 0, 0, 0, 0, 0], [4, 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 4, 0, 4, 4, 4, 0, 0, 0, 0, 0], [4, 0, 0, 0, 4, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0,]], '5': [[0, 5, 5, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [5, 0, 0, 0, 5, 5, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0]], '6': [[6, 6, 0, 0, 0, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 6, 0, 0, 6, 6, 0, 0, 6, 0, 0, 0, 0, 0, 0]], '7': [[0, 0, 0, 0, 7, 7, 7, 0, 0, 7, 0, 0, 0, 0, 0, 0], [0, 7, 0, 0, 7, 7, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0], [0, 7, 0, 0, 7, 7, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 7, 0, 0, 0, 7, 7, 0, 0, 7, 0, 0, 0, 0, 0, 0]] };
+        //关于变量items说明，以字面量2说明，2代表长条，
+        //字面量是一个二组数组，里面的每一个小数组都是4*4=16个变量，
+        //如果以四个换行，可以看到，数字所代表的就是长条可能存在的形状
+        //当旋转时，就在这形状中切换
+        //'2': [[0, 0, 0, 0, 
+        //       2, 2, 2, 2, 
+        //       0, 0, 0, 0, 
+        //       0, 0, 0, 0], 
+        //    [0, 2, 0, 0, 
+        //     0, 2, 0, 0, 
+        //     0, 2, 0, 0, 
+        //     0, 2, 0, 0]]
+
+        var itemsStart = { "1": items[1][0], "5": items[5][0], "6": items[6][0], '2': [2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], '3': [3, 3, 3, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0], '4': [4, 4, 4, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], '7': [7, 7, 7, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] };
+        //关于itemsStart说明，同样以2说明，其和items是一个意思，但仅表示一开始取得这个条形时的16个变量
+        //'2': [2, 2, 2, 2, 
+        //    0, 0, 0, 0, 
+        //    0, 0, 0, 0, 
+        //    0, 0, 0, 0]
+
+
+        var statue = null, divStr = '';
+        for (var i = 0;i < 20;i++) for (var j = 0;j < 10;j++) divStr += '<div id="item' + (i * 15 + j + 2) + '" class="divItem" val="0"></div>';
+        //document.getElementById("gameBoard").innerHTML = divStr;
+        //关于创建的DIV，共400个，为什么不是0-399 而是用了 (i * 15 + j + 2)
+        //请在脑中虚拟如下的结果，11的部可以是墙，0的部份就是空的部份
+        //左边是2个1，右边是3个1的原因是，当长条形为竖形时占的左右空间最大，
+        //110000000000111
+        //110000000000111
+        //110000000000111
+        //110000000000111
+        //110000000000111
+        //110000000000111
+        //110000000000111
+        //110000000000111
+        //110000000000111
+        //110000000000111
+        //110000000000111
+        //110000000000111
+        //110000000000111
+        //110000000000111
+        //110000000000111
+        //110000000000111
+        //110000000000111
+        //110000000000111
+
+        //左边是2个1，右边是3个1的原因是，当长条形为竖形时占的左右空间最大，
+        //当整个
+        0, 2, 0, 0,
+          0, 2, 0, 0,
+          0, 2, 0, 0,
+          0, 2, 0, 0
+        //移到最左始x=0时发生重叠，则不能移动，
+
+        function move(moveType) {
+
+          //moveType变量说明：
+          //当于为1-7时即产生一个新的方块，并定义坐标
+          //-1：左移
+          //-2：下移
+          //-3：右移
+          //-4：旋转
+
+          if (moveType < -5 || moveType == 0 || moveType > 7) return;
+          statue = (moveType > 0) ? { no: moveType, x: 5, y: 0, rotate: -1 } : statue;
+          var boardArr = [], canMove = true, pic = [], picBefore = [], item = null, itemBefore = null
+            , tmpStatue = moveType == -1 ? { no: statue.no, x: statue.x - 1, y: statue.y, rotate: statue.rotate } : moveType == -2 ? { no: statue.no, x: statue.x, y: statue.y + 1, rotate: statue.rotate } : moveType == -3 ? { no: statue.no, x: statue.x + 1, y: statue.y, rotate: statue.rotate } : moveType == -4 ? { no: statue.no, x: statue.x, y: statue.y, rotate: (statue.rotate < 1 ? 1 : statue.rotate + 1) % items[statue.no].length } : { no: statue.no, x: statue.x, y: statue.y, rotate: statue.rotate };
+          //关于statue，tmpStatue，
+          //statue为当前图案的状态包含四个变量，no:图案，x,y坐标，rotate旋转的编号
+          //tmpStatue为根据按键产生新的图案，或坐标
+
+
+
+          pic = tmpStatue.rotate == -1 ? itemsStart[tmpStatue.no] : items[tmpStatue.no][tmpStatue.rotate];
+          picBefore = statue.rotate == -1 ? itemsStart[statue.no] : items[statue.no][statue.rotate];
+          //取得图案，当moveType>0取得一个新方块时，是从itemsStart中读取，之后每按旋转，就会从items中依将读取
+
+          for (var i = 0;i < 4;i++) for (var j = 0;j < 4;j++) {
+            //将当前图案statue与tmpStatue 在整个面板中对应的dom取出，
+            //之前关于创建的DIV，共400个，为什么不是0-399 而是用了 (i * 15 + j + 2)，在这里就可能取到了null值，
+            boardArr.push({ b: document.getElementById("item" + ((tmpStatue.y + i) * 15 + tmpStatue.x + j)), c: document.getElementById("item" + ((statue.y + i) * 15 + statue.x + j)) });
+
+            //判断是否可移动，主要的判断逻辑
+            //当dom==null时，新图案对应的位置有数字，不可移动
+            //当dom!=null时，但面板中有数为负(向下固定后使用负值)，不可移动
+            canMove = canMove && !((boardArr[boardArr.length - 1].b === null && pic[i * 4 + j] !== 0) || (boardArr[boardArr.length - 1].b !== null && parseInt(boardArr[boardArr.length - 1].b.getAttribute("val")) < 0 && pic[i * 4 + j] !== 0));
+          }
+
+          if (canMove) {
+            //如果可移动，当前图不为零的位置对应的dom的val设为0，
+            boardArr.forEach(function (boardItem, index) { if (boardItem.c !== null && picBefore[index] !== 0) boardItem.c.setAttribute("val", 0); });
+            //下一步图案不为零的位置对应的dom的val设为图案值(正值)
+            boardArr.forEach(function (boardItem, index) { if (boardItem.b !== null && pic[index] !== 0) boardItem.b.setAttribute("val", pic[index]); });
+            //重写statue值
+            statue = { no: tmpStatue.no, x: tmpStatue.x, y: tmpStatue.y, rotate: tmpStatue.rotate };
+          } else {
+            if (moveType == -2) {
+              //向下，且不可移动时，当前图不为零的位置对应的dom的val设为图案值*-1(负值)，
+              boardArr.forEach(function (boardItem, index) { if (boardItem.c !== null && picBefore[index] !== 0) boardItem.c.setAttribute("val", pic[index] * -1); });
+              //产生一个新方块
+              move(parseInt(Math.random() * 7) + 1);
+              return;
+            }
+          }
+        }
+        //按键控制
+        document.onkeydown = function (e) {
+          var k = (e ? e : event).keyCode;
+          move(k == 38 ? -4 : k == 37 ? -1 : k == 39 ? -3 : k == 40 ? -2 : 0);
+        };
+        //开始游戏
+        move(parseInt(Math.random() * 7) + 1);
+
+      }
+    </script>
+
+  </body>
+
+</html>
