@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 测试次数：一百万次
+    const times = 1000000
+    // 缓存body元素
+    console.time('object')
+
+    let body = document.body
+
+    // 循环赋值对象作为对照参考
+    for (let i = 0;i < times;i++) {
+      let tmp = body
+    }
+    console.timeEnd('object')// object: 3.2197265625 ms
+    console.time('dom')
+    // 循环读取body元素引发线程切换
+    for (let i = 0;i < times;i++) {
+      let tmp = document.body
+    }
+    console.timeEnd('dom')// dom: 33.347900390625 ms
+
+    // =======================================
+    const times2 = 100000
+    let html = ''
+    for (let i = 0;i < times2;i++) {
+      html += `<div>${i}</div>`
+    }
+    document.body.innerHTML += html
+    const divs = document.querySelectorAll('div')
+    Array.prototype.forEach.call(divs, (div, i) => {
+      div.style.margin = i % 2 ? '10px' : 0;
+    })
+
+  </script>
+</body>
+</html>

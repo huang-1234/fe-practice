@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const times = 10000;
+    console.time('createElement')
+    for (let i = 0;i < times;i++) {
+      const div = document.createElement('div');
+      // div.children = '1'
+      document.body.appendChild(div)
+    }
+    console.timeEnd('createElement')// 10000次：54.964111328125ms 
+    // 10000次：createElement: 12.7158203125 ms || 1000次：createElement: 1.3271484375 ms
+
+    console.time('innerHTML')
+    let html = ''
+    for (let i = 0;i < times;i++) {
+      html += '<div></div>'
+    }
+    document.body.innerHTML += html // 10000次：31.919921875ms 
+    // 10000次：innerHTML: 22.666015625 ms || 1000次：innerHTML: 2.67236328125 ms
+    console.timeEnd('innerHTML')
+  </script>
+</body>
+</html>

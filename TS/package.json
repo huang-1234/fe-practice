@@ -1,0 +1,12 @@
+{
+  "name": "learn_ts",
+  "version": "1.0.0",
+  "description": "learn ts",
+  "main": "index.js",
+  "author": "hsq",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^15.3.0",
+    "ts-node": "^9.1.1"
+  }
+}
