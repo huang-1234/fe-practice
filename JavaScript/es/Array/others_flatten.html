@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      //数组的扁平化方法
+      //生成999维数组
+      let arr = [];
+      for (let i = 19009;i > 0;i--) {
+        arr = [i].concat([arr]);
+      }
+      //es6 flat()方法
+      function flatten(arr) {
+        return arr.flat(Infinity);
+      }
+      //for循环 concat
+      function flatten10(arr) {
+        let res = [];
+        for (let i = 0;i < arr.length;i++) {
+          if (Array.isArray(arr[i])) {
+            res = res.concat(flatten10(arr[i]))
+          } else {
+            res.push(arr[i])
+          }
+        }
+        return res;
+      }
+      //for循环 push
+      function flatten11(arr) {
+        let res = [];
+        for (let i = 0;i < arr.length;i++) {
+          if (Array.isArray(arr[i])) {
+            res.push(...flatten11(arr[i]))
+          } else {
+            res.push(arr[i])
+          }
+        }
+        return res;
+      }
+      //while方法
+      function flatten20(arr) {
+        while (arr.some(item => Array.isArray(item))) {
+          arr = [].concat(...arr)
+        }
+        return arr;
+      }
+      //while方法 原型
+      function flatten21(arr) {
+        while (arr.some(item => Array.isArray(item))) {
+          arr = Array.prototype.concat.apply([], arr)
+        }
+        return arr;
+      }
+      //reduce方法
+      function flatten31(arr) {
+        arr.reduce((res, next) => {
+          return res.concat(Array.isArray(next) ? flatten31(next) : next);
+        }, [])
+      }
+      //stack 从前取值
+      function flatten41(arr) {
+        let copy = [...arr];
+        let res = [];
+        while (copy.length) {
+          let a = copy.shift();
+          Array.isArray(a) ? copy.unshift(...a) : res.push(a);
+        }
+        return res;
+      }
+      //stack 从后取值
+      function flatten42(arr) {
+        let copy = [...arr];
+        let res = [];
+        while (copy.length) {
+          let a = copy.pop();
+          Array.isArray(a) ? copy.push(...a) : res.push(a);
+        }
+        return res.reverse();
+      }
+      //全数字四种 扁平化方法
+      function flatten51(arr) {
+        return arr.toString().split(',').map(i => +i);
+      }
+      function flatten52(arr) {
+        return arr.join().split(',').map(i => +i);
+      }
+      function flatten53(arr) {
+        return arr.join(',').split(',').map(i => +i);
+      }
+      function flatten54(arr) {
+        return ('' + arr).split(',').map(i => +i);
+      }
+
+
+
+      console.time('es6----->falt()');
+      flatten(arr);
+      console.timeEnd('es6----->falt()');
+
+      console.time('for循环-->concat');
+      flatten10(arr);
+      console.timeEnd('for循环-->concat');
+      console.time('for循环---->push');
+      flatten11(arr);
+      console.timeEnd('for循环---->push');
+      console.time('while-------->...');
+      flatten20(arr);
+      console.timeEnd('while-------->...');
+      console.time('while----->原型方法');
+      flatten21(arr);
+      console.timeEnd('while----->原型方法');
+      console.time('reduce----->');
+      flatten31(arr);
+      console.timeEnd('reduce----->');
+
+      console.time('stack----->');
+      flatten41(arr);
+      console.timeEnd('stack----->');
+
+      console.time('stack----->reverse');
+      flatten42(arr);
+      console.timeEnd('stack----->reverse');
+
+      console.time('toString----->');
+      flatten51(arr);
+      console.timeEnd('toString----->');
+      console.time('join----->');
+      flatten52(arr);
+      console.timeEnd('join----->');
+      console.time('join(', ')----->');
+      flatten53(arr);
+      console.timeEnd('join(', ')----->');
+      console.time('""+---------->');
+      flatten54(arr);
+      console.timeEnd('""+---------->');
+
+
+    </script>
+  </body>
+
+</html>
