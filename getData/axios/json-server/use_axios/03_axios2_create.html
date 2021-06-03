@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <div class="btn-container">
+    <button onclick="testGet()">发送GET请求</button>          <br>
+    <button onclick="testPOST()">发送POST请求</button> <br>
+    <button onclick="testPUT()">发送PUT请求</button> <br>
+    <button onclick="testDelete()">发送Delete请求</button> <br>
+  </div>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    const instance1 = axios.create({
+      baseURL: 'http://localhost:3000',
+      timeout: 1000,
+      headers: {'X-Custom-Header': 'foobar'}
+    });
+
+  function testGet(){
+    instance1({
+      url:'/posts',
+      method: 'GET',
+      params:{
+        id: 4,
+      }
+    }).then(
+      response =>{
+        console.log(response)
+      },
+      error =>{
+        console.log(error.message)
+      }
+    )
+  }
+
+  const instance2 = axios.create({
+    baseURL: 'http://localhost:4000',
+    timeout: 1000,
+    headers: {'X-Custom-Header': 'foobar'}
+  })
+
+  function testPOST(){
+    instance2({
+      url:'/posts',
+      method: 'GET',
+      params:{
+        id: 3,
+      }
+    }).then(
+      response =>{
+        console.log(response)
+      },
+      error =>{
+        console.log(error.message)
+      }
+    )
+  }
+
+
+  </script>
+</body>
+</html>

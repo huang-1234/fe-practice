@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button onclick="testGet()">发送GET请求</button>          <br>
+  <button onclick="testPOST()">发送POST请求</button> <br>
+  <button onclick="testPUT()">发送PUT请求</button> <br>
+  <button onclick="testDelete()">发送Delete请求</button> <br>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+
+    axios.defaults.baseURL = 'http://localhost:3000';
+    function testGet(){
+      console.log('testGet<<')
+      axios({
+        url:`/posts`,
+        method:'GET',
+        params: {
+          id:2,
+          xxx:'abc'
+        },
+      }).then(
+        response =>{
+          
+          console.log(response);
+        },
+        error =>{
+          alert('error.message');
+        }
+      )
+    }
+
+    function testPOST(){
+/*       axios({
+        url: `/posts`,
+        method: 'POST',
+        data:{
+          id:1,
+          title: "my first title+++",
+          author: "hsq++++"
+        },
+      }).then(
+        response =>{
+          console.log(response);
+        },
+        error =>{console.log(error.message)}
+      ) */
+      const data = {
+        title: "my first title",
+        author: "hsq++++"
+      }
+      axios.post('/posts',JSON.stringify(data))
+      .then(response =>{
+        console.log('/posts post:',response.data)
+      })
+    }
+
+    // 更新
+    function testPUT(){
+      axios({
+        url: `http://localhost:3000/posts/2`,
+        method: 'delete',
+        data:{
+          // id:2,
+          title : "my first 2",
+          author : "hsq2"
+        },
+      }).then(
+        response =>{
+          console.log(response);
+        },
+        error =>{console.log(error.message)}
+      )
+    }
+
+
+  </script>
+</body>
+</html>

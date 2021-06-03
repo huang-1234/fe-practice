@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>axios的处理链流程</title>
+</head>
+<body>
+
+  <div class="btn-container">
+    <button onclick="testGet()">发送GET请求</button>          <br>
+    <button onclick="testPOST()">发送POST请求</button> <br>
+    <button onclick="testPUT()">发送PUT请求</button> <br>
+    <button onclick="testDelete()">发送Delete请求</button> <br>
+  </div>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+
+
+    // 处理请求拦截器
+    axios.interceptors.request.use(
+      config=>{
+        console.log('request interceptor1 onResolve');
+        console.log('request config<<',config);
+        // return config;
+      },
+      error=>{
+        console.log('request interceptor1 onReject');
+        return Promise.reject(error);
+      }
+    )
+    axios.interceptors.request.use(
+      config=>{
+        console.log('request interceptor2 onResolve');
+        return config;
+      },
+      error=>{
+        console.log('request interceptor2 onReject');
+        return Promise.reject(error);
+      }
+    )
+
+    // 添加响应拦截器
+    axios.interceptors.response.use(
+      response =>{
+        console.log('response interceptor1 onResolve');
+        console.log('response interceptor1<< ',response)
+        return response;
+      },
+      error =>{
+        console.log('request interceptor1 onReject');
+        return Promise.reject(error);
+      }
+    )
+
+    axios.interceptors.response.use(
+      response =>{
+        console.log('response interceptor2 onResolve');
+        return response;
+      },
+      error =>{
+        console.log('request interceptor2 onReject');
+        return Promise.reject(error);
+      }
+    )
+    function testGet(){
+      axios({
+        url:'http://localhost:3000/posts',
+        method: 'GET',
+        params:{
+          // id: 4,
+        }
+      })
+      .then(
+        response =>{
+          console.log('data<<', response.data)
+        }
+      )
+      .catch(error =>{
+        console.log('error<<', error.message)
+      })
+    }
+
+
+  </script>
+</body>
+</html>

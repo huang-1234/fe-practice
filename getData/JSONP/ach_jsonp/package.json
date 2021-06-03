@@ -1,0 +1,16 @@
+{
+  "name": "ach_jsonp",
+  "version": "1.0.0",
+  "description": "achieve jsonp to across-domain",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node /serve/koa.js"
+  },
+  "keywords": [
+    "jsonp",
+    "axross-domain"
+  ],
+  "author": "hsq",
+  "license": "ISC"
+}

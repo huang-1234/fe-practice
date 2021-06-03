@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>05_axios4_cancel</title>
+</head>
+<body>
+
+  <div class="btn-container">
+    <button onclick="testGet1()">发送GET1请求</button>          <br>
+    <button onclick="testGet2()">发送GET2请求</button>          <br>
+    <button onclick="CancelReq()">取消请求</button> <br>
+  </div>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+
+
+    // 处理请求拦截器
+    // axios.interceptors.request.use(
+    //   config=>{
+    //     console.log('request interceptor1 onResolve');
+    //     console.log('request config<<',config);
+    //     return config;
+    //   },
+    //   error=>{
+    //     console.log('request interceptor1 onReject');
+    //     return Promise.reject(error);
+    //   }
+    // )
+
+    let cancel;
+      
+    function testGet1(){
+      // 在发送请求前取消前面还未完成的请求
+      if ('function'=== typeof cancel){
+        cancel('取消上一次的请求')
+      }
+      
+      axios({
+        url:'http://localhost:3000/posts',
+        method: 'GET',
+        cancelToken:new axios.CancelToken((c)=>{
+          // 保存请求函数
+          cancel=c;
+        }),
+        params:{
+          // id: 4,
+        }
+      })
+      .then(
+        response =>{
+          cancel=null;
+          console.log('请求1成功了--data<<', response.data)
+        }
+      )
+      .catch(error =>{
+        if (axios.isCancel(error)) {
+          console.log('请求1取消的错误',error.message)
+        }else{ // 请求出错了
+          cancel=null;
+          console.log('请求1失败了--error<<', error)
+        }
+      })
+    }
+
+     // 请求2
+    function testGet2(){
+      // 在发送请求前取消前面还未完成的请求
+      if ('function'===typeof cancel){
+        cancel('取消上一次的请求')
+      }
+      
+      axios({
+        url:'http://localhost:3000/posts',
+        method: 'GET',
+        cancelToken:new axios.CancelToken((c)=>{
+          // 保存请求函数
+          cancel=c;
+        }),
+        params:{
+          // id: 4,
+        }
+      })
+      .then(
+        response =>{
+          cancel=null;
+          console.log('请求2成功了--data<<', response.data)
+        }
+      )
+      .catch(error =>{
+        if (axios.isCancel(error)) {
+          console.log('请求2取消的错误',error.message)
+        }else{ // 请求出错了
+          cancel=null;
+          console.log('请求2失败了--error<<', error)
+        }
+      })
+    }
+
+
+    function CancelReq(){
+      if (typeof cancel === 'function') {
+        cancel('quxiao---');
+        console.log('取消请求成功',cancel)
+      }else{
+        console.log('暂时没有可以取消的请求')
+      }
+    }
+
+
+  </script>
+</body>
+</html>

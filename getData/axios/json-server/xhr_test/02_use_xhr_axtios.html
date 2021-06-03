@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button onclick="testGet()">发送GET请求</button>          <br>
+  <button onclick="testPOST()">发送POST请求</button> <br>
+  <button onclick="testPUT()">发送PUT请求</button> <br>
+  <button onclick="testDelete()">发送Delete请求</button> <br>
+
+  <script>
+
+    function myAxios({
+      url,
+      method='GET',
+      params={},
+      data={}
+    }){
+      return new Promise((resolve,reject)=>{
+        // 处理method
+        method = method.toUpperCase();
+
+        //处理query参数
+        let queryString = '' // queryString是用来将params转换后接到url上的
+        Object.keys(params).forEach(key=>{
+          queryString += `${key}=${params[key]}&`
+        })
+        if(queryString){
+          queryString =  queryString.substring(0,queryString.length);
+          url += '?' + queryString;
+        }
+        // 创建xhr对象
+        const request = new XMLHttpRequest();
+        // 初始化请求，还没有请求
+        request.open(method,url,true);
+        // 发送请求
+        if('GET'===method || 'DELETE'===method ){
+          request.send();
+
+        }
+        else if('POST'=== method || 'PUT'===method){
+          request.setRequestHeader('Content-Type', 'application/json;charset=utf-8');
+          // send 是异步的
+          // request.send(JSON.stringify(data));
+          request.send(JSON.stringify(data)); // 发送json格式的请求数据
+        }
+
+        // 绑定状态改变的监听
+        request.onreadystatechange = function () {
+          // 请求没有完全，直接结束
+          if (request.readyState!==4) {
+            return 
+          }
+           // 如果响应状态码在[200,300)之间代表成功
+          const {status,statusText} = request;
+          // 2.1 如果请求成功了，调用resolve
+          if (status>=200 && status<=299) {
+            const response = {
+              data:JSON.parse(request.response),
+              status,
+              statusText,
+            };
+            // 准备成功结果对象;
+            resolve(response);
+          }else{  // 2.2 如果请求失败了，调用reject
+            reject(new Error('request error status code' ,status))
+          }
+        }
+      })
+    }
+
+    function testGet(){
+      console.log('testGet<<')
+      myAxios({
+        url:`http://localhost:3000/posts`,
+        method:'GET',
+        params: {
+          id:3,
+          xxx:'abc'
+        },
+      }).then(
+        response =>{
+          console.log(response);
+        },
+        error =>{
+          alert('error.message');
+        }
+      )
+    }
+
+    function testPOST(){
+      myAxios({
+        url: `http://localhost:3000/posts`,
+        method: 'POST',
+        data:{
+          id:1,
+          title: "my first title+++",
+          author: "hsq++++"
+        },
+      }).then(
+        response =>{
+          console.log(response);
+        },
+        error =>{console.log(error.message)}
+      )
+    }
+
+    // 更新
+    function testPUT(){
+      myAxios({
+        url: `http://localhost:3000/posts/`,
+        method: 'PUT',
+        data:{
+          id:"55",
+          title : "my first +++",
+          author : "hsq+++"
+        },
+      }).then(
+        response =>{
+          console.log(response);
+        },
+        error =>{console.log(error.message)}
+      )
+    }
+
+
+  </script>
+</body>
+</html>

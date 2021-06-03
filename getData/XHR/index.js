@@ -1,1 +1,0 @@
-// import {getWeather} from './xhr';
