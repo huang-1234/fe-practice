@@ -2,7 +2,7 @@ set -e
 
 
 git add .
-git commit -m 'DOMandBOM'
+git commit -m 'update getData'
 
 git remote -v
 

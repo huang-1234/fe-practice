@@ -1,0 +1,151 @@
+/* 全局样式 */
+:root {
+  --rocket-size: 10vw;
+  --sky-color: #0b091d;
+  --rocket-color: #f9e2fe;
+  --rocket-cap-color: crimson;
+  --rocket-logo-color: #4c3198;
+  --rocket-wing-color: #4c3198;
+  --rocket-booster-color: #c38382;
+}
+
+/* 背景样式 */
+body {
+  display: flex;
+  overflow: hidden;
+  background-color: var(--sky-color);
+}
+
+/* 容器居中 */
+.wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  will-change: transform;
+  transition: transform 0.4s ease;
+  transform: translate(-50%, -50%);
+}
+
+.rocket {
+  display: flex;
+}
+
+.rocket .body {
+  position: relative;
+  background-color: var(--rocket-color);
+  border-radius: 0 0 50% 50% / 76% 76% 15% 15%;
+}
+
+.rocket .body:before {
+  content: "";
+  position: absolute;
+  border-radius: 50% 50% 50% 50% / 76% 76% 25% 25%;
+}
+
+.rocket .main {
+  width: var(--rocket-size);
+  height: calc(var(--rocket-size) * 1.5);
+}
+
+.rocket .main:before {
+  bottom: 80%;
+  width: 100%;
+  height: 75%;
+  background-color: inherit;
+}
+
+.rocket .main:after {
+  content: "";
+  position: absolute;
+  bottom: 75%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border: calc(var(--rocket-size) / 15) solid var(--rocket-logo-color);
+  width: calc(var(--rocket-size) / 1.8);
+  height: calc(var(--rocket-size) / 1.8);
+  box-shadow: inset rgba(0, 0, 0, 0.075) -2vw -2vw 0 0,
+    inset rgba(0, 0, 0, 0.1) -1vw -1.5vw 0 0;
+  border-radius: 100%;
+}
+
+.rocket .side {
+  width: calc(var(--rocket-size) / 3);
+  height: var(--rocket-size);
+}
+
+.rocket .side:before {
+  /*  ddddd */
+  bottom: 90%;
+  width: 100%;
+  height: 35%;
+  background-color: var(--rocket-cap-color);
+}
+
+.rocket .left {
+  /*   margin-right: 10px; */
+  left: 1px;
+}
+
+.rocket .right {
+  /*   margin-left: 10px; */
+  right: 1px;
+}
+
+.rocket .wing {
+  position: absolute;
+  bottom: 2vmin;
+  background-color: var(--rocket-wing-color);
+  width: calc(var(--rocket-size) / 2);
+  height: calc(var(--rocket-size) / 1.5);
+  z-index: 1;
+  box-shadow: inset rgba(0, 0, 0, 0.1) -0.5vmin 1vmin 1vmin 0,
+    inset rgba(255, 255, 255, 0.1) 0.5vmin 1vmin 1vmin 0;
+}
+
+.rocket .wing.leftWing {
+  right: 100%;
+  border-radius: 100% 0 10% 10%;
+}
+
+.rocket .wing.rightWing {
+  left: 100%;
+  border-radius: 0 100% 10% 10%;
+}
+
+.rocket .booster {
+  position: absolute;
+  top: 80%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: calc(var(--rocket-size) / 1.2);
+  height: calc(var(--rocket-size) / 2.5);
+  background-color: var(--rocket-booster-color);
+  border-radius: 0 0 50% 50% / 76% 76% 35% 35%;
+  z-index: -1;
+  box-shadow: inset rgba(0, 0, 0, 0.3) -0.5vmin 1vmin 1vmin 0,
+    inset rgba(255, 255, 255, 0.3) 0.5vmin 1vmin 1vmin 0, black 0 0 2vmin;
+}
+
+/* 火焰样式及动画 */
+.rocket .fire {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: calc(var(--rocket-size) / 1.4);
+  height: 80%;
+  border-radius: 0 0 100% 100%;
+  background-image: linear-gradient(to bottom, yellow, transparent 70%);
+  z-index: -2;
+  transform-origin: 50% 0;
+  animation: fire 0.1s linear alternate infinite;
+}
+
+@keyframes fire {
+  to {
+    transform: scaleX(0.88) translateY(-1vmin);
+  }
+}

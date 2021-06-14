@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>CSS3 魔方</title>
+    <!-- 样式部分全写这里 -->
+    <style> 
+    .wrap {
+        transform-style: preserve-3d;
+        width: 300px;  height: 300px;
+        position: relative;  /* 定位起点元素 */
+        border-top:solid 1px gray;  /* x 轴 */
+        border-left:solid 1px gray;  /* y 轴 */
+        /* 倾斜一点方能见立体效果 */
+        transform: rotateX(-30deg) rotateY(-30deg);
+    }
+         
+    /* z 轴正方向 */
+    .zaxis_p {
+        position:absolute;
+        width : 300px;
+        height:1px; 
+        border-top:solid 1px gray;
+        /* xy面上，90度立起来就是 z */
+        transform: rotateY(-90deg);
+        /* 立起来的旋转点 */
+        transform-origin:0 0 0;
+    }
+         
+    /* z 轴负方向 */
+    .zaxis_n {
+        position:absolute;
+        width : 300px;
+        height:1px; 
+        border-top:dashed 1px gray; /*（虚线）*/
+        transform: rotateY(90deg);
+        transform-origin:0 0 0;
+    }
+     
+    .block {
+        position: absolute;
+        margin: 0 auto; 
+        border:solid 2px black;
+        border-radius:3px;
+        /* 宽高包含边框 */
+        box-sizing:border-box;
+        transform-origin:0 0 0;
+    }
+     
+    .cube {
+        position: absolute;
+        /* 子元素版面是需要三维空间的 */
+        transform-style: preserve-3d;  
+    }
+     
+    .magicBox {
+        position: absolute;
+        transform-style: preserve-3d; 
+    }
+     
+    </style>
+ 
+<script>
+/** 版面 block 类
+ * direct 方向
+ * color  颜色
+ * size   边长大小
+**/
+function Block(direct, color, size){
+    this.direct = direct;
+    this.color = color;
+    this.size = size;
+    // 绘制过的 UI 元素对象
+    this.Element = null;
+     
+    // 在父容器中绘制
+    this.DrawIn = function(cubeElement){
+        var e = this.Element || document.createElement('div');
+        e.style.width = this.size + "px";
+        e.style.height = this.size + "px";
+         
+        var top = (this.direct == 'down' ? this.size : 0);
+        var left = (this.direct == 'right' ? this.size : 0);
+         
+        e.style.top = top + "px";
+        e.style.left = left + "px";
+        e.style.backgroundColor = this.color;
+         
+        var rx = (this.direct == 'up' || this.direct == 'down' ? -90 : 0);
+        var ry = (this.direct == 'left' || this.direct == 'right' ? 90 : 0);;
+        var tz = (this.direct == 'back' ? this.size : 0);
+         
+        e.style["transform"] = "rotateX(" + rx + "deg) rotateY(" + ry + "deg) translateZ(-" + tz + "px)";
+        e.className = "block";
+        this.Element = e;
+        cubeElement.appendChild(e);
+    };
+}
+ 
+/** 魔方格 Cube 类
+ * blockSize 为魔方格的边长代表大小
+ * directColorArray 为指定方向与颜色的数组
+ *                  形式为 [direct,color,direct,color,...] 
+ * x,y,z 为在魔方中的坐标，未指定时默认为0,0,0
+**/
+function Cube(blockSize, directColorArray, x, y, z){
+    this.x = x | 0;
+    this.y = y | 0;
+    this.z = z | 0;
+    this.blockSize = blockSize;
+    this.blocks = [];
+    /* 根据参数建立 Block 对象 */
+    for(var i=0; i < directColorArray.length / 2; i++){
+        this.blocks.push(new Block(directColorArray[ i*2 ], directColorArray[ i*2 + 1 ], this.blockSize));
+    }
+       
+    // 绘制过的 UI 元素对象
+    this.Element = null;
+     
+    // 在父容器中绘制
+    this.DrawIn = function(boxElement, x, y, z){
+        this.x = x | this.x;
+        this.y = y | this.y;
+        this.z = z | this.z;
+        var e = this.Element || document.createElement('div');
+        e.style.width = this.blockSize + "px";
+        e.style.height = this.blockSize + "px"; 
+        e.style["transform"] = this.FormatTransform();
+        e.className = "cube"; 
+         
+        for(var i=0; i < this.blocks.length; i++) { 
+            this.blocks[i].DrawIn(e);
+        }
+         
+        this.Element = e;
+      
+        boxElement.appendChild(e);
+    };
+     
+    this.Rotate = function(axis, turn, dimension){
+        if(!this.Element) return;
+        // 重绘魔方格
+        this.ReDrawBlocks(axis, turn);
+        // 转换坐标
+        this.TransCoordinate(axis, turn, dimension);
+         
+        // 先停止动画效果，逆向 90 度，此时外观跟旋转前一致
+        this.Element.style["transition"] = "";
+        var rotateDegs = new Object();
+        rotateDegs[axis] = (turn == 'left' ? -90 : 90); 
+        this.Element.style["transform"] = this.FormatTransform(rotateDegs);
+        // 旋转原点旋转的层都需要以魔方的中心点旋转
+        // 旋转原点是以元素自身来计算的，因所有魔方格都是从(0,0,0)平衡的，因此计算结果都一样
+        var centerX = this.blockSize * dimension / 2;
+        var centerY = this.blockSize * dimension / 2;
+        var centerZ = -this.blockSize * dimension / 2;
+        this.Element.style["transformOrigin"] = centerX + "px " + centerY + "px " + centerZ + "px";
+ 
+        // 这样才能触发动画
+        setTimeout(function(obj){
+            return function(){
+                obj.Element.style["transform"] = obj.FormatTransform();
+                obj.Element.style["transition"] = "transform 0.5s";  // 0.3 秒
+            };
+        }(this), 1);
+    }
+     
+    /** 坐标转换
+     * axis 轴向
+     * turn 转向
+     * dimension 阶数
+     **/
+    this.TransCoordinate = function(axis, turn, dimension){
+        if(axis == 'x'){             
+            if( turn == 'left' ){
+                var oriy = this.y;
+                this.y = this.z;
+                this.z = dimension - 1 - oriy;
+            } else {
+                var oriz = this.z;
+                this.z = this.y;
+                this.y = dimension - 1 - oriz;
+            }
+        } else if(axis == 'y'){
+            if( turn == 'right' ){
+                var orix = this.x;
+                this.x = this.z;
+                this.z = dimension - 1 - orix;
+            } else {
+                var oriz = this.z;
+                this.z = this.x;
+                this.x = dimension - 1 - oriz;
+            }
+        } else if(axis == 'z'){
+            if( turn == 'right' ){
+                var orix = this.x;
+                this.x = this.y;
+                this.y = dimension - 1 - orix;
+            } else {
+                var oriy = this.y;
+                this.y = this.x;
+                this.x = dimension - 1 - oriy;
+            }
+        }
+    }
+    
+   /** 将各 block 调整位置，重绘魔方格
+    * axis 轴向
+    * turn 转向
+    **/
+    this.ReDrawBlocks = function(axis, turn){
+        var xyzDirects = [];
+        xyzDirects['x'] = ["front", "up", "back", "down"];
+        xyzDirects['y'] = ["front", "right", "back", "left"];
+        xyzDirects['z'] = ["up", "right", "down", "left"];
+        var curDirects = xyzDirects[axis];
+         
+        for(var i=0; i < this.blocks.length; i++) {
+            var index = curDirects.indexOf( this.blocks[i].direct );
+            if(index > -1){
+                var newIndex = turn == 'left' ? (index + 1) % 4 : (index + 4 - 1) % 4;
+                this.blocks[i].direct = curDirects[newIndex];
+                this.blocks[i].DrawIn(this.Element);
+            }   
+        }
+    }
+     
+     
+    // 格式仳 transform 属性
+    // css3 把旋转与平移混一起（真不好用）
+    this.FormatTransform = function (rotateDegs){
+        var rotatePart = "rotateX(0deg) rotateY(0deg) rotateZ(0deg)";
+        if(rotateDegs){
+            rotatePart = "rotateX(" + (rotateDegs.x | 0) + "deg) rotateY(" + (rotateDegs.y | 0) + "deg) rotateZ(" + (rotateDegs.z | 0) + "deg)";
+        }  
+         
+        return rotatePart + " translate3d(" + (this.x * this.blockSize) + "px," + (this.y * this.blockSize) + "px,-" + (this.z * this.blockSize) + "px) ";     
+    }
+}
+ 
+/** 魔方 MagicBox 类
+ * dimension 阶数
+ * blockSize 每小格大小
+ **/
+function MagicBox(dimension, blockSize){
+    this.dimension = dimension;
+    this.blockSize = blockSize;
+    this.cubes = [];
+     
+    this.MakeDefaultCubes = function(){
+        this.cubes = [];
+        for(var x=0; x < this.dimension; x++){
+            for(var y=0; y < this.dimension; y++){
+                for(var z=0; z < this.dimension; z++){
+                    var cube = this.MakeDefaultCube(x, y, z);
+                    if(cube){
+                      this.cubes.push(cube);
+                    }
+                }
+            }
+        }
+    };
+     
+    /* 根据魔方格在阶数中的位置生成魔方格，魔方内部的格子忽略 */
+    this.MakeDefaultCube = function(x, y, z){
+        var max = this.dimension - 1;
+        var dc = [];
+        if(x == 0) dc.push("left", "orange"); else if(x == max) dc.push("right", "red");
+        if(y == 0) dc.push("up", "yellow"); else if(y == max) dc.push("down", "white");           
+        if(z == 0) dc.push("front", "blue"); else if(z == max) dc.push("back", "green");
+        if(dc.length == 0) return null;
+        var cube = new Cube(this.blockSize, dc, x, y, z);
+        return cube;
+    }
+     
+    // 构造时自动产生初始魔方格
+    this.MakeDefaultCubes();
+    // 绘制过的 UI 元素对象
+    this.Element = null;
+    // 在父容器中绘制
+    this.DrawIn = function(domElement){
+        var e = this.Element || document.createElement('div');
+        e.style.width = (this.dimension * this.blockSize) + "px";
+        e.style.height = (this.dimension * this.blockSize) + "px"; 
+        e.className = "magicBox"; 
+         
+        for(var i=0; i < this.cubes.length; i++) {
+            this.cubes[i].DrawIn(e);
+        }
+        this.Element = e;
+        domElement.appendChild(e);
+    };
+     
+    /** MagicBox.Rotate 旋转
+      * axis 轴向
+      * level 层
+      * turn 转向
+     **/
+    this.Rotate = function(axis, level, turn){
+        for(var i=0; i < this.cubes.length; i++) {
+            if(this.cubes[i][axis] == level) {    // 该轴该层的才旋转
+                this.cubes[i].Rotate(axis, turn, this.dimension);
+            }
+        }
+    };
+}
+ 
+function onload(){
+      
+    //* 魔方绘制示例
+    var magicBox = new MagicBox(3, 50);
+    magicBox.DrawIn( document.querySelector(".wrap") );
+     
+    var rotates = GenRotateActions(3, 5);
+    for(var i=0; i<rotates.length; i++){   
+        setTimeout(function(magicBox, rotate){
+            return function(){
+                magicBox.Rotate(rotate.axis, rotate.level, rotate.turn);
+            };
+        }(magicBox, rotates[i]), 3000 + 800 * i);
+    }
+     
+    for(var i=0; i<rotates.length; i++){   
+        setTimeout(function(magicBox, rotate){
+            return function(){
+                magicBox.Rotate(rotate.axis, rotate.level, (rotate.turn == 'left' ? 'right' : 'left'));
+            };
+        }(magicBox, rotates[rotates.length -1 - i]), 1000 + 8800 + 800 * i);
+    }
+}
+ 
+/** 产生一个指定数量的旋转序列数组
+ * dimension 魔方阶数
+ * count 序列数量
+ **/
+function GenRotateActions(dimension, count){
+    var result = [];
+    for(var i=0; i<count; i++){
+        result[i] = {
+            axis  : ['x','y','z'][Math.floor(Math.random() * 3)],
+            level : Math.floor(Math.random() * dimension),
+            turn  : ['left','right'][Math.floor(Math.random() * 2)]
+        };
+    }
+    return result;
+}
+</script>
+</head>
+ 
+<body style="padding:300px;" onload="onload()">
+  <div class="wrap">
+    <div class="zaxis_p"></div>
+    <div class="zaxis_n"></div> 
+  </div>
+</body>
+ 
+</html>

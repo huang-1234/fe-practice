@@ -21,13 +21,13 @@
     // 处理请求拦截器
     axios.interceptors.request.use(
       config=>{
-        console.log('request interceptor1 onResolve');
-        console.log('request config<<',config);
-        // return config;
+        console.log('request interceptor1 onResolve'); 
+        // console.log('request config<<',config);
+        return config;
       },
       error=>{
         console.log('request interceptor1 onReject');
-        return Promise.reject(error);
+        return Promise.reject('request/error<<', error);
       }
     )
     axios.interceptors.request.use(
@@ -46,10 +46,12 @@
       response =>{
         console.log('response interceptor1 onResolve');
         console.log('response interceptor1<< ',response)
+        // const jsonData = JSON.parse(response.request.response)
+        console.log('response interceptor1<< ',response )
         return response;
       },
       error =>{
-        console.log('request interceptor1 onReject');
+        console.log('response interceptor1 onReject');
         return Promise.reject(error);
       }
     )
@@ -60,7 +62,7 @@
         return response;
       },
       error =>{
-        console.log('request interceptor2 onReject');
+        console.log('response interceptor2 onReject');
         return Promise.reject(error);
       }
     )

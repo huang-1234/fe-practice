@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+
+    let state;
+    // function useState(initialState){
+    //   state = state || initialState;
+    //   function setState(newState){
+    //     state = newState;
+    //   }
+    //   return [state,setState];
+    // }
+    // const [data, setData] = useState('hsq');
+    function setState(newState){
+      state=newState;
+    }
+    const urlGet = `http://localhost:3000/posts`
+    fetch(urlGet)
+    .then(
+      response =>response.json()
+    )
+    .then(data=>{
+      // state=data;
+      console.log('data<<',data);
+      setState(data);
+    })
+
+    console.log(state);
+
+  </script>
+</body>
+</html>

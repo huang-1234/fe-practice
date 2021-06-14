@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style type="text/css">
+      .eyes {
+        perspective: 1000px;
+      }
+
+      .box {
+        /*设置3D效果*/
+        transform-style: preserve-3d;
+        /*盒子的大小*/
+        width: 200px;
+        height: 200px;
+        background: red;
+        /*设置盒子的位置，便于观察*/
+        margin: 400px auto;
+        /*复合方式设置动画 三者分别为：动画名 执行一次时间 执行方式*/
+        animation: zhuan 3s ease;
+        /*令动画无限执行下去*/
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+      }
+
+      .box div {
+        width: 200px;
+        height: 200px;
+        opacity: 1;
+        /*设置过渡*/
+        transition: all 1s ease 0s;
+        position: absolute;
+      }
+
+      /*调整位置，制作成一个六边形*/
+      .box .div1 {
+        background: green;
+        transform: translateZ(100px);
+      }
+
+      .box .div2 {
+        background: green;
+        transform: translateZ(-100px);
+      }
+
+      .box .div3 {
+        background: green;
+        transform: rotateX(90deg) translateZ(100px);
+      }
+
+      .box .div4 {
+        background: green;
+        transform: rotateX(270deg) translateZ(100px);
+      }
+
+      .box .div5 {
+        background: green;
+        transform: rotateY(-90deg) translateZ(100px);
+      }
+
+      .box .div6 {
+        background: green;
+        transform: rotateY(90deg) translateZ(100px);
+      }
+
+      /*添加3D旋转效果 让其绕X、Y轴同时旋转90度*/
+      @keyframes zhuan {
+        from {
+          transform: rotateX(0deg) rotateZ(0deg) rotateY(0deg);
+        }
+
+        to {
+          transform: rotateX(360deg) rotateZ(360deg) rotateY(360deg);
+        }
+      }
+
+      /*给正方体添加一个hover效果*/
+      .box:hover .div1 {
+        transform: translateZ(200px);
+      }
+
+      .box:hover .div2 {
+        transform: translateZ(-200px);
+      }
+
+      .box:hover .div3 {
+        transform: rotateX(90deg) translateZ(200px);
+      }
+
+      .box:hover .div4 {
+        transform: rotateX(270deg) translateZ(200px);
+      }
+
+      .box:hover .div5 {
+        transform: rotateY(-90deg) translateZ(200px);
+      }
+
+      .box:hover .div6 {
+        transform: rotateY(90deg) translateZ(200px)
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <div class="eyes">
+      <div class="box">
+        <div class="div1"><img src="images/1.jpg" width="100%" height="100%"></div>
+        <div class="div2"><img src="images/2.jpg" width="100%" height="100%"></div>
+        <div class="div3"><img src="images/3.jpg" width="100%" height="100%"></div>
+        <div class="div4"><img src="images/4.jpg" width="100%" height="100%"></div>
+        <div class="div5"><img src="images/5.jpg" width="100%" height="100%"></div>
+        <div class="div6"><img src="images/6.jpg" width="100%" height="100%"></div>
+      </div>
+    </div>
+  </body>
+
+</html>
