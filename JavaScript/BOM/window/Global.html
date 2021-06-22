@@ -10,7 +10,8 @@
   <script defer>
     var a = 15;
     window.b = 20;
-    console.log(window.a,window.b) // 15 20
+    c = 25;
+    console.log(window.a,window.b,window.c) // 15 20 25
     // delete window.a;
     // delete window.b;
     // console.log(window.a, window.b) // 15 undefined
@@ -18,6 +19,8 @@
     console.log(outa)//{value: 15, writable: true, enumerable: true, configurable: false}
     let outb = Object.getOwnPropertyDescriptor(window, 'b');
     console.log(outb)// {value: 20, writable: true, enumerable: true, configurable: true}
+    let outc = Object.getOwnPropertyDescriptor(window, 'c');
+    console.log(outc)// {value: 20, writable: true, enumerable: true, configurable: true}
   </script>
 </body>
 </html>

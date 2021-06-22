@@ -1,0 +1,26 @@
+{
+  "files.associations": {
+    "string": "cpp"
+  },
+  "editor.fontSize": 12,
+  "[C_Cpp]": {
+    "formatting": "vcFormat",
+    "vcFormat.space.insertAfterSemicolon": true,
+    "updateChannel": "Insiders",
+    "vcFormat.newLine.closeBraceSameLine.emptyFunction": true,
+    "autocompleteAddParentheses": true,
+    "vcFormat.space.betweenEmptyParameterListParentheses": true,
+    "vcFormat.newLine.beforeOpenBrace.block": "sameLine",
+    "vcFormat.newLine.beforeOpenBrace.function": "sameLine",
+    "vcFormat.newLine.beforeOpenBrace.lambda": "sameLine",
+    "vcFormat.newLine.beforeOpenBrace.namespace": "sameLine",
+    "vcFormat.newLine.beforeOpenBrace.type": "sameLine",
+    "clang_format_style": {
+      "BasedOnStyle": "Chromium",
+      // "BasedOnStyle": "Google",
+      "IndentWidth": 2
+    },
+    "clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0}"
+    // "editor.defaultFormatter": "ms-vscode.cpptools"
+  },
+}

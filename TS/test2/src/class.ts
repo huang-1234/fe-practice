@@ -70,9 +70,9 @@ class Person {
     }
 }
 
-const person = new Person('jspang')
+const person = new Person('huangsq')
 person._name= '谢广坤'
-console.log(person._name) ；
+console.log(person._name);
 
 
 /* 

@@ -2,7 +2,7 @@ set -e
 
 
 git add .
-git commit -m 'update getData'
+git commit -m 'update React/lifeCycle'
 
 git remote -v
 

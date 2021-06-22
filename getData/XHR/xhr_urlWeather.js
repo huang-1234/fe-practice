@@ -15,7 +15,7 @@ function getWeather(cityid) {
   // 一旦XMLHttpRequest实例的状态发生变化，就会调用监听函数handleStateChange
    let bool1 = false; bool2 = true;
    xhr.open('get', urlWeather, bool2);
-  xhr.onreadystatechange = () => { // 异步回调hanshu
+  xhr.onreadystatechange = () => { // 异步回调函数
     // if (xhr.readyState == 2) {
     //   console.log('middle:',xhr.readyState);
     // }
@@ -29,9 +29,9 @@ function getWeather(cityid) {
         // xhr.abort(); // 终止 XMLHttpRequest 请求，也会造成readyState属性变化，
 
         console.log('responseText:----------', xhr.responseText);
-        getJSfromJSON(xhr.responseText);
+        // getJSfromJSON('getJSfromJSON<<',xhr.responseText);
         console.log('response:----------', xhr.response);
-        getJSfromJSON(xhr.response)
+        // getJSfromJSON('getJSfromJSON<<',xhr.response)
         // console.log('xhr:',xhr);
         return xhr.responseText;
       }
@@ -40,7 +40,7 @@ function getWeather(cityid) {
       }
     }
   }
-  console.log('cbzhiqian');
+  console.log('onreadystatechange之后的console--');
 
 
   // xhr.withCredentials = true; // 加上这句代码会报错：from origin 'null' has been blocked by CORS policy: The value of the 'Access-Control-Allow-Origin' header in the response must not be the wildcard '*' when the request's credentials mode is 'include'. The credentials mode of requests initiated by the XMLHttpRequest is controlled by the withCredentials attribute.

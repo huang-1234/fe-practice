@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+.container header {
+  width: 90vw;
+  height: 3rem;
+}
+.container main {
+  width: 100%;
+  min-height: 90vh;
+}
