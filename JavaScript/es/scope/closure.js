@@ -10,13 +10,13 @@
 // 解决方法有 3 种
 
 // 第一种，使用`立即执行函数`方式
-for (var i = 1;i < 5;i++) {
-  (function(j){
-    setTimeout(function timer() {
-      console.log(j)
-    }, j * 1000)
-  })(i)
-}
+// for (var i = 1;i < 5;i++) {
+//   (function(j){
+//     setTimeout(function timer() {
+//       console.log(j)
+//     }, j * 1000)
+//   })(i)
+// }
 
 // // 第二种，使用 ES6 的`let`
 // for (let i = 1;i < 5;i++) {
@@ -35,3 +35,23 @@ for (var i = 1;i < 5;i++) {
 //     i
 //   );
 // }
+
+function foo() {
+  var myName = "huangsq369"
+  let test1 = 1
+  const test2 = 2
+  var innerBar = {
+      getName:function(){
+          console.log(test1)
+          return myName
+      },
+      setName:function(newName){
+          myName = newName
+      }
+  }
+  return innerBar
+}
+var bar = foo()
+bar.setName("huangsq")
+bar.getName()
+console.log(bar.getName())

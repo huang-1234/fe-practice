@@ -1,6 +1,6 @@
 {
   "files.associations": {
-    "string": "cpp"
+    "string": "cpp",
   },
   "editor.fontSize": 12,
   "[C_Cpp]": {
