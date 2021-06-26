@@ -61,5 +61,40 @@ function FetchData() {
     </div>
   )
 }
-
 export default FetchData
+
+
+
+export function FetchDataByid() {
+  const [post, setPost] = useState<postType>()
+  const [id, setId] = useState('1')
+
+  useEffect(() => {
+    if (id) {
+      axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`).then((res) => {
+        const data: postType = res.data
+        console.log(data)
+        setPost(data)
+      }).catch((err) => {
+        console.log(err)
+      })
+    }
+  }, [id])
+
+  return (
+    <div>
+      <input
+        type="text"
+        value={id}
+        onChange={(e) => {
+          setId(e.target.value)
+        }}
+      />
+      <div>
+        {
+          post && post.title
+        }
+      </div>
+    </div>
+  )
+}

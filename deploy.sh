@@ -2,7 +2,7 @@ set -e
 
 
 git add .
-git commit -m 'update React/lifeCycle'
+git commit -m 'update sort algorithm'
 
 git remote -v
 

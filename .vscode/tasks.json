@@ -4,19 +4,19 @@
     {
       "type": "shell",
       "label": "gdb.exe build active file", //一定与preLaunchTask一致
-      "command": "F:\\WareDownload\\C++\\mingw64\\bin\\gdb.exe", //改为你自己的路径
+      "command": "F:/WareDownload/C++/mingw64/bin/gdb.exe", //改为你自己的路径
       "args": [
         "-g",
         "${file}",
-        // "${fileDirname}\\printf.c",
+        // "${fileDirname}/printf.c",
         "-o",
-        "${fileDirname}\\${fileBasenameNoExtension}.exe"
+        "${fileDirname}/${fileBasenameNoExtension}.exe"
       ],
       "options": {
-        "cwd": "F:\\WareDownload\\C++\\mingw64\\bin" //改为自己的路径的bin文件夹
+        "cwd": "F:/WareDownload/C++/mingw64/bin" //改为自己的路径的bin文件夹
       },
       "problemMatcher": [
-        "$gcc"
+        "$gcc",
       ],
       "group": "build"
     }

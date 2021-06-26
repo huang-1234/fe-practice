@@ -23,4 +23,143 @@
     "clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0}"
     // "editor.defaultFormatter": "ms-vscode.cpptools"
   },
+  // "[code-runner]":{
+  //   "executorMap":{
+  //     "javascript": "node",
+  //     // "php": "C:\\php\\php.exe",
+  //     "python": "python",
+  //     "perl": "perl",
+  //     // "ruby": "C:\\Ruby23-x64\\bin\\ruby.exe",
+  //     "go": "go run",
+  //     "html": "\"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe\"",
+  //     "java": "cd $dir && javac $fileName && java $fileNameWithoutExt",
+  //     "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt"
+  //   }
+  // },
+  "code-runner.executorMap": {
+    "javascript": "node",
+    "php": "C:\\php\\php.exe",
+    "python": "python",
+    "perl": "perl",
+    "ruby": "C:\\Ruby23-x64\\bin\\ruby.exe",
+    "go": "go run",
+    "html": "\"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe\"",
+    "java": "cd $dir && javac $fileName && java $fileNameWithoutExt",
+    "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt"
+  },
+  
+  "[cpp]": {
+    "editor.defaultFormatter": "ms-vscode.cpptools"
+  },
+  "C_Cpp.vcFormat.wrap.preserveBlocks": "allOneLineScopes",
+  "[c]": {
+    "editor.defaultFormatter": "ms-vscode.cpptools"
+  },
+  
+  "editor.tokenColorCustomizations": {
+    "[Visual Studio Dark]": {
+      "comments": "#7e3648",
+      "strings": "#b9b156",
+      "functions": "#8ed3cd",
+      "keywords": "#cc0cee",
+      "variables": "#a9e7bc",
+      "numbers": "#83024d83",
+      "textMateRules": [
+        {
+          "name": "Comment",
+          "scope": [
+            "comment"
+          ],
+          "settings": {
+            "foreground": "#728872",
+            "fontStyle": ""
+          }
+        },
+        {
+          "name": "[VSCODE-CUSTOM] PHP Punctuation Variable Definition",
+          "scope": "punctuation.definition.variable.php",
+          "settings": {
+            "foreground": "#4add1d"
+          }
+        },
+        {
+          "name": "String",
+          "scope": [
+            "String"
+          ],
+          "settings": {
+            "foreground": "#4be5eb",
+            "fontStyle": ""
+          }
+        },
+        {
+          "name": "variables",
+          "scope": [
+            "variables"
+          ],
+          "settings": {
+            "foreground": "#bd9860",
+            "fontStyle": ""
+          }
+        },
+        {
+          "name": "HTML:Tags",
+          "scope": [
+            "meta.tag",
+            "punctuation.definition.tag.html",
+            "punctuation.definition.tag.begin.html",
+            "punctuation.definition.tag.end.html"
+          ],
+          "settings": {
+            "foreground": "#b1a1a1",
+            "fontStyle": ""
+          }
+        },
+        {
+          "name": "HTML:Tag Names",
+          "scope": "entity.name.tag",
+          "settings": {
+            "foreground": "#8bbbb6",
+            "fontStyle": ""
+          }
+        },
+        {
+          "name": "HTML: Attribute Names",
+          "scope": [
+            "meta.tag entity.other.attribute-name",
+            "entity.other.attribute-name.html"
+          ],
+          "settings": {
+            "fontStyle": "italic",
+            "foreground": "#e67171"
+          }
+        },
+        {
+          "name": "Operator",
+          "scope": "keyword.operator",
+          "settings": {
+            "foreground": "#e72907",
+            "fontStyle": ""
+          }
+        }
+      ]
+    }
+  },
+  // "workbench.colorTheme": "Visual Studio Dark", 
+  "workbench.colorCustomizations": {
+    "[Quiet Light]": {
+      "editor.foreground": "#332b2b",
+      "editor.selectionHighlightBorder": "#94767c00",
+      "editor.selectionHighlightBackground": "#ff000078",
+      "editorIndentGuide.activeBackground": "#81868d",
+      "editorBracketMatch.background": "#addb9f5e",
+      "editorBracketMatch.border": "#ff0000",
+      "tab.activeBackground": "#ad9cd4b2",
+      "textLink.foreground": "#d6561ac4",
+      "descriptionForeground": "#ff0000",
+      "selection.background": "#b98cd693",
+      "textBlockQuote.background": "#b89a9a",
+      "textSeparator.foreground": "#316f8f"
+    },
+  },
 }

@@ -20,7 +20,7 @@ console.log(bar.name);
 // console.log(arguments);
  */
 
-
+/* 
 // about setTimeout
 let obj = {
   say: function () {
@@ -38,4 +38,22 @@ let obj = {
 };
 
 obj.print(); //当该对象调用他的方法时，方法中的this指向该对象
+ */
+/* 
+// call绑定比隐式绑定的优先级要高
+function showA() {
+  console.log('showA<<',this.a);
+}
+const obj1 = {
+  a: 1,
+  showA:showA
+}
+const obj2 = {
+  a: 2,
+  showA:showA
+}
+obj1.showA();obj2.showA()
+obj1.showA.call(obj2);obj1.showA.call(obj1);
+ */
 
+// 
