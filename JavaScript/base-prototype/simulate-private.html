@@ -1,0 +1,19 @@
+
+<script>
+  /*****************************************
+   * **增强 1.模拟私有变量。**
+   * 上面构造函数所产生的对象只有 public 成员，没有 private 成员，可以通过闭包实现私有成员
+   * 模拟私有变量
+   ****************************************
+   */
+  let Employee = function (name) {
+    //私有变量
+    let name = name;
+    this.getName = function () {
+      return name
+    };
+  };
+  let employee = new Employee('huangsq');
+  alert(employee.name);//undefined
+  alert(employee.getName());//huangsq
+</script>

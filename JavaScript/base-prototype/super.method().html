@@ -1,0 +1,26 @@
+
+<!-- **增前 2. 模拟 super.method.**
+构造函数 coder 能不能模仿出 java 中类似 super.method 的效果呢？答案是可以的，
+最简单的实现是在对象内部创建一个副对象的副本。缺点是增加了内存的消耗。 
+-->
+<script>
+  /******************
+ *模拟super.method()
+ ******************/
+  let Coder = function (name, language) {
+    let _super = new Employee('');
+    this.name = name;
+    this.language = language;
+    this.getName = function () {
+      return "my name is :" + _super.getName.call(this, name);
+    };
+  }.inherits(Employee).method('getLanguage', function () {
+    return this.language;
+  }).method('getIntroduction', function () {
+    return this.name + " is skilled in " + this.language;
+  });
+
+  let coder = new Coder('Jack', 'Java');
+  alert(coder.getIntroduction());
+  alert(coder.getName());//my name is Jack
+</script>

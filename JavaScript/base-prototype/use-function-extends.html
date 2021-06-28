@@ -1,0 +1,77 @@
+
+<!-- 使用function实现继承 -->
+
+<script>
+  /**
+   * 以原型对象为模板创建出新对象
+   * 这个函数已经被Chrome和IE9采用，所以需要有个判断这个函数是否已经存在，Crockford的影响力可见一斑
+   */
+  if (!Object.create) {
+    Object.create = function (oldObject) {
+      function F() {
+      }
+      ;
+      F.prototype = oldObject;
+      return new F();
+    }
+  }
+  /**
+   * 在构造函数的原型对象上添加方法
+   * 非常推荐这个函数，因为这个函数能够培养出在原型对象中定义方法的良好习惯
+   */
+  Function.prototype.method = function (name, func) {
+    if (!this.prototype[name]) {
+      this.prototype[name] = func;
+      return this;
+    }
+  };
+  /**
+   * 使构造函数“继承”其他构造函数
+   * 实际上是将构造函数的原型对象替换为另外构造函数产生的对象
+   *
+   */
+  Function.method('inherits', function (F) {
+    this.prototype = new F();
+    return this;
+  });
+
+  /*****************************************
+   * 使用函数创建对象
+   * 1 使用函数的闭包实现私有属性
+   * 2 子对象可以调用父对象的方法
+   *****************************************/
+  function employee(name) {
+    var object = {};
+    //name属性是私有变量
+    var name = name;
+
+    var getName = function () {
+      return name;
+    }
+    //getName对外公开
+    object.getName = getName;
+    return object;
+  }
+
+  function coder(name, language) {
+    var object = employee(name);
+    var superGetName = object.getName;
+    var language = language;
+    var getLanguage = function () {
+      return language;
+    };
+    //调用父对象的方法
+    var getName = function () {
+      return "my name is " + superGetName();
+    };
+
+    object.getName = getName;
+    return object;
+  }
+  var e1 = employee('Jack');
+  alert(e1.name);//undefined
+  alert(e1.getName());//Jack
+
+  var c1 = coder('Jackson', 'Java');
+  alert(c1.getName());//My name is Jackson
+</script>

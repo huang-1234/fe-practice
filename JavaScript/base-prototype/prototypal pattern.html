@@ -1,0 +1,39 @@
+
+<!-- 2) 使用原型创建对象(prototypal pattern)
+这种创建方式直白地显示了原型语言创建对象的特点
+ -->
+
+<script>
+  /**
+   * 以原型对象为模板创建出新对象
+   */
+  if (!Object.create) {
+    Object.create = function (oldObject) {
+      function F() {
+      }
+      F.prototype = oldObject;
+      return new F();
+    }
+  }
+
+  /*****************************************
+   * 使用原型对象创建对象，创建之后再对象初始化，
+   * 这种创建方式直白地显示了原型语言创建对象的特点
+   *****************************************/
+  let employee = {
+    name: 'Jack',
+    getName: function () {
+      return this.name;
+    }
+  };
+
+  let coder = Object.create(employee);
+  coder.name = 'Jackson';
+  coder.language = 'Java';
+  coder.getIntroduction = function () {
+    return this.name + " is skilled in " + this.language;
+  }
+  alert(coder.getName());
+  alert(coder.getIntroduction());
+</script>
+

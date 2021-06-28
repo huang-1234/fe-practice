@@ -1,0 +1,54 @@
+<!-- 
+<script>
+  function Employee(name) {
+    this.name = name;
+    //this.getName = function(){return this.name};方法代码应该放到原型对象之中，
+    // 而不是初始化函数中，这样每个employee对象都共享同一个方法代码  
+  }
+  Employee.prototype.getName = function () { return this.name };
+  let  employee = new Employee('huangsq');
+  console.log("employee.getName(): " + employee.getName());//huangsq  
+  let  employee2 = new Employee('huangsq2');
+  console.log("employee2.getName(): " + employee2.getName());//huangsq2    
+  function Coder(name, language) {
+    this.name = name;
+    this.language = language;
+    //this.getLanguage = function(){return this.language}; 方法代码应该放到原型对象之中，
+    // 而不是初始化函数中，这样才能实现代码共享  
+  }
+  Coder.prototype = new Employee('');
+  Coder.prototype.constructor = Coder;//这一句话其实也可以不写，不影响继承  
+  Coder.prototype.getLanguage = function () { return this.language };
+
+  let  coder = new Coder('Coder huangsq', 'Java');
+  console.log("coder.getName(): " + coder.getName());//Coder huangsq  
+  console.log("coder.getLanguage(): " + coder.getLanguage());//Java  
+  let  coder2 = new Coder('Coder Lee', 'C#');
+  console.log("coder2.getName(): " + coder2.getName());//Coder Lee  
+  console.log("coder2.getLanguage(): " + coder2.getLanguage());//C#  
+  let  coder3 = new Coder('Coder Liu', 'C++');
+  console.log("coder3.getLanguage(): " + coder3.getName());//Coder Liu  
+  console.log("coder3.getLanguage()" + coder3.getLanguage());//C++  
+
+  console.log("employee.constructor: " + employee.constructor);
+  console.log("employee.constructor.prototype === Employee.prototype: " + 
+   (employee.constructor.prototype === Employee.prototype));
+  console.log("employee.constructor.prototype.constructor === Employee: " +
+   (employee.constructor.prototype.constructor === Employee));
+  console.log("employee instanceof Object: " + (employee instanceof Object));
+  console.log("employee instanceof Function: " + (employee instanceof Function));
+  console.log("employee instanceof Employee: " + (employee instanceof Employee));
+  console.log("Employee.prototype.isPrototypeOf(employee): " + (Employee.prototype.isPrototypeOf(employee)));
+  console.log("Function.prototype.isPrototypeOf(employee): " + (Function.prototype.isPrototypeOf(employee)));
+  console.log("Object.prototype.isPrototypeOf(employee): " + (Object.prototype.isPrototypeOf(employee)));
+  console.log("coder.constructor: " + coder.constructor);
+  console.log("coder instanceof Object: " + (coder instanceof Object));
+  console.log("coder instanceof Function: " + (coder instanceof Function));
+  console.log("coder instanceof Employee: " + (coder instanceof Employee));
+  console.log("coder instanceof Coder: " + (coder instanceof Coder));
+  console.log("Employee.prototype.isPrototypeOf(coder): " + (Employee.prototype.isPrototypeOf(coder)));
+  console.log("Coder.prototype.isPrototypeOf(coder): " + (Coder.prototype.isPrototypeOf(coder)));
+  console.log("Function.prototype.isPrototypeOf(coder): " + (Function.prototype.isPrototypeOf(coder)));
+  console.log("Object.prototype.isPrototypeOf(coder): " + (Object.prototype.isPrototypeOf(coder)));
+</script>
+ -->

@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>使用构造器模式(new + prototype)实现继承</title>
+  </head>
+  <body>
+    <script>
+      /**
+        * 以原型对象为模板创建出新对象
+        * 这个函数已经被Chrome和IE9采用，所以需要有个判断这个函数是否已经存在，Crockford的影响力可见一斑
+        */
+      if (!Object.create) {
+        Object.create = function (oldObject) {
+          function F() { } ;
+          F.prototype = oldObject;
+          return new F();
+        }
+      }
+      /**
+        * 在构造函数的原型对象上添加方法
+        * 非常推荐这个函数，因为这个函数能够培养出在原型对象中定义方法的良好习惯
+        */
+      Function.prototype.method = function (name, func) {
+        if (!this.prototype[name]) {
+          this.prototype[name] = func;
+          return this;
+        }
+      };
+      /**
+        * 使构造函数“继承”其他构造函数
+        * 实际上是将构造函数的原型对象替换为另外构造函数产生的对象
+        *
+        */
+      Function.method('inherits', function (F) {
+        this.prototype = new F();
+        return this;
+      });
+
+      /*****************************************
+        *使用链式代码清晰紧凑地定义构造函数
+        *****************************************/
+      let Employee = function (name) {
+        this.name = name;
+      }.method('getName', function () {
+        return this.name;
+      });
+
+      //由于method和inherits函数都返回this，所以可以非常舒服地将构造函数写成链式代码
+      let employee = new Employee("jack");
+      alert(employee.getName());
+
+      //由于method和inherits函数都返回this，所以可以非常舒服地将构造函数写成链式代码
+      let Coder = function (name, language) {
+        this.name = name;
+        this.language = language;
+      }.inherits(Employee).method('getLanguage', function () {
+        return this.language;
+      }).method('getIntroduction', function () {
+        return this.name + " is skilled in " + this.language;
+      });
+
+      let coder = new Coder('huangsq', 'Java');
+      alert(coder.getIntroduction());
+      alert(coder.getName());
+    </script>
+  </body>
+</html>
