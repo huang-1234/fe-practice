@@ -163,4 +163,17 @@
     },
   },
   "compile-hero.disable-compile-files-on-did-save-code": false,
+  "files.autoSave": "afterDelay",
+  // "powermode":{
+  //   "enabled":true,
+  //     //样式
+  //   // "presets":"fireworks",
+  //   "presets":"Flames",
+  //   // 时间间隔
+  //   "comboTimeout":10,
+  //   // 抖动
+  //   "enableShake":false,
+  //   "backgroundMode":"mask"
+  // }
+  
 }
