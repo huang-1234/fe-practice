@@ -2,7 +2,7 @@ set -e
 
 
 git add .
-git commit -m 'update sort algorithm'
+git commit -m 'update Type of ts'
 
 git remote -v
 

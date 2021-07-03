@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vue</title>
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+  <script src="https://cdn.bootcss.com/vue/2.4.2/vue.js"></script>
+  <script type="text/javascript">
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        msg: 'Vue'
+      },
+      template: `
+            <div>
+              <span>
+                <a href="https://www.cnblogs.com/WindrunnerMax/p/14429426.html"></a>
+              </span>
+              <div ref="msgElement">{{msg}}</div>
+              <button @click="updateMsg">updateMsg</button>
+              <button @click="updateMsgTest">updateMsgTest</button>
+            </div>
+        `,
+      methods: {
+        updateMsg: function () {
+          this.msg = "Update";
+          setTimeout(() => console.log(1))
+          Promise.resolve().then(() => console.log(2))
+          this.$nextTick(() => {
+            console.log(3)
+          })
+        },
+        updateMsgTest: function () {
+          setTimeout(() => console.log(1))
+          Promise.resolve().then(() => console.log(2))
+          this.$nextTick(() => {
+            console.log(3)
+          })
+        }
+      },
+    })
+  </script>
+</html>

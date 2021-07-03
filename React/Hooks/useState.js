@@ -17,15 +17,16 @@ function useState(initialState) {
         pending:null,
       }
     }
+    // 将hook插入fiber.memoizedState链表末尾
     if (!fiber.memorizedState) {
       fiber.memorizedState = hook;
-      
+
     } else {
       workInprogressHook.next = hook;
     }
     workInprogressHook = hook;
   } else {
-    hook = workInprogressHook;
+    hook = workInprogressHook;   // update时找到对应hook
     workInprogressHook = workInprogressHook.next;
   }
   let baseState = hook.memorizedState;
@@ -37,7 +38,7 @@ function useState(initialState) {
       firstUpdate = firstUpdate.next;
 
     } while (firstUpdate !== hook.queue.pending.next)
-    
+
     hook.queue.pending = null;
   }
 
@@ -85,7 +86,7 @@ function App() {
   console.log('isMount?', isMount);
   console.log('num<<',num);
   console.log('num1<<', num1);
-  
+
   return {
     onClick(){
       updateNum(num => num + 2);

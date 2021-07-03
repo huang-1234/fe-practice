@@ -47,7 +47,7 @@
     "java": "cd $dir && javac $fileName && java $fileNameWithoutExt",
     "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt"
   },
-  
+
   "[cpp]": {
     "editor.defaultFormatter": "ms-vscode.cpptools"
   },
@@ -55,7 +55,7 @@
   "[c]": {
     "editor.defaultFormatter": "ms-vscode.cpptools"
   },
-  
+
   "editor.tokenColorCustomizations": {
     "[Visual Studio Dark]": {
       "comments": "#7e3648",
@@ -145,7 +145,7 @@
       ]
     }
   },
-  // "workbench.colorTheme": "Visual Studio Dark", 
+  // "workbench.colorTheme": "Visual Studio Dark",
   "workbench.colorCustomizations": {
     "[Quiet Light]": {
       "editor.foreground": "#332b2b",
@@ -162,7 +162,18 @@
       "textSeparator.foreground": "#316f8f"
     },
   },
-  "compile-hero.disable-compile-files-on-did-save-code": false,
+  // "compile-hero.disable-compile-files-on-did-save-code": false,
+  // "compile-hero": {
+  //   "disable-compile-files-on-did-save-code": false, // 全局开关，false 为开启自动编译， 默认 true 为开启不自动编译
+  //   "notification-toggle": false, // 关闭编译失败时候右下角的弹窗提醒
+  //   "javascript-output-directory": "./out", // javascript 输出的目录
+  //   "javascript-output-toggle": false, // 局部开关，true 为开启 javascript 自动编译，false 为不开启 javascript 自动编译
+  //   "sass-output-directory": "./out", // sass 输出的目录
+  //   "sass-output-toggle": true, // 局部开关，true 为开启 sass 自动编译，false 为不开启 sass 自动编译
+  //   "ignore": ["src/test.js", "*/test.scss", "**/spec/*", "**/src/**/*"], // 禁止文件和文件夹自动格式化和编译
+  //   "watch": ["sass/test.sass", "**/less/**/*"] // 监听对应文件或者文件夹，保存的时候触发编译，一般配合 Compile Hero: On 开关打开使用
+  // },
+
   "files.autoSave": "afterDelay",
   // "powermode":{
   //   "enabled":true,
@@ -175,5 +186,15 @@
   //   "enableShake":false,
   //   "backgroundMode":"mask"
   // }
-  
+  "editor":{
+    "parameterHints":true,
+    "quickSuggestions":{
+      "other": true,
+      "comments": true,
+      "strings": true
+    }
+  },
+  "files.trimTrailingWhitespace":true
+
+
 }
