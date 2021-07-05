@@ -14,7 +14,7 @@ export default (): ReactElement => {
   return (
     <>
       <p>count: {count}</p>
-      <button  onClick={CountAddOne}>
+      <button onClick={CountAddOne}>
         Button
       </button>
     </>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>show-data-that-in-js</title>
+
+</head>
+<body>
+  <div>
+    <span id="span-obj1.message"></span>
+    <div>
+      <select name="green" id="colorSelector" value="选择颜色" onclick="() => getColorValue()">
+        <option value="green">绿色</option>
+        <option value="blue">蓝色</option>
+        <option value="yellow">黄色</option>
+      </select>
+      字体：<input type="text" placeholder="选择字体大小">
+      颜色：<input type="text" placeholder="选择字体颜色">
+      <button onClick="onClickchangeColorFontSize">按照要求改变颜色和大小</button>
+    </div>
+  </div>
+  <script>
+    let obj1 = {
+      message:"this is a massage in the script"
+    }
+
+
+    const styleObj = {
+      fontSize:"50px",
+      color:"green",
+    }
+
+    document.getElementById("span-obj1.message").innerHTML = obj1.message
+
+
+    function changeColorFontSize(elementNode,styleObj){
+      const eleSpan = document.getElementById("span-obj1.message")
+      eleSpan.innerHTML = obj1.message;
+      eleSpan.style.fontSize = "50px";
+      eleSpan.style.color = "green"
+    }
+
+    function getColorValue() {
+      let typeSelect = document.getElementById("span-obj1.messag");
+      const typeValue = typeSelect.options[typeSelect.selectedIndex].value; // 数据类型
+       console.log('getSelectData/typeValue<<');
+      typeSelect.style.color = typeValue;
+    }
+
+
+  </script>
+</body>
+</html>

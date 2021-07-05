@@ -33,7 +33,7 @@ console.log(myname);
 //     console.log(key);
 
 //     console.log();
-// 
+//
 /*4
 let arr = [1, 2, 3, 'names'];
 console.log('the lenth of the arr is ' + arr.length);
@@ -115,7 +115,7 @@ SetName(person, 'huang');
 
 Object.defineProperty(person, 'name', {
     //这三个数据属性都必须得小写，否则设定的true或者false都无效
-    
+
     //  * configurable：表示能否通过delete删除属性从而重新定义属性，能否修改属性的特性，或能否把属性修改为访问器属性，默认为true
     //  * enumerable:表示能否通过for-in循环返回属性
     //  * writable：表示能否修改属性的值
@@ -279,7 +279,7 @@ foo.logName.call(bar, args2[0], args2[1]);
 // var instance1.friends.push("gay3");
 // alert(instance1.friends);
 // var instance2=new SubType();
-// alert(instance2.friends);  
+// alert(instance2.friends);
 // alert(instance1 instanceof SuperType);  //true
 // //gay1,gay2,gay3 这个实例里为什么会有gay3 可以简单解释为 SuperType中的friends是instance1和instance2所在的作用域链共享的
 //==================

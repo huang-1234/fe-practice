@@ -9,8 +9,8 @@ interface Child{
   cry(): void;
 }
 interface Boy extends Human, Child{
-  
-} 
+
+}
 
 class Auto{
   stateNum :number;
@@ -37,4 +37,4 @@ class Boy implements Boy{
   run() {
     console.log('run quickly')
   }
-} 
+}

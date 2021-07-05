@@ -1,4 +1,4 @@
-/* 
+/*
 function func() {
   console.log(arguments);
   for (let i = 0;i < arguments.length;++i){
@@ -35,3 +35,20 @@ let o1 = {
 }
 let p1 = Object.CreateMe(o1)
 console.log(p1.__proto__);
+
+/*  arguments.callee.caller */
+{
+  function outer() {
+    console.log('output the outer1');
+    inner();
+    console.log('output the outer2');
+  }
+
+  function inner() {
+    console.log('output the inner1');
+    console.log(arguments.callee);
+    console.log(arguments.callee.caller);
+    console.log('output the inner2');
+  }
+  outer();
+}

@@ -1,5 +1,5 @@
 
-import React,{useState,useCallback, } from 'react'
+import React, { useState, useCallback, } from 'react'
 import { ReactElement } from 'react'
 import ChildrenComponent from './ChildrenComponent'
 
@@ -18,7 +18,7 @@ export default React.memo((): ReactElement => {
   //   console.log('看下这个函数useCallback(unChangeCount,[])')
   //   setCount(count)
   // }, [count])
-  const unChangeCount =() => {
+  const unChangeCount = () => {
     console.log('看下这个函数useCallback(unChangeCount,[])')
     setCount(count)
   }
@@ -26,11 +26,11 @@ export default React.memo((): ReactElement => {
   return (
     <>
       <p>count: {count} </p>
-    
+
       <ChildrenComponent />
 
-      <button  onClick={CountAddOne}> CountAddOne  </button>
-      <button  onClick={unChangeCount}> unChangeCount </button>
+      <button onClick={CountAddOne}> CountAddOne  </button>
+      <button onClick={unChangeCount}> unChangeCount </button>
     </>
   )
 })
