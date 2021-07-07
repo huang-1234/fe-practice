@@ -1,0 +1,56 @@
+Arguments: 
+  F:\JS_SoftWare\node.js\node.exe F:\JS_SoftWare\node.js\node_global\node_modules\yarn\bin\yarn.js add -D @babel/core @babel/preset-env @babel-loader
+
+PATH: 
+  F:\JS_SoftWare\Git\Git\mingw64\bin;F:\JS_SoftWare\Git\Git\usr\bin;C:\Users\13770\bin;F:\WareDownload\jupyter_Python\Anaconda3-2020-7;F:\WareDownload\jupyter_Python\Anaconda3-2020-7\Library\mingw-w64\bin;F:\WareDownload\jupyter_Python\Anaconda3-2020-7\Library\usr\bin;F:\WareDownload\jupyter_Python\Anaconda3-2020-7\Library\bin;F:\WareDownload\jupyter_Python\Anaconda3-2020-7\Scripts;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;%NODE_HOME%;C:\ProgramData\chocolatey\bin;F:\JS_SoftWare\node.js;F:\Ddisk\PythonDeveloperEnveroment\PyCharm2020\PyCharm 2020.1.1\bin;F:\Ddisk\Python;F:\Ddisk\Python\Scripts;F:\JS_SoftWare\Git\Git\cmd;F:\WareDownload\C++\mingw64\bin;F:\JS_SoftWare\node.js\node_global\bin;F:\WareDownload\Go\bin;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn;C:\Program Files (x86)\Microsoft SQL Server\150\Tools\Binn;C:\Program Files\Microsoft SQL Server\150\Tools\Binn;C:\Program Files\Microsoft SQL Server\150\DTS\Binn;F:\WareDownload\Python\Python3.9\Scripts;F:\WareDownload\Python\Python3.9;F:\JS_SoftWare\node.js\node_global;C:\Users\13770\AppData\Local\Microsoft\WindowsApps;F:\Ddisk\VScode\Microsoft VS Code\bin;F:\JS_SoftWare\Git\Git\usr\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\Users\13770\go\bin;F:\WareDownload\JetBrains\IDE_package\GoLand 2021.1.2\bin;F:\Google_Devtolls\catch_dataPackage\Fiddler;F:\WareDownload\JetBrains\WebStorm 2021.1.2\bin;F:\WareDownload\JetBrains\IntelliJ IDEA 2021.1.2\bin
+
+Yarn version: 
+  1.22.10
+
+Node version: 
+  14.15.3
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: https://registry.npm.taobao.org/@babel-loader: Request "https://registry.npm.taobao.org/@babel-loader" returned a 405
+      at Request.params.callback [as _callback] (F:\JS_SoftWare\node.js\node_global\node_modules\yarn\lib\cli.js:66997:18)
+      at Request.self.callback (F:\JS_SoftWare\node.js\node_global\node_modules\yarn\lib\cli.js:140662:22)
+      at Request.emit (events.js:315:20)
+      at Request.<anonymous> (F:\JS_SoftWare\node.js\node_global\node_modules\yarn\lib\cli.js:141634:10)
+      at Request.emit (events.js:315:20)
+      at IncomingMessage.<anonymous> (F:\JS_SoftWare\node.js\node_global\node_modules\yarn\lib\cli.js:141556:12)
+      at Object.onceWrapper (events.js:421:28)
+      at IncomingMessage.emit (events.js:327:22)
+      at endReadableNT (internal/streams/readable.js:1327:12)
+      at processTicksAndRejections (internal/process/task_queues.js:80:21)
+
+npm manifest: 
+  {
+    "name": "webpack-basic",
+    "version": "1.0.0",
+    "description": "learn-webpack",
+    "main": "index.js",
+    "scripts": {
+      "dev": "webpack --config webpack.config/webpack.config.js",
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+      "learn",
+      "webpack"
+    ],
+    "author": "hsq",
+    "license": "ISC",
+    "devDependencies": {
+      "html-webpack-plugin": "^5.3.2",
+      "webpack": "^5.43.0",
+      "webpack-cli": "^4.7.2"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

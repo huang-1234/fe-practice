@@ -1,0 +1,21 @@
+{
+  "name": "webpack-basic",
+  "version": "1.0.0",
+  "description": "learn-webpack",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --config webpack.config/webpack.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "learn",
+    "webpack"
+  ],
+  "author": "hsq",
+  "license": "ISC",
+  "devDependencies": {
+    "html-webpack-plugin": "^5.3.2",
+    "webpack": "^5.43.0",
+    "webpack-cli": "^4.7.2"
+  }
+}

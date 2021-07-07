@@ -16,6 +16,7 @@
     "webpack-dev-server": "^3.10.2"
   },
   "scripts": {
+    "clear": "rm -rf build&& mkdir build",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.config.js",
     "build": "cross-env NODE_ENV=production webpack --config build/webpack.config.js"
   },

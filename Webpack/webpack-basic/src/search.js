@@ -1,0 +1,1 @@
+document.write("<h3>i am huangsq</h3>")
