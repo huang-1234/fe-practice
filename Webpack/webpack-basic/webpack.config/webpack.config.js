@@ -23,6 +23,9 @@ module.exports =  {
       filename:"../public/index.html",
     })
   ],
-  
+  module: [
+    
+  ]
+
 
 }
