@@ -2,7 +2,7 @@ set -e
 
 
 git add .
-git commit -m 'update Type of ts'
+git commit -m 'update SkipList'
 
 git remote -v
 
