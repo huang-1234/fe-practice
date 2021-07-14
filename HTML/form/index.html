@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <form action="./my-handling-form-page" method="post">
+      <div>
+        <label for="name">姓名:</label>
+        <input type="text" id="name" value="by default this element is filled with this text">
+      </div>
+      <div>
+        <label for="mail">E-mail:</label>
+        <input type="email" id="mail">
+      </div>
+      <div>
+        <label for="datetime-local">日期:</label>
+        <input type="datetime-local" id="datetime-local">
+      </div>
+      <div>
+        <label for="msg">建议:</label>
+        <textarea id="msg"></textarea>
+      </div>
+      <div class="button">
+        <button type="submit">提交</button>
+      </div>
+    </form>
+    <h2> fieldset> 和 legend> 元素 </h2>
+    <form>
+      <fieldset>
+        <legend>Fruit juice size</legend>
+        <p>
+          <input type="radio" name="size" id="size_1" value="small">
+          <label for="size_1">Small</label>
+        </p>
+        <p>
+          <input type="radio" name="size" id="size_2" value="medium">
+          <label for="size_2">Medium</label>
+        </p>
+        <p>
+          <input type="radio" name="size" id="size_3" value="large">
+          <label for="size_3">Large</label>
+        </p>
+      </fieldset>
+    </form>
+</body>
+</html>

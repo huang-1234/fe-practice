@@ -4,8 +4,8 @@ function add1(num1: number, num2: number):number {
 
 
 function add<T>(x: T, y: T) {
-  if ('number' === x) {
-    
+  if ('number' === typeof x) {
+
   }
   return  x + y;
 }
