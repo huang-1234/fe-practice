@@ -1,0 +1,43 @@
+<!-- 二、Document.execCommand() 方法
+Document.execCommand()是操作剪贴板的传统方法，各种浏览器都支持。
+
+它支持复制、剪切和粘贴这三个操作。
+
+document.execCommand('copy')（复制）
+document.execCommand('cut')（剪切）
+document.execCommand('paste')（粘贴） */
+/* （1）复制操作
+复制时，先选中文本，然后调用document.execCommand('copy')，选中的文本就会进入剪贴板。 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>testClipboard</title>
+</head>
+<body>
+
+  <div class="testClipboard">
+    <input id="input"> hello i am will copied </input>
+    <input type="text" name="copy" id="output">
+  </div>
+  <script>
+    const inputElement = document.querySelector('#input');
+    inputElement.select();
+    document.execCommand('copy');
+
+    (function paste(){
+      const pasteText = document.querySelector('#output');
+      pasteText.focus();
+      document.execCommand('paste');
+    })();
+    /* （3）缺点
+      Document.execCommand()方法虽然方便，但是有一些缺点。
+      首先，它只能将选中的内容复制到剪贴板，无法向剪贴板任意写入内容
+      其次，它是同步操作，如果复制/粘贴大量数据，页面会出现卡顿。有些浏览器还会跳出提示框，要求用户许可，
+      这时在用户做出选择前，页面会失去响应。 为了解决这些问题，浏览器厂商提出了异步的 Clipboard API。 */
+  </script>
+</body>
+</html>
+
