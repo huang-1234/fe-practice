@@ -8,7 +8,7 @@
     "vcFormat.space.insertAfterSemicolon": true,
     "updateChannel": "Insiders",
     "vcFormat.newLine.closeBraceSameLine.emptyFunction": true,
-    "autocompleteAddParentheses": true,
+    // "autocompleteAddParentheses": true,
     "vcFormat.space.betweenEmptyParameterListParentheses": true,
     "vcFormat.newLine.beforeOpenBrace.block": "sameLine",
     "vcFormat.newLine.beforeOpenBrace.function": "sameLine",
@@ -52,6 +52,7 @@
     "editor.defaultFormatter": "ms-vscode.cpptools"
   },
   "C_Cpp.vcFormat.wrap.preserveBlocks": "allOneLineScopes",
+  "clang-format.executable": "/absolute/path/to/clang-format",
   "[c]": {
     "editor.defaultFormatter": "ms-vscode.cpptools"
   },
@@ -145,6 +146,20 @@
       ]
     }
   },
+  "powermode.enabled":true,
+  "powermode.enableShake":false,
+  "powermode.presets":"flames",
+  // "powermode":{
+  //   "enabled":true,
+  //     //样式
+  //   // "presets":"fireworks",
+  //   "presets":"flames",
+  //   // 时间间隔
+  //   "comboTimeout":10,
+  //   // 抖动
+  //   "enableShake":false,
+  //   "backgroundMode":"mask"
+  // },
   // "workbench.colorTheme": "Visual Studio Dark",
   "workbench.colorCustomizations": {
     "[Quiet Light]": {
@@ -174,18 +189,7 @@
   //   "watch": ["sass/test.sass", "**/less/**/*"] // 监听对应文件或者文件夹，保存的时候触发编译，一般配合 Compile Hero: On 开关打开使用
   // },
 
-  "files.autoSave": "afterDelay",
-  // "powermode":{
-  //   "enabled":true,
-  //     //样式
-  //   // "presets":"fireworks",
-  //   "presets":"Flames",
-  //   // 时间间隔
-  //   "comboTimeout":10,
-  //   // 抖动
-  //   "enableShake":false,
-  //   "backgroundMode":"mask"
-  // }
+  // "files.autoSave": "afterDelay",
   "editor":{
     "parameterHints":true,
     "quickSuggestions":{
