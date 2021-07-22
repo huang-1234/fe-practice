@@ -33,8 +33,6 @@ rl.on('line', function (line) {
   console.log(parseInt(tokens[0]) + parseInt(tokens[1]));
   const n = tokens[0], m = tokens[1];
   let str;
-  for (let i = 0;i < m;i++){
-    str = line;
-  }
+  str = readline();
   console.log(str);
 });
