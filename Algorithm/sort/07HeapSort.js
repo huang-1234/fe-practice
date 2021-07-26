@@ -22,7 +22,9 @@ function heapify(arr, i) {     // 堆调整
 }
 
 function swap(arr, i, j) {
-  let temp = arr[i]; arr[i] = arr[j];  arr[j] = temp;
+  let temp = arr[i];
+  arr[i] = arr[j];
+  arr[j] = temp;
 }
 
 function heapSort(arr) {

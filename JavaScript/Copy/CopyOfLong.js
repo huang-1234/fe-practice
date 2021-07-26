@@ -133,7 +133,7 @@ out.obj = out;
 console.log(out.obj.out);
  */
 
-
+/*
 // 测试栈溢出
 function createData(deep, breadth) {
   var data = {};
@@ -149,5 +149,8 @@ function createData(deep, breadth) {
   return data;
 }
 let obj = createData(10000, 1000);
+ */
+
+// 测试箭头函数
 let out = deepClone(obj);
 console.log(out);

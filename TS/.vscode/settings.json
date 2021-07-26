@@ -1,0 +1,20 @@
+{
+    // compile hero
+    "compile-hero.disable-compile-files-on-did-save-code": true,
+    "compile-hero.javascript-output-directory": "./dist",
+    "compile-hero.javascript-output-toggle": true,
+    "compile-hero.sass-output-directory": "./out",
+    "compile-hero.sass-output-toggle": false,
+    "compile-hero.scss-output-directory": "./out",
+    "compile-hero.scss-output-toggle": false,
+    "compile-hero.less-output-directory": "./out",
+    "compile-hero.less-output-toggle": false,
+    "compile-hero.pug-output-directory": "./out",
+    "compile-hero.pug-output-toggle": false,
+    "compile-hero.jade-output-directory": "./out",
+    "compile-hero.jade-output-toggle": false,
+    "compile-hero.typescript-output-directory": "./out",
+    "compile-hero.typescript-output-toggle": false,
+    "compile-hero.typescriptx-output-directory": "./out",
+    "compile-hero.typescriptx-output-toggle": false,
+}

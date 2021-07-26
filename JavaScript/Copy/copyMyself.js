@@ -5,7 +5,7 @@ const deepClone = (target, map = new WeakMap()) => {
   if (!arguments) throw new Error('there is no params');
   //为了解决属性类型为数组Array，增加类型函数
   const checkType = target => Object.prototype.toString.call(target).slice(8, -1);
-  
+
   let Result, targetType = checkType(target);
   if (targetType === 'Object') {
     Result = {};
@@ -23,7 +23,7 @@ const deepClone = (target, map = new WeakMap()) => {
     }
     map.set(target, value);
     if (checkType(value) === 'Object' || checkType(value) === 'Array') {
-      
+
       Result[index] = deepClone(target[index],map)
     } else {
       Result[index] = value;
