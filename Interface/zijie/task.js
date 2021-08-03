@@ -33,7 +33,6 @@ new Promise(function (resolve) {
 console.log('script end');
 
 /*
-宏任务1
 script start
 script start middleware
 
@@ -44,13 +43,10 @@ async2 promise
 promise1
 script end
 
-同步任务1下的异步任务1
-
 async1 end
 promise2
 promise3
 
-宏任务2
 setTimeout
  */
 

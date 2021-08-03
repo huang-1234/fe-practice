@@ -23,5 +23,6 @@ console.log(getSum.call(obj1, 1, 2, 3));
 
 /* get <TowS></TowS> */
 
-const dArr = new Array();
-dArr[0] = 1;console.log(dArr[0]);
+const dArr = new Array(1, 2, 3, 4, 5, 6, 7);
+
+console.log(dArr.slice(0,2));

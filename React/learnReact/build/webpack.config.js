@@ -23,8 +23,58 @@ module.exports = {
         test: /\.tsx?$ || \.ts?$/,
         use: 'ts-loader',
         include:[resolve('src')]
+      },
+      // {
+      //   test: /\.css$/,
+      //   loader: "style-loader!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader"
+      // },
+      {
+        test: /\.m\.s[ac]ss$/i,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: {
+                localIdentName: "[name]__[local]--[hash:base64:5]",
+              },
+            },
+          },
+          {
+            loader: "sass-loader",
+            options: {
+              sassOptions: {
+                indentedSyntax: true,
+              },
+            },
+          },
+        ],
+      },
+      {
+        test: /([^\.]m|[^m])\.s[ac]ss$/i,
+        use: [
+          "style-loader",
+          "css-loader",
+          {
+            loader: "sass-loader",
+            options: {
+              sassOptions: {
+                indentedSyntax: true,
+              },
+            },
+          },
+        ],
+      },
+      {
+        test: /\.css$/,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+          }
+        ]
       }
-    ]
+    ],
   },
   plugins: [
     new CleanWebpackPlugin({

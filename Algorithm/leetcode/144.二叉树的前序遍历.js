@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode.cn id=94 lang=javascript
+ * @lc app=leetcode.cn id=144 lang=javascript
  *
- * [94] 二叉树的中序遍历
+ * [144] 二叉树的前序遍历
  */
 
 // @lc code=start
@@ -17,26 +17,23 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
-var inorderTraversal = function (root) {
+var preorderTraversal = function(root) {
   const res = new Array()
-  const stack = new Array();
-  let p = root
-  while (p || stack.length>0) {
+  let p = root;
+  const stack = new Array()
+
+  while (stack.length > 0 || p) {
     while (p) {
+      res.push(p.val);
       stack.push(p)
       p = p.left
     }
     if (stack.length > 0) {
-      // const sCur = stack.pop();
-      // p = sCur;
-      // res.push(sCur.val)
       p = stack.pop()
-      res.push(p.val)
       p = p.right
     }
   }
   return res
-
 };
 // @lc code=end
 

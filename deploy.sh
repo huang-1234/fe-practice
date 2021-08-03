@@ -2,7 +2,7 @@ set -e
 
 
 git add .
-git commit -m 'update ts'
+git commit -m 'update binary tree'
 
 git remote -v
 

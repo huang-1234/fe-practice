@@ -1,10 +1,10 @@
 // import React from 'react'
 import * as React from 'react'
 
-import { Provider } from 'react-redux'
-import { createStore, combineReducers } from 'redux';
-const rootReducer = combineReducers(enthusiasm);
-const store = createStore(rootReducer);
+// import { Provider } from 'react-redux'
+// import { createStore, combineReducers } from 'redux';
+// const rootReducer = combineReducers(enthusiasm);
+// const store = createStore(rootReducer);
 
 // import ScrollingList from './components/ScrollingList'
 // import Count from './components/Count'
@@ -16,10 +16,14 @@ const store = createStore(rootReducer);
 // import TestUseEffect from './hooks/TestUseEffect/TestUseEffect'
 
 // redux
-import UseReduxHello from './learn-redux/containers/Hello'
-import { enthusiasm } from './learn-redux/reducers';
+// import UseReduxHello from './learn-redux/containers/Hello'
+// import { enthusiasm } from './learn-redux/reducers';
+
+
+import TestWebpack from './testWebpack';
+
 export default function App() {
-  const list: number[] = [1, 2, 3, 4, 5, 6]
+  // const list: number[] = [1, 2, 3, 4, 5, 6]
   return (
     <div>
       {/* <Count />
@@ -29,10 +33,10 @@ export default function App() {
       {/* <TestUseCallback /> */}
       {/* <ComponentA /> */}
       {/* <TestUseEffect /> */}
-      <Provider store={store}>
+      {/* <Provider store={store}>
         < UseReduxHello  />
-      </Provider>
-
+      </Provider> */}
+      {/* <TestWebpack /> */}
     </div>
   )
 }

@@ -85,6 +85,7 @@ await v 后续的代码的执行类似于传入 then() 中的回调
 的解析发生在其他上下文代码的解析之后
 下面给出示例：
  */
+/*
 {
   let thenable = {
     then(resolve, reject) {
@@ -108,3 +109,74 @@ await v 后续的代码的执行类似于传入 then() 中的回调
   .then(() => { console.log('3') })
   .then(() => { console.log('4') });
 }
+ */
+
+
+
+// ===============================================
+/*  */
+{
+  async function async1(){
+    console.log('async1 start')
+    await async2()
+    console.log('async1 end')
+  }
+  async function async2(){
+    console.log('async2')
+  }
+  console.log('script start')
+  setTimeout(function(){
+    console.log('setTimeout')
+  },0)
+  async1();
+  new Promise(function(resolve){
+    console.log('promiseStart')
+    resolve();
+  }).then(function(){
+    console.log('promise2')
+  }).then(function() {
+    console.log('promise3')
+  }).then(function() {
+    console.log('promise4')
+  }).then(function() {
+    console.log('promise5')
+  }).then(function() {
+    console.log('promise6')
+  }).then(function() {
+    console.log('promise7')
+  }).then(function() {
+    console.log('promise8')
+  })
+  console.log('script end')
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 正确输出结果：
+script start
+async1 start
+async2
+promiseStart
+script end
+async1 end
+promise2
+promise3
+promise4
+promise5
+promise6
+promise7
+promise8
+setTimeout
+ */
+
+/* https://segmentfault.com/a/1190000017954500 */
