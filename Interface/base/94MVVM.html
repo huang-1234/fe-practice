@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MVVM</title>
+  </head>
+
+  <body>
+    <input id="input1" />
+    <script>
+      const data1 = {};
+      const input1 = document.getElementById('input1');
+      Object.defineProperty(data1, 'text1', {
+        set(value) {
+          console.log('$$$',this)
+          input1.value = value;
+          this.value = value;
+        },
+        get(){
+          return this.value
+        }
+      })
+      Object.defineProperty(data1, 'text2', {
+        set(value) {
+          console.log('$$$',this)
+          input2.value = value;
+          this.value = value;
+        },
+        get(){
+          return this.value
+        }
+      })
+      input1.onchange = function (e) {
+        console.log(e.target.value)
+        data1.text1 = e.target.value
+        console.log('data1.text1', data1.text1)
+      }
+    </script>
+
+    <!-- <input id="input2" />
+    <script>
+      const data2 = {};
+      const input2 = document.getElementById('input2');
+      Object.defineProperty(data2, 'text2', {
+        set(value) {
+          console.log('$$$',this)
+          input2.value = value;
+          this.value = value;
+        }
+      });
+      input2.onchange = function (e) {
+        console.log(e.target.value)
+        data2.text2 = e.target.value
+      }
+    </script> -->
+    <script>
+      const str1 = "hello world";
+      if(~str1.indexOf("o")>0){
+        console.log(`i find it in the ${str1.indexOf("o")}`)
+      }else{
+        console.log("cant find")
+      }
+      console.log(~false)
+    </script>
+  </body>
+
+</html>
