@@ -20,9 +20,9 @@
 var sortedArrayToBST = function (nums) {
   const Len = nums.length;
   function BuildArrayToBST (nums, l, r){
-    if (l > r) { return null }
+    if (l >= r) { return null }
     // let mid = l + Math.floor((r - l) / 2)
-    let mid = Math.floor((l + r)/2)
+    let mid = Math.floor((l + r + 1)/2)
     console.log(mid);
     const root =  new TreeNode(nums[mid],null,null)
     root.left = BuildArrayToBST(nums,l,mid-1)

@@ -23,36 +23,39 @@ var isSameTree = function (p, q) {
   else if (!q || !p || p.val !== q.val) {
     return false
   }
-  const qe = new Array(); // 队列
-  // const qe = new Array(); // 队列
+  const pQue = new Array(); // 队列
+  const qQue = new Array(); // 队列
+  pQue.push(p), qQue.push(q);
+  let flag = true;
+  while (pQue.length > 0 && qQue.length > 0) {
+    const pSize = pQue.length;
+    const pCur = pQue.pop();
+    const qCur = qQue.pop();
+    for (let i = 0;i < pSize;i++){
+      // 判断两棵树的左子树
+      if (pCur.left && qCur.left && pCur.val === qCur.val) {
+        pQue.push(pCur.left); qQue.push(qCur.left)
+      } else if (!pCur.left && !qCur.left) {
 
-  // qe.push(p)
-  // while (qe.length > 0) {
-  //   const qSize = qe.length
-  //   const cur = qe.pop()
-  //   while (cur) {
+      } else {
+        flag = false;
+        break
+      }
+      // 判断两棵树的右子树
+      if (pCur.right && qCur.right && pCur.val === qCur.val) {
+        pQue.push(pCur.right); qQue.push(qCur.right)
+      } else if (!pCur.right && !qCur.right) {
 
-  //   }
-  // }
-  let flag = false;
-  const subIsSameTree = (p, q ,flag) => {
-
-    if (!p || !q || p.val !== q.val) {
-      flag = false;
-      return flag
-    } else if(p && q || p.val === q.val) {
-      flag = true
-      return flag
+      } else {
+        flag = false
+        break
+      }
     }
-    if ((p.left && q.left && p.left === q.left)) {
-      return subIsSameTree(p.left, q.left)
+    if (false === flag) {
+      return flag;
     }
-    if (p.right && q.right && p.right === q.right) {
-      return subIsSameTree(p.right, p.right)
-    }
-
   }
-  return subIsSameTree(p, q, flag)
+  return flag;
 };
 // @lc code=end
 
