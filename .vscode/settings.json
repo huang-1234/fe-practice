@@ -136,17 +136,17 @@
   "powermode.enabled":true,
   "powermode.enableShake":false,
   "powermode.presets":"flames",
-  // "powermode":{
-  //   "enabled":true,
-  //     //样式
-  //   // "presets":"fireworks",
-  //   "presets":"flames",
-  //   // 时间间隔
-  //   "comboTimeout":10,
-  //   // 抖动
-  //   "enableShake":false,
-  //   "backgroundMode":"mask"
-  // },
+  "powermode":{
+    "enabled":true,
+      //样式
+    // "presets":"fireworks",
+    "presets":"flames",
+    // 时间间隔
+    "comboTimeout":10,
+    // 抖动
+    "enableShake":false,
+    "backgroundMode":"mask"
+  },
   // "workbench.colorTheme": "Visual Studio Dark",
   "workbench.colorCustomizations": {
     "[Quiet Light]": {

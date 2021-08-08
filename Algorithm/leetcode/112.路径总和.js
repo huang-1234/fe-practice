@@ -18,24 +18,8 @@
  * @param {number} targetSum
  * @return {boolean}
  */
-var hasPathSum = function(root, targetSum) {
-  function dfsPathSum(root, targetSum) {
-    const st = new Array();
-    st.push(root)
-
-    while (st.length > 0) {
-
-      const cur = st.pop();
-      prece
-      if (cur.left) {
-        st.push(cur.left);
-
-      }
-      if (cur.right) {
-        st.push(cur.right)
-      }
-    }
-  }
+var hasPathSum = function (root, targetSum) {
+  
 };
 // @lc code=end
 
