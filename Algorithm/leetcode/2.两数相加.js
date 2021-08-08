@@ -41,7 +41,7 @@ var addTwoNumbers = function (l1, l2) {
     const curBitValue = curSum % 10
     tail.next = new ListNode(curBitValue)
     tail = tail.next
-    
+
     nextBitValue = Math.floor(curSum / 10)
   }
   while (p2) {
@@ -81,6 +81,7 @@ var addTwoNumbers = function (l1, l2) {
     const curBitValue = curSum % 10
     nextBitValue = Math.floor(curSum / 10)
     tail.next = new ListNode(curBitValue)
+
     tail = tail.next
   }
   while (p2) {
