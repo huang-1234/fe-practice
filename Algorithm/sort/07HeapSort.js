@@ -1,6 +1,10 @@
 let len;    // 因为声明的多个函数都需要数据长度，所以把len设置成为全局变量
 function buildMaxHeap(arr) {   // 建立大顶堆
   len = arr.length;
+  // 完全二叉树只有数组下标小于或等于 (data.length)
+  // 2 - 1 的元素有孩子结点，遍历这些结点。
+  // *比如上面的图中，数组有10个元素， (data.length)
+  // 2 - 1的值为4，a[4]有孩子结点，但a[5]没有*
   for (let i = Math.floor(len / 2); i >= 0;i--) {
     heapify(arr, i);
   }

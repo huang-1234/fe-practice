@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>两边使用 absolute，中间使用 margin</title>
+</head>
+<body>
+  <style>
+    .container {
+      position: relative;
+    }
+
+    .left,
+    .right,
+    .main {
+      height: 200px;
+      line-height: 200px;
+      text-align: center;
+    }
+
+    .left {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100px;
+      background: green;
+    }
+
+    .right {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100px;
+      background: green;
+    }
+
+    .main {
+      margin: 0 110px;
+      background: black;
+      color: white;
+    }
+  </style>
+
+  <div class="container">
+    <div class="left">左边固定宽度</div>
+    <div class="right">右边固定宽度</div>
+    <div class="main">中间自适应</div>
+  </div>
+</body>
+</html>

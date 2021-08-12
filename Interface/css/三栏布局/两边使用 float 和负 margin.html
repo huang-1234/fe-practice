@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <style>
+    .left,
+    .right,
+    .main {
+      height: 200px;
+      line-height: 200px;
+      text-align: center;
+    }
+
+    .main-wrapper {
+      float: left;
+      width: 100%;
+    }
+
+    .main {
+      margin: 0 110px;
+      background: black;
+      color: white;
+    }
+
+    .left,
+    .right {
+      float: left;
+      width: 100px;
+      margin-left: -100%;
+      background: green;
+    }
+
+    .right {
+      margin-left: -100px; /* 同自身宽度 */
+    }
+  </style>
+
+  <div class="main-wrapper">
+    <div class="main">中间自适应</div>
+  </div>
+  <div class="left">左边固定宽度</div>
+  <div class="right">右边固定宽度</div>
+</body>
+</html>

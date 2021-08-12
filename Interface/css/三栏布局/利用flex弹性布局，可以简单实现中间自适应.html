@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>利用flex弹性布局，可以简单实现中间自适应</title>
+</head>
+<body>
+  <style type="text/css">
+    .wrap {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .left,
+    .right,
+    .middle {
+        height: 100px;
+    }
+
+    .left {
+        width: 200px;
+        background: coral;
+    }
+
+    .right {
+        width: 120px;
+        background: lightblue;
+    }
+
+    .middle {
+        background: #555;
+        width: 100%;
+        margin: 0 20px;
+    }
+  </style>
+  <div class="wrap">
+    <div class="left">左侧</div>
+    <div class="middle">中间</div>
+    <div class="right">右侧</div>
+  </div>
+</body>
+</html>

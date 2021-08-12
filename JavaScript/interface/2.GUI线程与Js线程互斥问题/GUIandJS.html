@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2.GUI线程与Js线程互斥问题</title>
+  <style>
+    body{
+      background-color: aliceblue;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    (function demo() {
+    const now = Date.now();
+    document.body.style.backgroundColor = 'red';
+    while(Date.now() - now <= 5000) { continue; }
+    document.body.style.backgroundColor = 'blue';
+    })()
+  </script>
+</body>
+</html>

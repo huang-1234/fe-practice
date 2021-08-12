@@ -25,3 +25,7 @@ console.log(getSum.call(obj1, 1, 2, 3));
 
 // const dArr = new Array(1, 2, 3, 4, 5, 6, 7);
 
+const len1 = 10, len2 = 10;
+let dp = new Array(len1 + 1).fill(new Array(len2 + 1).fill(0))
+
+console.log(dp);

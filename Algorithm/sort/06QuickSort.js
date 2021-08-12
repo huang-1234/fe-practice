@@ -1,8 +1,7 @@
 function quickSort(arr, left, right) {
-  let len = arr.length,
-    partitionIndex,
-    left = typeofleft != 'number' ? 0 : left,
-    right = typeofright != 'number' ? len - 1 : right;
+  let len = arr.length, partitionIndex;
+  left = typeof left != 'number' ? 0 : left
+  right = typeof right != 'number' ? len - 1 : right
 
   if (left < right) {
     partitionIndex = partition(arr, left, right);
