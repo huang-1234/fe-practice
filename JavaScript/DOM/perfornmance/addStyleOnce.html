@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="app_container">
+      <div id="root"></div>
+    </div>
+
+    <script>
+      //by 司徒正美
+      let root = document.getElementById("root");
+      function randomHexColor() { //随机生成十六进制颜色
+        return "#" + ("00000" + (Math.random() * 0x1000000 << 0).toString(16)).substr(-6);
+      }
+      setTimeout(function () {
+        function loop(n) {
+          let k = 0;
+          for (let i = 0;i < 100;i++) {
+            k += new Date - 0;
+            let el = document.createElement("div");
+            el.innerHTML = k + Math.random();
+            root.appendChild(el);
+            el.style.cssText = "background:" + randomHexColor() + ";height:30px;";
+          }
+          if (n) {
+            setTimeout(function () {
+              loop(n - 1);
+            }, 40);
+          }
+        }
+        loop(100);
+      }, 0);
+    </script>
+  </body>
+
+</html>

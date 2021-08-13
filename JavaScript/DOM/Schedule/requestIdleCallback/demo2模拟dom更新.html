@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root">
+    <div id="container">
+      <button id="btn1">btn1</button>
+    </div>
+  </div>
+  <script>
+    function renderElement(txt) {
+      const p = document.createElement("p");
+      p.innerText = txt;
+      return p;
+    }
+
+    let taskLen = 10;
+    let update = 0;
+    function work2() {
+      document.body.appendChild(renderElement(`任务还剩 ${taskLen}`));
+      console.log(`页面更新${++update}次`);
+      taskLen--;
+      if (taskLen) {
+        requestAnimationFrame(work2);
+      }
+    }
+
+    btn1.addEventListener("click", () => {
+      requestAnimationFrame(work2);
+      window.requestIdleCallback(() => {
+        console.log("空闲了, requestIdleCallback生效了");
+      });
+    });
+
+  </script>
+</body>
+</html>

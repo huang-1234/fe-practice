@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root">
+    <div id="container">
+      <button id="btn1">btn1</button>
+    </div>
+  </div>
+  <script>
+    const btn1 = document.getElementById("btn1")
+    function sleep(date) {
+      let flag = true;
+      const now = Date.now();
+      while (flag) {
+        if (Date.now() - now > date) {
+          flag = false;
+        }
+      }
+    }
+    /*用requestIdleCallback执行主线程空闲开始调用的方法：  */
+
+    function work() {
+      sleep(2000); // 模拟主线程任务执行时间
+
+      requestIdleCallback(() => {
+        console.log("空闲时间1");
+        sleep(1000);
+        console.log("空闲时间1回调任务执行完成");
+      });
+
+      requestIdleCallback(() => {
+        console.log("空闲时间2");
+      });
+    }
+
+    btn1.addEventListener("click", work);
+
+  </script>
+</body>
+</html>

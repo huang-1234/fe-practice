@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="app_container">
+      <div id="root"></div>
+    </div>
+    <script>
+      /* EventLoop是非常复杂的，但有一个要点，你一下子分配它许多任务，它的处理速度就下降。如果你把相同的任务放在一起，它就速度就上去（如className代替多个dom.style.xxx=yyy, fragment代替多个节点插入）。一下子创建10000个DIV，并设置随机innerHTML，随机背景，它在chrome都会卡好久。如果打散，每隔60ms处理当中的100个，分10分次处理，则页面很流畅。 */
+      //一下了吃进10000个DIV by 司徒正美
+      function randomHexColor() { //随机生成十六进制颜色
+        return "#" + ("00000" + (Math.random() * 0x1000000 << 0).toString(16)).substr(-6);
+      }
+      setTimeout(function () {
+        let k = 0;
+        let root = document.getElementById("root");
+        for (let i = 0;i < 10000;i++) {
+          k += new Date - 0;
+          let el = document.createElement("div");
+          el.innerHTML = k + Math.random()
+          root.appendChild(el);
+          el.style.cssText = "background:" + randomHexColor() + ";height:30px;";
+        }
+      }, 0);
+    </script>
+  </body>
+
+</html>

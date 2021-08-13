@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    button{
+      color: black;
+      border: 1px solid skyblue;
+      cursor: pointer;
+      height: 2rem;
+      width: 5rem;
+    }
+    button:hover{
+      
+    }
+    #btn2{
+      background-color: white;
+    }
+    #btn3{
+      background-color: white;
+    }
+  </style>
+</head>
+<body>
+  <div id="root">
+    <div id="container">
+      <button id="btn2">btn2</button>
+      <button id="btn3">btn3</button>
+    </div>
+  </div>
+  <script>
+    // 记录需要发送的数据队列
+    const eventStack = [];
+    // requestIdleCallback是否已经调度
+    let isRequestIdleCallbackScheduled = false;
+    // 模拟发送数据
+    const sendData = (...arg) => {
+      console.log("发送数据", arg);
+    };
+
+    function onDivThemeRed() {
+      // 业务逻辑
+      render.classList.remove("border-blue");
+      render.classList.add("border-red");
+
+      eventStack.push({
+        category: "button",
+        action: "click",
+        label: "theme",
+        value: "red",
+      });
+
+      schedulePendingEvents();
+    }
+
+    function onDivThemeBlue() {
+      // 业务逻辑
+      render.classList.remove("border-red");
+      render.classList.add("border-blue");
+
+      eventStack.push({
+        category: "button",
+        action: "click",
+        label: "theme",
+        value: "blue",
+      });
+
+      schedulePendingEvents();
+    }
+
+    function schedulePendingEvents() {
+      if (isRequestIdleCallbackScheduled) return;
+
+      isRequestIdleCallbackScheduled = true;
+
+      requestIdleCallback(processPendingAnalyticsEvents, { timeout: 2000 });
+    }
+
+    function processPendingAnalyticsEvents(deadline) {
+      isRequestIdleCallbackScheduled = false;
+
+      while (deadline.timeRemaining() > 0 && eventStack.length > 0) {
+        const evt = eventStack.pop();
+
+        sendData(
+          "send",
+          "event",
+          evt.category,
+          evt.action,
+          evt.label,
+          evt.value
+        );
+      }
+
+      if (eventStack.length > 0) schedulePendingEvents();
+    }
+    const btn2 = document.getElementById('btn2')
+    const btn3 = document.getElementById('btn3')
+
+
+    btn2.addEventListener("click", onDivThemeRed);
+    btn3.addEventListener("click", onDivThemeBlue);
+
+  </script>
+</body>
+</html>
