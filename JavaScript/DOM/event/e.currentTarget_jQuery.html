@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <style>
+    li{
+      padding: 5px;
+      border: 1px solid red;
+    }
+    span{
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <ul>
+    <li><span>hello 1</span></li>
+    <li><span>hello 1</span></li>
+    <li><span>hello 1</span></li>
+    <li><span>hello 1</span></li>
+  </ul>
+  <script>
+    let ul = document.querySelectorAll('ul')[0]
+    let aLi = document.querySelectorAll('li')
+    $('ul').on('click','li',function(e){
+
+        console.log(e.target)   //  被点击的元素
+        console.log(e.currentTarget)   //  li
+        console.log(e.currentTarget === this)  // true
+    });
+    /* 注意，在jQuery提供的on方法中，e.currentTarget与该方法接收的第二个参数有关，根据jQuery的文档描述
+
+如果省略selector或者是null，那么事件处理程序被称为直接事件 或者 直接绑定事件 。每次选中的元素触发事件时，就会执行处理程序，不管它直接绑定在元素上，还是从后代（内部）元素冒泡到该元素的
+当提供selector参数时，事件处理程序是指为委派事件（事件委托或事件代理）。事件不会在直接绑定的元素上触发，但当selector参数选择器匹配到后代（内部元素）的时候，事件处理函数才会被触发。jQuery 会从 event target 开始向上层元素(例如，由最内层元素到最外层元素)开始冒泡，并且在传播路径上所有绑定了相同事件的元素若满足匹配的选择器，那么这些元素上的事件也会被触发。
+
+作者：plainnany
+链接：https://www.jianshu.com/p/1dd668ccc97a
+来源：简书
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。 */
+  </script>
+</body>
+</html>

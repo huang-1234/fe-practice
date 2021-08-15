@@ -18,67 +18,41 @@
  * @param {TreeNode} q
  * @return {TreeNode}
  */
-/*
- * function TreeNode(x) {
- *   this.val = x;
- *   this.left = null;
- *   this.right = null;
- * }
- */
-var lowestCommonAncestor = function(root, p, q) {
-  if (root == null || root == p || root == q) return root;
-  let left = lowestCommonAncestor(root.left, p, q);
-  let right = lowestCommonAncestor(root.right, p, q);
-  if (left == null) {
-    return right
-  } else if (right == null) {
-    return left
-  }
-  return root;
-};
-/**
- *
- * @param root TreeNode类
- * @param o1 int整型
- * @param o2 int整型
- * @return int整型
- */
-/* function lowestCommonAncestor( root ,  o1 ,  o2 ) {
+const lowestCommonAncestor = function (root, p, q) {
   // write code here
-  const map = new WeakMap()
-  const que = [];
+  if (!root || p.val === root.val || q.val === root.val) {
+    return root
+  }
+  let map = new Map()
+  let que = [];
   que.push(root)
-  const preorderTraverse = (root)=>{
-      while(que.length>0 ){
-          let qSize = que.length;
-          while(qSize--){
-              let cur = que.shift();
-              if(cur.left){
-                  que.push(cur.left);map.set(cur.left, cur)
-              }
-              if(cur.right){
-                  que.push(cur.right); map.set(cur.right, cur)
-              }
-          }
+
+  while (que.length > 0) {
+    let qSize = que.length;
+    while (qSize--) {
+      let cur = que.shift();
+      if (cur.left) {
+        que.push(cur.left);
+        map.set(cur.left, cur)
       }
-  }
-  preorderTraverse(root);
-  let resNode = null
-  const rootParentSet = new Set();
-  while(o1){
-      rootParentSet.add(o1);
-      o1 = map.get(o1)
-  }
-  while(o2){
-      if(rootParentSet.has(o2)){
-          return o2.val
+      if (cur.right) {
+        que.push(cur.right);
+        map.set(cur.right, cur)
       }
-      o2 = map.get(o2)
-  } */
-//     return resNode
-// }
-// module.exports = {
-//   lowestCommonAncestor : lowestCommonAncestor
-// };
+    }
+  }
+
+  let rootParentSet = new Set();
+  while (p) {
+    rootParentSet.add(p);
+    p = map.get(p)
+  }
+  while (q) {
+    if (rootParentSet.has(q)) {
+      return q
+    }
+    q = map.get(q)
+  }
+}
 // @lc code=end
 

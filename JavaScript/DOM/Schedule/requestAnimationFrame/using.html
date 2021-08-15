@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let frame
+    let n = 5
+    function callback(timeStamp) {
+      console.log(timeStamp) // 开始执行回调的时间戳
+      // 如果想要产生循环动画的效果, 需在回调函数中再次调用 requestAnimationFrame()
+      while (n > 0) {
+        requestAnimationFrame(callback)
+        console.log('测试执行顺序')
+        n--
+      }
+    }
+
+    frame = requestAnimationFrame(callback) // 在下次重绘之前调用回调
+
+    // 如果想要销毁该回调, 可以执行 cancelAnimationFrame(frame)
+  </script>
+</body>
+</html>

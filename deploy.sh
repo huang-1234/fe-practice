@@ -2,7 +2,7 @@ set -e
 
 
 git add .
-git commit -m 'update binary tree'
+git commit -m 'update review'
 
 git remote -v
 

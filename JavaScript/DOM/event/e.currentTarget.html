@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>JS Bin</title>
+    <style>
+      ul {
+        width: 400px;
+        height: fit-content;
+        background-color: aquamarine;
+      }
+
+      li {
+        width: 200px;
+        left: 100px;
+        margin-bottom: 5px;
+        background-color: pink;
+        border: 1px solid blue;
+        border-radius: 5px;
+        list-style: none;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <ul>
+      <li>hello 1</li>
+      <li>hello 2</li>
+      <li>hello 3</li>
+      <li>hello 4</li>
+    </ul>
+    <script>
+      let ul = document.querySelectorAll('ul')[0]
+      let aLi = document.querySelectorAll('li')
+      ul.addEventListener('click', function (e) {
+        let oLi1 = e.target
+        let oLi2 = e.currentTarget
+        console.log(oLi1)   //  被点击的li
+        console.log(oLi2)   // ul
+        console.log(oLi1 === oLi2)  // false
+      });
+    </script>
+  </body>
+
+</html>
