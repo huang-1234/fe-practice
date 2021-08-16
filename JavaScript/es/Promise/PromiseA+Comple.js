@@ -93,7 +93,12 @@ function resolvePromise(promise2, x, resolve, reject) {
       x.then(resolve, reject);
     }
     // 如果 x 为对象或者函数
-  } else if (x != null && ((typeof x === 'object') || (typeof x === 'function'))) {
+  } else if (
+    x != null &&
+    ((
+      typeof x === 'object') ||
+      (typeof x === 'function')
+    )) {
     try { // 是否是thenable对象（具有then方法的对象/函数）
       let then = x.then;
       if (typeof then === 'function') {
@@ -129,8 +134,8 @@ Promise.prototype.then = function (onFulfilled, onRejected) {
   const that = this;
   let newPromise;
   // 处理参数默认值 保证参数后续能够继续执行
-  onFulfilled =typeof onFulfilled === "function" ? onFulfilled : value => value;
-  onRejected =typeof onRejected === "function" ? onRejected : reason => {
+  onFulfilled = typeof onFulfilled === "function" ? onFulfilled : value => value;
+  onRejected = typeof onRejected === "function" ? onRejected : reason => {
     throw reason;
   };
 

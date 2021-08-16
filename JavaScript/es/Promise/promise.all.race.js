@@ -1,4 +1,4 @@
-/* 
+/*
 // all
 let wake = (time) => {
   return new Promise((resolve, reject) => {
@@ -35,3 +35,31 @@ Promise.race([p1, p2]).then((result) => {
 }).catch((error) => {
   console.log(error)  // 打开的是 'failed'
 })
+
+
+/**
+ * ach Promise.all by myself
+ */
+Promise.prototype.all = function (promises) {
+  let count = 0;
+  const resAll = []
+  return new Promise((resolve, reject) => {
+    for (let i = 0, promisesLen = promises.length;i < promisesLen;i++) {
+      promises[i].then(
+        res => {
+          count++;
+          resAll.push(res)
+        },
+        err => {
+          reject(err)
+          break;
+        }
+      )
+    }
+    if (count === promises.length) {
+      resolve(resAll)
+    } else {
+      reject()
+    }
+  })
+}
