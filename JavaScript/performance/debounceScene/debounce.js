@@ -18,8 +18,6 @@ function debounce(fn, delay) {
       fn.apply(ctx,params)
     },
       delay)
-
-
   }
 }
 container.onmousemove = debounce(getUserAction, 1200)

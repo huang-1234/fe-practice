@@ -1,27 +1,27 @@
 class Scheduler {
   constructor() {
-      this.needRunTasks = []
-      this.runTasks = []
+    this.needRunTasks = []
+    this.runTasks = []
   }
   add(prmoiseFn) {
-      return new Promise((resolve, reject) => {
-          prmoiseFn.resolve = resolve; //保存Promise状态,现在不能执行
-          if (this.runTasks.length < 2) {
-              this.run(prmoiseFn)
-          } else {
-              this.needRunTasks.push(prmoiseFn)
-          }
-      })
+    return new Promise((resolve, reject) => {
+      prmoiseFn.resolve = resolve; //保存Promise状态,现在不能执行
+      if (this.runTasks.length < 2) {
+        this.run(prmoiseFn)
+      } else {
+        this.needRunTasks.push(prmoiseFn)
+      }
+    })
   }
   run(prmoiseFn) {
-      this.runTasks.push(prmoiseFn)
-      prmoiseFn().then(() => {
-          prmoiseFn.resolve()
-          this.runTasks.splice(this.runTasks.indexOf(prmoiseFn), 1) //移除执行后的任务
-          if (this.needRunTasks.length > 0) {
-              this.run(this.needRunTasks.shift())
-          }
-      })
+    this.runTasks.push(prmoiseFn)
+    prmoiseFn().then(() => {
+      prmoiseFn.resolve()
+      this.runTasks.splice(this.runTasks.indexOf(prmoiseFn), 1) //移除执行后的任务
+      if (this.needRunTasks.length > 0) {
+        this.run(this.needRunTasks.shift())
+      }
+    })
   }
 }
 const timeout = (time) =>

@@ -42,24 +42,21 @@ Promise.race([p1, p2]).then((result) => {
  */
 Promise.prototype.all = function (promises) {
   let count = 0;
-  const resAll = []
+  const promisesLen = promises.length
+  const resAll = new Array(promisesLen)
   return new Promise((resolve, reject) => {
-    for (let i = 0, promisesLen = promises.length;i < promisesLen;i++) {
-      promises[i].then(
-        res => {
-          count++;
-          resAll.push(res)
-        },
-        err => {
-          reject(err)
-          break;
-        }
-      )
-    }
-    if (count === promises.length) {
-      resolve(resAll)
-    } else {
-      reject()
+    for (let i = 0;i < promisesLen;i++) {
+      Promise.resolve(promises[i])
+        .then(
+          res => {
+            count++;
+            resAll.push(res)
+            if (promisesLen === count) {
+              resolve(resAll)
+            }
+          },err => reject(err)
+        )
+        .catch((err) => reject(err))
     }
   })
 }
