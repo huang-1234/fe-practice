@@ -185,4 +185,5 @@
     }
   },
   "files.trimTrailingWhitespace":true,
+  "leetcode.defaultLanguage": "java",
 }

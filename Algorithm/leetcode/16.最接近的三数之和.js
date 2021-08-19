@@ -10,8 +10,9 @@
  * @param {number} target
  * @return {number}
  */
-var threeSumClosest = function(nums, target) {
-  
+var threeSumClosest = function (nums, target) {
+  if()
+  const L=0, R=nums
 };
 // @lc code=end
 

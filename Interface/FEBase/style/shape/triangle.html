@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>triangle</title>
+    <!-- 经常在别人网站的样式表中，看到有用transparent这个的，但是不知道是什么意思？
+
+于是就去查了一下相关资料，在这里分享一下。
+
+transparent是用来指定全透明色彩。
+
+transparent是全透明黑色(black)的速记法，类似于rgba(0,0,0,0)这样的值。
+
+在CSS1中，transparent被用来作为background-color的一个参数值，其表示背景透明。
+
+在CSS2中，border-color也开始接受transparent作为参数值，接着后面又延伸到color也接受transparent作为参数值。
+
+在CSS3中，transparent被延伸到任何一个有color值的属性上都可以使用。 -->
+    <style>
+      .triangle02 {
+        width: 0;
+        height: 0;
+        border-top: 50px solid blue;
+        border-right: 50px solid red;
+        border-bottom: 50px solid green;
+        border-left: 50px solid yellow;
+      }
+
+      .triangle03 {
+        width: 0;
+        height: 0;
+        border: 50px solid transparent;
+        border-top: 50px solid blue;
+      }
+
+      .triangle04 {
+        width: 0;
+        height: 0;
+        border: 50px solid transparent;
+        border-right: 50px solid red;
+      }
+
+      .triangle05 {
+        width: 0;
+        height: 0;
+        border: 50px solid transparent;
+        border-bottom: 50px solid green;
+      }
+
+      .triangle06 {
+        width: 0;
+        height: 0;
+        border: 50px solid transparent;
+        border-left: 50px solid yellow;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <div id="triangle">
+      <div class="triangle02"> </div>
+      <div class="triangle03"> </div>
+      <div class="triangle04"> </div>
+      <div class="triangle05"> </div>
+    </div>
+  </body>
+
+</html>

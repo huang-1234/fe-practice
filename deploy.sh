@@ -2,7 +2,7 @@ set -e
 
 
 git add .
-git commit -m 'update review'
+git commit -m 'update algorithm'
 
 git remote -v
 
