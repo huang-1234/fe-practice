@@ -21,14 +21,6 @@
 var hasPathSum = function (root, targetSum) {
   if(!root ){
     return false
-  } else if (!root.left && !root.right){
-    let resBool
-    if (root.val !== targetSum) {
-      resBool = false
-    } else {
-      resBool = true
-    }
-    return resBool
   }
   const que_node = [];
   const que_val = [];
