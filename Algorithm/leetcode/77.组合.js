@@ -14,7 +14,7 @@ var combine = function (n, k) {
   const track = new Set();
   const res = new Set();
   const Len = n;
-  function trackback(track, index) {
+  function trackback(track, index,x) {
     if (index < 0) {
       return;
     }
@@ -22,16 +22,16 @@ var combine = function (n, k) {
     if (track.size === k && !res.has(track)) {
       res.add(Array.from(track));
     }
-    for (let i = 1;i <= Len;i++) {
+    for (let i = x + 1;i <= Len;i++) {
       if (track.has(i)) {
         continue;
       }
       track.add(i);
-      trackback(track, index - 1);
+      trackback(track, index - 1, i);
       track.delete(i);
     }
   }
-  trackback(track, n);
+  trackback(track, n, 0);
   return Array.from(res);
 };
 // @lc code=end
