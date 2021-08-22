@@ -16,8 +16,7 @@ var findKthLargest = function (nums, k) {
     topK[i] = nums[i]
   }
   function swap(arr, i, j) {
-    const temp = arr[i];
-    arr[i] = arr[j]; arr[j] = temp;
+    const temp = arr[i];arr[i] = arr[j]; arr[j] = temp;
   }
   function heapify(topK, i, k) {
     const left = 2 * i + 1, right = 2 * i + 2;

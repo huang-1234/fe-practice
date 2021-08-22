@@ -28,7 +28,7 @@ var minDistance = function (word1, word2) {
       )
     }
   }
-  return minDis(len1-1,len2-1)
+  return minDis(len1,len2)
 };
 // @lc code=end
 /*
@@ -63,7 +63,7 @@ var minDistance = function (word1, word2) {
       }
     }
   }
-  return dp[len1 ][len2 ];
+  return dp[len1][len2];
 };
 // @lc code=end
 
