@@ -68,7 +68,7 @@ var LRUCache = function (capacity) {
  * obj.put(key,value)
  */
 
- class ListNode {
+class ListNode {
   constructor(key, value) {
     this.key = key
     this.value = value
