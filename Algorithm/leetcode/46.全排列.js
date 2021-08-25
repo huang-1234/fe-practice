@@ -16,7 +16,10 @@ var permute = function (nums) {
   const nLen = nums.length;
   const resAll = [];
   const resC = []
-  function permutation(nums, resC) {
+  function permutation(resC,index) {
+    if(index>nLen){
+      return;
+    }
     if (resC.length === nLen) {
       resAll.push(resC)
       return
@@ -26,13 +29,12 @@ var permute = function (nums) {
         continue;
       }
       resC.push(nums[i]);
-      permutation(nums, resC)
+      permutation(resC, index+1)
       resC.pop()
     }
   }
-  permutation(nums, resC);
+  permutation(resC,0);
   return resAll
-
 };
 // @lc code=end
 

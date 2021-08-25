@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var name = 'global';
+    var obj = {
+        name: 'local',
+        foo: function(){
+            this.name = 'foo';
+        }.bind(window)
+    };
+    var bar = new obj.foo();
+    setTimeout(function() {
+        console.log(window.name);
+    }, 0);
+    console.log(bar.name); // new 绑定大于bind绑定
+
+    var bar3 = bar2 = bar;
+    bar2.name = 'foo2';
+    console.log(bar3.name);
+  </script>
+</body>
+</html>

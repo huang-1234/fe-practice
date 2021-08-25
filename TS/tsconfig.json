@@ -67,7 +67,7 @@
     "skipLibCheck": true,                     /* Skip type checking of declaration files. */
     "forceConsistentCasingInFileNames": true  /* Disallow inconsistently-cased references to the same file. */
   },
-  "include":["./basic","./advance"],
+  "include":["./basic","./advance", "./project"],
   // "exclude":["demo3.ts"],
   // "files":["demo.ts"],
 }

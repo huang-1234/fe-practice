@@ -1,3 +1,4 @@
+import java.util.HashSet;
 import java.util.Set;
 
 /*
@@ -35,7 +36,6 @@ class Solution {
       // 记录已经穷举过的密码，防止走回头路
       Set<String> visited = new HashSet<>();
       Queue<String> q = new LinkdList<>();
-
       int step = 0;
       q.offer("0000");
       visited.add("0000");

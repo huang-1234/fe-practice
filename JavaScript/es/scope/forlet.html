@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>let</title>
+  <style>
+    .container{
+      width: 300px;
+      height: fit-content;
+      background-color: rgb(184, 184, 78);
+      margin: 100px auto;
+    }
+    .container div{
+      width: 200px;
+      height: 50px;
+      position: relative;
+      left: 50px;
+      margin-top: 5px;
+      background-color: rgb(23, 204, 204);
+      display: flex;
+      justify-content: space-around;
+    }
+    .container div span{
+      width: 20px;
+      height: 50%;
+      position: relative;
+      background-color: blue;
+      margin-right: 5px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <div>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <div>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+</div>
+<script>
+  let divs = document.querySelectorAll('div');
+  console.log(divs)
+  for(let i=0,eleLen=divs.length; i<eleLen; i++){
+    divs[i].addEventListener('click',function(){
+      console.log(i)
+    })
+  }
+</script>
+</body>
+</html>
