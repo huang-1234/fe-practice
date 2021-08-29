@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .comtainter{
+      display: inline-block;
+      height: 600px;
+      border: 1px solid red;
+    }
+    .div1{
+      width:100px;
+      height:100px;
+      background-color: pink;
+      margin-bottom:30px;
+    }
+    .div2{
+      width:100px;
+      height:100px;
+      margin-top:20px;
+      overflow: hidden;
+      background-color: blue;
+    }
+  </style>
+</head>
+<body>
+  <div class="comtainter">
+    <div class="div1"></div>
+    <div style="overflow: hidden;">
+      <div class="div2"></div>
+    </div>
+
+  </div>
+
+  <div style="border:1px solid black; width: 100px;">
+    <div style="margin: 10px; height: 50px; background-color: blue;"></div>
+    <!--创建新的BFC-->
+    <div style="overflow: hidden;">
+        <div style="margin: 10px; height: 20px; background-color: blue;"></div>
+    </div>
+  </div>
+</body>
+</html>
