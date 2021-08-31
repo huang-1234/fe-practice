@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    button{
+      outline: none;
+    }
+    .button1 {
+    background-color: #4CAF50; /* Green */
+    width: fit-content;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+  .button2{
+    padding: .3em .8em;
+    border: 1px solid rgba(0,0,0,.1);
+    background: #58a linear-gradient(hsla(0,0%,100%,.2), transparent);
+    border-radius: .2em;
+    box-shadow: 0 .05em .25em rgba(0,0,0,.5);
+    color: white;
+    text-shadow: 0 -.05em .05em rgba(0,0,0,.5);
+  }
+  .callout {
+    width: 100px;
+    height: 50px;
+    background-color: #4CAF50;
+    position: relative;
+  }
+  .callout::before {
+    content: "";
+    position: absolute;
+    top: -.4em; left: 1em;
+    padding: .35em;
+    background: inherit;
+    border: inherit;
+    border-right: 0;
+    border-bottom: 0;
+    transform: rotate(45deg);
+  }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button class="button1">cssdasgfdfgsdfsd按钮</button>
+    <button class="button2">cssdasgfdfgsdfsd按钮</button>
+    <div class="callout"></div>
+  </div>
+</body>
+</html>

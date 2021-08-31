@@ -1,0 +1,22 @@
+input {
+  outline: none;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  display: block
+}
+input:hover{
+  outline: none;
+  border-color: aqua;
+}
+input:focus{
+  border: 1px solid aqua;
+}
+
+.submit{
+  width: 5rem;
+  height: 2rem;
+  cursor: pointer;
+}
+.submit:hover{
+  border: 1px solid aqua;
+}
