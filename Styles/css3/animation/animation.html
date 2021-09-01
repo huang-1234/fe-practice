@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>animation</title>
+</head>
+<body>
+  <style>
+    .animationBox{
+      width: 90vw;
+    }
+    div{
+      --textHeight: 3rem;
+      width: 80%;
+      height: var(--textHeight);
+      line-height: var(--textHeight);
+      background-color: aquamarine;
+    }
+    div:hover {
+      animation: 1s rainbow infinite ;
+      /* 上面动画中，如果鼠标移走，色块立刻回到动画开始状态。
+      如果想让动画保持突然终止时的状态，就要使用animation-play-state属性。 */
+      animation-play-state: paused;
+    }
+    @keyframes rainbow {
+      0% {
+        background: #c00;
+        color: #000;
+      }
+      50% {
+        background: orange;
+      }
+      100% {
+        background: yellowgreen;
+      }
+    }
+  </style>
+  <div class="animationBox">
+    <div class="animation1">hello world</div>
+  </div>
+</body>
+</html>

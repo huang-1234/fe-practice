@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>理解css中min-width和max-width 同时了解一下transition</title>
+  <style>
+    html{
+      --extent: 50px
+    }
+    .container{
+      display: flex;
+    }
+    .box{
+      --textHeight: 4rem;
+      height: var(--textHeight);
+      line-height: var(--textHeight);
+      background-color: aqua;
+      margin-top: 1rem;
+      border: 1px solid #fff;
+    }
+    .minWidth{
+      min-width: calc(var(--extent) * 6);
+      width: calc(var(--extent) * 4) !important;
+      transition: margin-right 2s, color 1s, min-width 1s, height 1s 1s;
+    }
+    .minWidth:hover{
+      min-width: calc(var(--extent) * 10);
+      height: calc(var(--extent) * 4);
+      margin-right: 20px;
+      color: red;
+      border: 1px solid #f78;
+    }
+    .maxWidth{
+      max-width: calc(var(--extent) * 4);
+      width: calc(var(--extent) * 6) !important;
+    }
+    .minMaxWidth{  /* min-width与max-width值的大小出现冲突 */
+      max-width: calc(var(--extent) * 4);
+      min-width: calc(var(--extent) * 6);
+    }
+    .transition{
+      max-width: 0;
+      overflow: hidden;
+      transition: max-width 0.25s;
+    }
+    .transition.active{
+      max-width: 600px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="minWidth box"> transition: margin-right 2s, color 1s; </div>
+    <div class="maxWidth box"></div>
+    <div class="minMaxWidth box"></div>
+    <!-- 3、利用max-width可以实现元素逐渐变宽的效果 -->
+    <div class="transition box"></div>
+  </div>
+  <script> /* 检测浏览器时候支持css变量 */
+    const isSupported = window.CSS && window.CSS.supports && window.CSS.supports('--a', 0);
+    if (isSupported) {
+      console.log(`/* supported */`)
+    } else {
+      console.log( `/* not supported */` )
+    }
+  </script>
+</body>
+</html>
