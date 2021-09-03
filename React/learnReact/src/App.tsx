@@ -1,6 +1,7 @@
 // import React from 'react'
 import * as React from 'react'
 
+
 // import { Provider } from 'react-redux'
 // import { createStore, combineReducers } from 'redux';
 // const rootReducer = combineReducers(enthusiasm);
@@ -21,6 +22,7 @@ import * as React from 'react'
 
 
 import TestWebpack from './testWebpack';
+import { MyTable } from './components/commom/Table';
 
 export default function App() {
   // const list: number[] = [1, 2, 3, 4, 5, 6]
@@ -37,6 +39,7 @@ export default function App() {
         < UseReduxHello  />
       </Provider> */}
       {/* <TestWebpack /> */}
+      <MyTable />
     </div>
   )
 }

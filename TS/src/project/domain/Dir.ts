@@ -25,6 +25,6 @@ export class Dir<T extends DirResource<any> = DirResource> implements DirProps, 
   private _name?: string = ""
   type?: DirType
   seq?: number
-  createTime?: 
+  createTime?: ''
 
 }
