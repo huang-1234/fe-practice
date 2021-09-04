@@ -1,4 +1,4 @@
-/* 
+/*
 原文转自：https://blog.csdn.net/u010377383/article/details/80646415
 本来计划是, 先把深入React技术栈过完,
   但是，现在在满足RN app开发情况下，我还是先深入js一个系列。
@@ -9,7 +9,10 @@ function add(c, d) {
   return this.a + this.b + c + d;
 }
 
-const obj = { a: 1, b: 2 };
+const obj = {
+  a: 1,
+  b: 2
+};
 
 console.error(add.call(obj, 3, 4)); // 10
 
