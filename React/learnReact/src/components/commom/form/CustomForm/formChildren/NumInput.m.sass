@@ -1,0 +1,24 @@
+@import "./indexFormchild.sass"
+.numInputBox
+    width: 100%
+    display: flex
+    .label
+        width: $formLabelWidth
+        height: 2rem
+        line-height: 2rem
+    input
+        // -webkit-transition: all 0.3s ease-in-out
+        // -moz-transition: all 0.3s ease-in-out
+        // -ms-transition: all 0.3s ease-in-out
+        // -o-transition: all 0.3s ease-in-out
+        outline: none
+        height: $inputHeight
+        padding: 0px 0px 0px $inputLeftPadding
+        border: 1px solid #DCDFE6
+        border-radius: 4px
+        outline: none
+        transition: border-color .2s cubic-bezier(.645,.045,.355,1)
+        &:focus
+            border-color: #C0C4CC
+        &:focus
+            border-color: #409EFF

@@ -1,0 +1,35 @@
+@import "./indexFormchild.sass"
+
+.dynamicBox
+    width: 100%
+    height: fit-content
+    display: flex
+    margin: 16px 0px 8px 0px
+    .label
+        width: $formLabelWidth
+    .formChecks
+        width: 60%
+        display: inline-block
+
+        .dynInput
+            // display: inline-block
+            margin: 0px 0px 8px 0px
+            .numinput
+                width: 150px
+                display: inline-block
+            span
+                font-size: 18px
+                margin-left: 8px
+                cursor: pointer
+                &:hover
+                    color: red
+
+    .elButton
+        width: fit-content
+        padding: 5px
+        display: block
+        cursor: pointer
+        &:hover
+            border-radius: 2px
+            background-color: skyblue
+            color: white

@@ -18,7 +18,6 @@ rl.on('line', line => {
       arr[i] = inArr[i + 1].split(' ').map(e => +e)
     }
     console.log(minPathSum(arr))
-
   }
 })
 

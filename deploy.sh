@@ -2,7 +2,7 @@ set -e
 
 
 git add .
-git commit -m 'update algorithm'
+git commit -m 'update styles'
 
 git remote -v
 

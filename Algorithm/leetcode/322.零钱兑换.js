@@ -13,14 +13,12 @@
 var coinChange = function (coins, amount) {
   const dp = new Array(amount + 1).fill(Infinity)
   dp[0] = 0;
-  for (let i = 1;i <= amount;i++) {
-    for (let j = 0, cLen = coins.length;j < cLen;j++) {
-      if (i >= coins[j]) {
-        dp[i] = Math.min(
-          dp[i],
-          dp[i - coins[j]] + 1
-        )
-      }
+  for (let j = 0, cLen = coins.length;j < cLen;j++ ) {
+    for ( let i = coins[j]; i <= amount; i++ ) {
+      dp[i] = Math.min(
+        dp[i],
+        dp[i - coins[j]] + 1
+      )
     }
   }
   return dp[amount] === Infinity ? -1 : dp[amount]
