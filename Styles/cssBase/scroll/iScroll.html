@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <style>
+    .wrap {
+      width: 300px; height: 200px;
+      position: relative;
+      overflow: hidden;
+    }
+    .wrap > ul {
+      position: absolute;
+      white-space: nowrap;
+    }
+    .wrap li {
+      display: inline-block;
+    }
+  </style>
+  <div class="container">
+    <div id="wrap" class="wrap">
+      <ul>
+        <li><img src="../images/display/imgbox-1.gif"></li>
+        <li><img src="../images/display/imgbox-1.gif"></li>
+        <li><img src="../images/display/imgbox-1.gif"></li>
+        <li><img src="../images/display/imgbox-1.gif"></li>
+        <li><img src="../images/display/imgbox-1.gif"></li>
+      </ul>
+    </div>
+  </div>
+  <script>
+    new IScroll('#wrap', {
+      scrollbars: true,
+      scrollX: true,
+      scrollY: false
+    });
+  </script>
+</body>
+</html>

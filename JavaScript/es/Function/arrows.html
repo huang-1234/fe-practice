@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /* 上面这个例子，对象obj的方法a使用普通函数定义的，普通函数作为对象的方法调用时，this指向它所属的对象。
+    所以，this.id就是obj.id，所以输出'OBJ'。但是方法b是使用箭头函数定义的，箭头函数中的this实际是继承的它定义时所处的
+    全局执行环境中的this，所以指向Window对象，所以输出'GLOBAL'。（这里要注意，定义对象的大括号{}是无法形成一个单独的执行环境的，
+    它依旧是处于全局执行环境中！！） */
+    var id = 'GLOBAL';
+    var obj = {
+      id: 'OBJ',
+      a: function(){
+        console.log(this.id);
+      },
+      b: () => {
+        console.log(this.id);
+      }
+    };
+
+    obj.a();    // 'OBJ'
+    obj.b();    // 'GLOBAL'
+    /* 4、.call()/.apply()/.bind()无法改变箭头函数中this的指向
+    .call()/.apply()/.bind()方法可以用来动态修改函数执行时this的指向，但由于箭头函数的this定义时就已经确定且永远不会改变。
+    所以使用这些方法永远也改变不了箭头函数this的指向，虽然这么做代码不会报错。 */
+    var id = 'Global';
+    // 箭头函数定义在全局作用域
+    let fun1 = () => {
+        console.log(this.id)
+    };
+
+    fun1();     // 'Global'
+    // this的指向不会改变，永远指向Window对象
+    fun1.call({id: 'Obj'});     // 'Global'
+    fun1.apply({id: 'Obj'});    // 'Global'
+    fun1.bind({id: 'Obj'})();   // 'Global'
+    /* 5、箭头函数不能作为构造函数使用
+    我们先了解一下构造函数的new都做了些什么？简单来说，分为四步：
+    ① JS内部首先会先生成一个对象；
+    ② 再把函数中的this指向该对象；
+    ③ 然后执行构造函数中的语句；
+    ④ 最终返回该对象实例。
+    但是！！因为箭头函数没有自己的this，它的this其实是继承了外层执行环境中的this，且this指向永远不会随在哪里调用、被谁调用而改变，所以箭头函数不能作为构造函数使用，或者说构造函数不能定义成箭头函数，否则用new调用时会报错！
+     */
+    let Fun = (name, age) => {
+      this.name = name;
+      this.age = age;
+    };
+
+    // 报错
+    let p = new Fun('cao', 24);
+    /* 6、箭头函数没有自己的arguments
+    箭头函数没有自己的arguments对象。在箭头函数中访问arguments实际上获得的是外层局部（函数）执行环境中的值。 */
+    // 例子一
+    let fun = (val) => {
+        console.log(val);   // 111
+        // 下面一行会报错
+        // Uncaught ReferenceError: arguments is not defined
+        // 因为外层全局环境没有arguments对象
+        console.log(arguments);
+    };
+    fun(111);
+
+    // 例子二
+    function outer(val1, val2) {
+        let argOut = arguments;
+        console.log(argOut);    // ①
+        let fun = () => {
+            let argIn = arguments;
+            console.log(argIn);     // ②
+            console.log(argOut === argIn);  // ③
+        };
+        fun();
+    }
+    outer(111, 222);
+    /* 7、箭头函数没有原型prototype */
+    let sayHi = () => {
+        console.log('Hello World !')
+    };
+    console.log(sayHi.prototype); // undefined
+    /* 8、箭头函数不能用作Generator函数，不能使用yeild关键字 */
+  </script>
+</body>
+</html>

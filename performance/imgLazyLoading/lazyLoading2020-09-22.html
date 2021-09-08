@@ -1,0 +1,140 @@
+<head>
+  <style>
+    .img {
+      width: 200px;
+      height: 200px;
+      background-color: gray;
+      margin-bottom: 20px;
+    }
+
+    .pic {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<!-- 图片来自网络，侵删。 -->
+
+<body>
+  <div class="container">
+    <div class="img">
+      <!-- 注意我们并没有为它引入真实的src -->
+      <img
+        class="pic"
+        alt="加载中"
+        data-src="https://tse1-mm.cn.bing.net/th/id/OIP.8OrEFn_rKe82kqAWFjTuMwHaEo?pid=Api&rs=1"
+      />
+    </div>
+    <div class="img">
+      <img
+        class="pic"
+        alt="加载中"
+        data-src="https://ssl.tzoo-img.com/images/tzoo.94911.0.910013.seoul-nami.jpg?width=1080"
+      />
+    </div>
+    <div class="img">
+      <img
+        class="pic"
+        alt="加载中"
+        data-src="https://tse4-mm.cn.bing.net/th/id/OIP.ZitgAuABnwkrGn4lid2ZmQHaEK?pid=Api&rs=1"
+      />
+    </div>
+    <div class="img">
+      <img
+        class="pic"
+        alt="加载中"
+        data-src="http://pic34.photophoto.cn/20150315/0034034862056002_b.jpg"
+      />
+    </div>
+    <div class="img">
+      <img
+        class="pic"
+        alt="加载中"
+        data-src="http://img.mp.sohu.com/upload/20170724/32d4409f34194b029ed287abf1c99b70_th.png"
+      />
+    </div>
+    <div class="img">
+      <img
+        class="pic"
+        alt="加载中"
+        data-src="https://pic6.wed114.cn/20180829/2018082910075991913520.jpg"
+      />
+    </div>
+    <div class="img">
+      <img
+        class="pic"
+        alt="加载中"
+        data-src="https://tse4-mm.cn.bing.net/th/id/OIP.PZdPKj3sXEX2jLrepx3MUwHaEo?pid=Api&rs=1"
+      />
+    </div>
+    <div class="img">
+      <img
+        class="pic"
+        alt="加载中"
+        data-src="https://pic6.wed114.cn/20180829/2018082910075831439349.jpg"
+      />
+    </div>
+    <div class="img">
+      <img
+        class="pic"
+        alt="加载中"
+        data-src="https://pic6.wed114.cn/20180829/2018082910075468043336.jpg"
+      />
+    </div>
+    <div class="img">
+      <img
+        class="pic"
+        alt="加载中"
+        data-src="https://tse2-mm.cn.bing.net/th/id/OIP.CRYz5Bv4vylsMh83G4CsLgHaFj?pid=Api&rs=1"
+      />
+    </div>
+  </div>
+  <script>
+    /* 在懒加载的实现中，有两个关键的数值：一个是当前可视区域的高度，另一个是元素距离可视区域顶部的高度。
+
+    当前可视区域的高度，在现代浏览器及 IE9 以上的浏览器中，可以使用window.innerHeight属性获取，在低版本的 IE 中使用document.documentElment.clientHeight 获取，这里我们兼容两种情况： */
+  </script>
+  <script>
+    // 获取所有的图片标签
+    const imgs = document.getElementsByTagName("img");
+    // 获取可视区域的高度
+    const viewHeight =  window.innerHeight || document.documentElement.clientHeight;
+    // num用于统计当前显示到了哪一张图片，避免每次都从第一张图片开始检查是否露出
+    let num = 0;
+
+    function lazyload() {
+      console.log("滚动...");
+      for (let i = num; i < imgs.length; i++) {
+        // 用可视区域高度减去元素顶部距离可视区域顶部的高度
+        let distance = viewHeight - imgs[i].getBoundingClientRect().top;
+        // 如果可视区域高度大于等于元素顶部距离可视区域顶部的高度，说明元素露出
+        if (distance >= 0) {
+          // 给元素写入真实的src，展示图片
+          imgs[i].src = imgs[i].getAttribute("data-src");
+          // 前i张图片已经加载完毕，下次从第i+1张开始检查是否露出
+          num = i + 1;
+        }
+      }
+    }
+
+    // 防抖函数
+    function debounce(fn, delay = 500) {
+      let timer = null;
+      return function (...args) {
+        if (timer) clearTimeout(timer);
+        timer = setTimeout(() => {
+          fn.call(this, args);
+        }, delay);
+      };
+    }
+
+    // 是的页面初始化是加载首屏图片
+    window.onload = lazyload;
+    // 监听Scroll事件，为了防止频繁调用，使用防抖函数优化一下
+    window.addEventListener("scroll", debounce(lazyload, 100), false);
+  </script>
+  <!-- 小结
+  先收集到页面中所有的img(也可以用class)。
+  获取到视图高度，计算显示的img，避免重复赋值src。
+  当滑动向下滑动鼠标，会触发onScroll事件(防抖)，然后触发计算是否赋值src。 -->
+</body>
