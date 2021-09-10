@@ -1,4 +1,4 @@
-/* 
+/*
 function Person(name='huang',fullName='huangsq',age=18,sex='male') {
   this.name = name;
   this.fullName = fullName;
@@ -16,9 +16,31 @@ console.log(p2);  //[ 1, 2.3 ]
  */
 
 // the this will be lost in the setTimeout function
-var param = 'global param';
-function fn() {
-  console.log(this.param);
+/*
+{
+  var param = 'global param';
+  function fn() {
+    console.log(this.param);
+  }
+  // fn()
+  setTimeout(fn, 2000)
 }
-// fn()
-setTimeout(fn,2000)
+ */
+
+{
+  var test = {
+    a: 40,
+    init: () => {
+      console.log(this.a);
+      function go() {
+        console.log('this of go',this);
+        console.log(this.a);
+      }
+      go.prototype.a = 50;
+      return go;
+    }
+  };
+
+  var p = test.init();
+  p();
+}
