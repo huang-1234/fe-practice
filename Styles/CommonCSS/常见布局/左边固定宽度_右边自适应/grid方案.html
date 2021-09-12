@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>grid方案</title>
+  <link rel="stylesheet" href="./var.css">
+  <style>
+    /* 使用float+BFC方法 */
+    html{
+      --MargnRight: 4rem;
+    }
+    .wrapper-grid{
+      height: var(--Height);
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      align-items: start;
+    }
+    .wrapper-grid .left,
+    .wrapper-grid .right{
+      box-sizing: border-box;
+    }
+    .wrapper-grid .left {
+      grid-column: 1;
+      height: var(--Height);
+      background-color: var(--LeftColor);
+      text-align: center;
+      line-height: var(--Height);
+    }
+    .wrapper-grid .left .leftBox {
+      width: 150px;
+    }
+
+    .wrapper-grid .right {
+      grid-column: 2;
+      height: var(--Height);
+      background-color: var(--RightColor);
+
+      margin-left: var(--MargnRight);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="wrapper-grid wrapper">
+      <div class="left">
+        <div class="leftBox">
+          <span> hello world</span>
+        </div>
+      </div>
+      <div class="right">i am huangsq</div>
+    </div>
+  </div>
+</html>

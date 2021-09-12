@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>left-fixed_right-fit-content</title>
+  <style>
+    .wrapper{
+      height: 80px;
+      background-color: aquamarine;
+    }
+    /* 右边使用 width:calc(100% - var(--leftWidth)); */
+    .container1{
+      display: flex;
+      --leftWidth: 200px;
+    }
+    .left1{
+      width: var(--leftWidth);
+      background-color: blueviolet;
+    }
+    .right1{
+      width:calc(100% - var(--leftWidth));
+      background-color: cadetblue;
+    }
+    /* 双inline-block方案 */
+    .wrapper-inline-block {
+      box-sizing: content-box;
+      font-size: 0;	  /* 消除空格的影响 */
+      height: 80px;
+      --leftWidth: 160px;
+    }
+
+    .wrapper-inline-block .left2,
+    .wrapper-inline-block .right2 {
+        display: inline-block;
+        vertical-align: top;	/* 顶端对齐 */
+        font-size: 14px;
+        box-sizing: border-box;
+        width: var(--leftWidth);
+        background-color: red;
+    }
+
+    .wrapper-inline-block .right2 {
+      background-color: bisque;
+      width: calc(100% - var(--leftWidth));
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper container1">
+    <div class="left1">left</div>
+    <div class="right1">right</div>
+  </div>
+  <div class="wrapper wrapper-inline-block">
+    <div class="left2">left</div>
+    <div class="right2">right</div>
+  </div>
+</body>
+</html>

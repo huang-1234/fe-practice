@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>双float方案</title>
+    <style>
+      .wrapper-double-float {
+        --leftWidth: 160px;
+        --Height: 80px;
+        overflow: auto;
+        box-sizing: content-box;
+        background-color: #eee;
+        height: var(--Height);
+      }
+
+      .wrapper-double-float .left,
+      .wrapper-double-float .right {
+        float: left;
+        box-sizing: border-box;
+        width: var(--leftWidth);
+        height: var(--Height);
+        background-color: #f23;
+      }
+
+      .wrapper-double-float .right {
+        width: calc(100% - var(--leftWidth));
+        background-color: chartreuse;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="wrapper-double-float">
+        <div class="left"></div>
+        <div class="right"></div>
+      </div>
+    </div>
+  </body>
+
+</html>

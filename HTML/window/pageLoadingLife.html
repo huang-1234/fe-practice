@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+  </head>
+
+  <body onload="console.log('bodyonload');">
+    <div id="div1">a</div>
+    <img src="http://cdn.oecom.cn/oecom/dom/effect-cube6.jpg">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        console.log("jq document ready1");
+      })
+      window.onload = haha;
+      function haha() { console.log("window.onload执行完成"); }
+      if (document.addEventListener) {
+        function DOMContentLoaded() {
+          console.log("DOMContentLoaded执行完成");
+        }
+        document.addEventListener("DOMContentLoaded", DOMContentLoaded, false);
+      }
+      $(function () {
+        console.log("jq document ready3");
+      })
+      $().ready(function () {
+        console.log("jq document ready2");
+      });
+      /* DOMContentLoaded执行完成
+pageLoadingLife.html:18 window.onload执行完成
+pageLoadingLife.html:15 jq document ready1
+pageLoadingLife.html:26 jq document ready3
+pageLoadingLife.html:29 jq document ready2 */
+    </script>
+  </body>
+
+</html>

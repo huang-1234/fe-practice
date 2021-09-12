@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>websocket </title>
+
+    <script type="text/javascript">
+
+      // 打开一个WebSocket:
+      var ws = new WebSocket('ws://localhost:3000');
+
+      //open event
+      ws.onopen = function () {
+        console.log("open websocket...");
+      };
+
+      //close event
+      ws.onclose = function () {
+        console.log("close websocket...");
+      };
+
+      // 响应onmessage事件:
+      ws.onmessage = function (msg) {
+        //这里可以处理接收到服务器的数据
+        console.log(msg);
+      };
+
+      function ws_send() {
+        // 给服务器发送一个数字
+        ws.send(document.getElementById('input_msg').value);
+
+      }
+    </script>
+
+    <style>
+      /* 内嵌CSS样式 */
+      button {
+        background-color: #4CAF50;
+        /* Green */
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+      }
+
+      /* 鼠标悬浮时 背景色变为蓝色 */
+      button:hover {
+        background-color: blue;
+        /* blue */
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <!内联CSS样式>
+      <h1 style="color:red"> WebSocket Test </h1>
+
+      <input type="text" id="input_msg" value="3">
+      <!注册点击事件，调用发送函数>
+        <button onclick="ws_send()"> send </button>
+  </body>
+
+</html>

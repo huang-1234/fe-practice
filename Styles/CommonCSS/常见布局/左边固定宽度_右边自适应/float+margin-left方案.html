@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./var.css">
+    <style>
+      .wrapper{
+        width: var(--LeftWidth);
+        height: var(--Height);
+        background-color: var(--ThemeBgc);
+      }
+      .wrapper-float {
+        overflow: hidden; /*  清除浮动 */
+      }
+      .wrapper-float .left {
+        float: left;
+      }
+      .wrapper-float .right {
+        height: var(--Height);
+        width: calc(100% - var(--leftWidth));
+        background-color: var(--ContentBgc);
+        /* margin-left: 150px; */
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="wrapper wrapper-float">
+        <div class="left"></div>
+        <div class="right"></div>
+      </div>
+    </div>
+  </body>
+
+</html>

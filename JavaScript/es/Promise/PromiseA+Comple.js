@@ -5,7 +5,7 @@
  */
 
 // promise 三个状态
-const PENDING = "pending";
+const PENDING = "pending";   // 悬而未决的
 const FULFILLED = "fulfilled";
 const REJECTED = "rejected";
 

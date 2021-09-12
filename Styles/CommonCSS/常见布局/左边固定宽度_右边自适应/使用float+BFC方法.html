@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>使用float+BFC方法</title>
+  <style>
+    /* 使用float+BFC方法 */
+
+    .wrapper-float-bfc{
+      overflow: auto;
+      
+    }
+    .wrapper-float-bfc .left {
+      float: left;
+      margin-right: 20px;
+    }
+
+    .wrapper-float-bfc .right {
+      margin-left: 0;
+      overflow: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="wrapper-float-bfc wrapper">
+      <div class="left"></div>
+      <div class="right"></div>
+    </div>
+  </div>
+</html>

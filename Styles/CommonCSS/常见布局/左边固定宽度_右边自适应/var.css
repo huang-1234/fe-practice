@@ -1,0 +1,11 @@
+html {
+  /* scale */
+  --LeftWidth: 160px;
+  --Height: 80px;
+  /* color */
+  --ThemeBgc: #45f;
+  --LeftColor: #ac3;
+  --RightColor: #3a2;
+  --AsideBgc: #d5d;
+  --ContentBgc: #4ed;
+}
