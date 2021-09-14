@@ -11,8 +11,10 @@
  * @return {number}
  */
 var threeSumClosest = function (nums, target) {
-  if()
-  const L=0, R=nums
+  if (nums) {
+
+  }
+  const L = 0, R = nums
 };
 // @lc code=end
 
