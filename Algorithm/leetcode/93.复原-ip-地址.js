@@ -33,8 +33,10 @@ var restoreIpAddresses = function (s) {
     }
     // 一般情况，枚举每一种可能性并递归
     let addr = 0;
-    for (let segEnd = segStart,iLen=s.length; segEnd < iLen; ++segEnd) {
+    for (let segEnd = segStart, iLen = s.length;segEnd < iLen;++segEnd) {
+
       addr = addr * 10 + (s.charAt(segEnd) - '0');
+
       if (addr > 0 && addr <= 0xFF) {
         segments[segId] = addr;
         dfs(s, segId + 1, segEnd + 1);
