@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>relative</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    .yeye{
+      width: 800px;
+      height: 800px;
+      background-color: pink;
+      position: relative;
+      margin: 0 auto;
+    }
+    .parent1{
+      width: 300px;
+      height: 300px;
+      background-color: hotpink;
+      position: relative;
+    }
+    .absolute1{
+      width: 100px;
+      height: 100px;
+      background-color: rgb(97, 6, 51);
+      position: absolute;
+      top: 50px;
+      right: 50px;
+    }
+    .fixd1{
+      box-sizing: border-box;
+      /* width: 60px; */
+      /* height: 60px; */
+      border: 25px solid aqua;
+      border-left: transparent;
+      border-top: transparent;
+      background-color: aqua;
+      background-clip: content-box;
+      position: fixed;
+      left: 50%;
+      margin-left: calc(400px + 10px);
+      /* padding: 10px; */
+    }
+    .sticky1{
+      width: 60px;
+      height: 60px;
+      background-color: rgb(74, 223, 15);
+      background-clip: content-box;
+      position: sticky;
+      /* padding: 10px; */
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="yeye">
+      <div class="parent1">
+        <div class="child1"></div>
+        <div class="absolute1"></div>
+        <div class="fixd1"></div>
+        <div class="sticky1"></div>
+      </div>
+      <div class="parent2">
+        <div class="child2"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,35 +1,38 @@
-import { Vue, Component, Prop, Emit, Watch } from "vue-property-decorator"
+import React from 'react'
+
+
+
 
 import s from "./Checker.m.sass"
+import { cached } from './../../../../../../../../../PrincipleCode/vue-2.5.21/src/shared/util';
 
+interface PropsType{
+  name: string
+  label: string
+  value: boolean
+  onSubmit: (name: string, isChecked: boolean) => {}
+}
 /**
  * 布尔型单选框
  */
-@Component
-export class Checker extends Vue {
-    $props: Pick<Checker, "name" | "label" | "onSubmit" | "value">
-    @Prop() name: string
-    @Prop() label: string
-    @Prop() value: boolean
-    @Emit("submit") onSubmit(name: string, isChecked: boolean) {}
+export function Checker(props: PropsType) {
 
-    private _submitIsChecked(isChecked: boolean) {
-        this.onSubmit(this.name, isChecked)
-    }
+  const _submitIsChecked = (isChecked: boolean) => {
+    props.onSubmit(props.name, isChecked)
+  }
+  return (
+    <div className={s.checkerBox}
+    >
+      <label htmlFor={props.label}>{props.label}</label>
+      <input
+        type="checkbox"
+        id={props.label}
+        name={props.label}
+        checked={props.value}
+        onChange={_submitIsChecked}
+      >
 
-    render() {
-        return (
-            <div
-                class={s.checkerBox}
-            >
-                <span>{this.label}</span>
-                <el-checkbox
-                    // label={this.label}
-                    name="type"
-                    value={this.value}
-                    onChange={this._submitIsChecked}
-                ></el-checkbox>
-            </div>
-        )
-    }
+      </input>
+  </div>
+  )
 }

@@ -31,7 +31,7 @@ css 中经常有类似 background-image 这种通过 - 连接的字符，
 function tranStr(str1) {
   const len = str1.length;
   let L = 0; R = len - 1;
-  for (let i = 0,j=len-1;i < len && j>i;){
+  for (let i = 0, j = len - 1;i < len && j > i;) {
     if ('-' === str1[i]) {
       i++;
     }
@@ -39,10 +39,9 @@ function tranStr(str1) {
       j--;
     }
     if ('-' !== str1[i] && '-' !== str1[j]) {
-      L = i; R = j+1;
+      L = i; R = j + 1;
       break;
     }
-    
   }
   let strTemp = str1.slice(L, R);
   let Ans = new String();
@@ -55,7 +54,7 @@ function tranStr(str1) {
   //     continue;
   //   }
   //   else {
-      
+
   //     ++i;
   //     let Letter = strTemp[i].toUpperCase(); console.log(Letter);
   //     console.log('i:', i, strTemp.slice(L2, i - 1));
@@ -63,9 +62,9 @@ function tranStr(str1) {
   //     let word = Letter +  strTemp.slice(L2+1, R2);
   //   }
   // }
-  let Arr = strtemp.split('-');
+  let Arr = strTemp.split('-');
   console.log(Arr);
-  console.log('strTemp:',strTemp,'Ans:',Ans);
+  console.log('strTemp:', strTemp, 'Ans:', Ans);
   return Ans;
 }
 

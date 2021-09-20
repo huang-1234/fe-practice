@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .parent{
+      --wid100:100px;
+      --hei100:100px;
+      width: 800px;
+      height: 800px;
+      background-color: pink;
+      margin: auto;
+      position: relative;
+      display: flex;
+
+
+    }
+    .child{
+      width: var(--wid100);
+      height: var(--hei100);
+      padding: calc(var(--hei100)/10);
+      background-color: aqua;
+      background-clip: content-box;
+      flex: 0 1 auto;
+    }
+    .child-absolute1{
+      position: absolute;
+      --childWidth: 80px;
+      background-color: aqua;
+      height: 10px;
+      width: var(--childWidth);
+      left: 50%;
+      bottom: 20px;
+      /* margin-left: calc(- var(--childWidth) / 2); */
+      margin-left: -40px;
+    }
+  </style>
+</head>
+<body>
+  <div class="parent">
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child"></div>
+    <div class="child-absolute1"></div>
+  </div>
+</body>
+</html>

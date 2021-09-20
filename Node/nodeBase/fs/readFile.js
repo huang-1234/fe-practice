@@ -1,27 +1,36 @@
 const { readFile } = require('fs')
 
-readFile('./some.txt','utf8', (err, data)=>{
+/*
+// 常规使用 回调函数的用法
+readFile('./some.txt', 'utf8', (err, data) => {
   if (err) {
     throw err;
   }
-  // console.log(data);
+  console.log(data);
 })
+ */
 
-const options = {
-  pathname: './some.txt',
-  enCode: 'utf8'
-}
-const PromsieReadFile = (options, cb) => {
+
+const PromsieReadFile = (pathname, deCode, cb) => {
   return new Promise((resolve, reject) => {
-    readFile(...options, (err, data) => {
+    readFile(pathname, deCode, (err, data) => {
       if (err) reject(err);
-      resolve(data)
-
+      resolve(data);
     })
   })
 }
+const options = {
+  pathname: './some.txt',
+  deCode: ''
+}
+// PromsieReadFile(options.pathname, options.deCode).then(
+//   res => console.log('res:', res),
+//   err => console.log('err', err)
+// )
 
-PromsieReadFile(options.pathname, options.enCode,()=>{}).then(
-  res=>console.log('res:', res),
-  err => console.log(err)
-)
+async function asyncReadFile() {
+  const res = await PromsieReadFile(options.pathname, options.deCode);
+  return res;
+}
+const res = asyncReadFile()
+console.log('res', res);

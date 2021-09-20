@@ -1,5 +1,5 @@
 
-/* 
+/*
 var name = '黄水清';
 var doSth = function () {
   console.log(this);
@@ -178,5 +178,3 @@ function sayName(place) {
 }
 sayName.myBind(null)('changsha')
  */
-
-Function.prototype.bind(thisArg)
