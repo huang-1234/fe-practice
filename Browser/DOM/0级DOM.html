@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    input,button,a {
+      outline:0 none !important;
+    }
+    .containerChildren{
+      width: 300px;
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid blue;
+      border-radius: 4px;
+    }
+    .containerChildren > .btn{
+      width: 60px;
+      height: 30px;
+      background-color: pink;
+      cursor: pointer;
+      border-radius: 4px;
+      /* box-shadow: .2em; */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="containerChildren containerChildren1">
+      <span>DOM0级事件</span>
+      <button
+        class="btn"
+        id="btn1"
+      >btn1</button>
+    </div>
+    <div class="containerChildren containerChildren2">
+      <span>DOM2级事件</span>
+      <button
+        class="btn"
+        id="btn2"
+      >btn2</button>
+    </div>
+  </div>
+  <script>
+    {
+      function btn2(){
+        console.log('hello btn2');
+      }
+      function containerChildren1(){
+        console.log('containerChildren1')
+      };
+      function containerChildren2(){
+        console.log('containerChildren2')
+      };
+      // 选择下面这种来注册事件只有冒泡
+      document.getElementById('btn2').onclick = btn2;
+      // 下面是一种DOM0级事件，只能为该事件的onclick事件名添加一个回调函数
+      document.getElementsByClassName('containerChildren1')[0].onclick = containerChildren1;
+      document.getElementsByClassName('containerChildren1')[0].onclick = containerChildren2;
+    }
+    /* 可以为一个事件加多个事件回调函数, 多个回调函数会一次执行 */
+    {
+      function btn1(){
+        console.log('hello btn1');
+      }
+      function container1(){
+        console.log('container1')
+      };
+      function container2(){
+        console.log('container2')
+      };
+      // 选择下面这种来注册事件只有冒泡
+      const divConta = document.getElementsByClassName('containerChildren2')[0];
+      divConta.addEventListener('click',container1);
+      divConta.addEventListener('click',container2);
+    }
+  </script>
+</body>
+</html>
