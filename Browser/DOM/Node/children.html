@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>children</title>
+  <style>
+    .node{
+      width: 500px;
+      height: 400px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transition: (-50%, -50%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      border: 1px solid red;
+    }
+    .nodeChildren{
+      width: 100px;
+      height: 60px;
+      background-color: aqua;
+      margin-top: 10px;
+      border: 1px solid aqua;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="node">
+      <div class="nodeChildren child1">
+        <span>child1 span</span>
+      </div>
+      <div class="nodeChildren child2">child2</div>
+      <div class="nodeChildren child3">child3</div>
+      <div class="nodeChildren child4">child4</div>
+    </div>
+  </div>
+  <script>
+    const nodes = document.getElementsByClassName(`node`)
+    const node1 = nodes[0];
+    const nodeChildren = node1.childNodes;
+    console.log(nodeChildren)
+    const nodeChild1InnerHtml = nodeChildren[1].innerHTML;
+    console.log(`:${nodeChild1InnerHtml}:`)
+    const spanNode = document.createElement('span');
+    nodes.appendChild(spanNode.firstChild)
+  </script>
+</body>
+</html>
