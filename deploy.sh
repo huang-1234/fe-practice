@@ -2,7 +2,7 @@ set -e
 
 
 git add .
-git commit -m 'update al and dom0 dom1'
+git commit -m 'update al'
 
 git remote -v
 

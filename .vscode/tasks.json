@@ -3,14 +3,20 @@
   "tasks": [
     {
       "type": "shell",
-      "label": "gdb.exe build active file", //一定与preLaunchTask一致
+      "label": "Compile", //一定与preLaunchTask一致
       "command": "F:/WareDownload/C++/mingw64/bin/gdb.exe", //改为你自己的路径
       "args": [
-        "-g",
         "${file}",
         // "${fileDirname}/printf.c",
         "-o",
-        "${fileDirname}/${fileBasenameNoExtension}.exe"
+        "${fileDirname}/${fileBasenameNoExtension}.exe",
+        "-g", // 生成和调试有关的信息
+        // 下面为新增加的
+        "-Wall", // 开启额外警告
+        "-static-libgcc", // 静态链接
+        "-fcolor-diagnostics",
+        "--target=x86_64-w64-mingw", // 默认target为msvc，不加这一条就会找不到头文件
+        "-std=c++17" // C语言最新标准为c11，或根据自己的需要进行修改
       ],
       "options": {
         "cwd": "F:/WareDownload/C++/mingw64/bin" //改为自己的路径的bin文件夹

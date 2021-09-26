@@ -25,6 +25,7 @@ var swapPairs = function (head) {
     const node2 = temp.next.next;
 
     temp.next = node2;
+    // 先要 使用 node1.next 保存 node2.next. 不然先执行第二行代码，node2.next 就找不到了
     node1.next = node2.next;
     node2.next = node1;
 

@@ -18,8 +18,7 @@ var lengthOfLIS = function (nums) {
       result[result.length] = nums[i];
     } else {
       // 二分查找：找到第一个大于当前数值的结果进行替换
-      let left = 0,
-        right = result.length - 1;
+      let left = 0, right = result.length - 1;
       while (left < right) {
         let middle = Math.floor((left + right) / 2);
         if (result[middle] < nums[i]) {

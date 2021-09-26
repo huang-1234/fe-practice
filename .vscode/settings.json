@@ -185,5 +185,7 @@
     }
   },
   "files.trimTrailingWhitespace":true,
-  "leetcode.defaultLanguage": "java",
+  "leetcode.endpoint": "leetcode-cn",
+  "leetcode.workspaceFolder": "G:\\Study\\Code\\Web\\myNotes\\learnFrontTest\\Algorithm\\leetcode",
+  "leetcode.defaultLanguage": "javascript",
 }
