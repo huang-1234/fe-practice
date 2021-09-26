@@ -1,8 +1,4 @@
-// class Hello{
-//   public sayHello{
-//     system.out.pri
-//   }
-// }
+
 
 /**
  * hello
