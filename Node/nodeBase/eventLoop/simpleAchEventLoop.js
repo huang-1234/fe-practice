@@ -4,9 +4,8 @@ const eventloop = {
   fsQueue:[],
   loop() {
     while (this.queue.length) {
-      let callback = this.queue.unshift()
+      let callback = this.queue.shift()
       callback()
-      
     }
     setTimeout(this.loop.bind(this),50)
   },

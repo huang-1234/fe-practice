@@ -1,5 +1,6 @@
-var fs = require('fs');
+const fs = require('fs');
 
+console.log('task start')
 function someAsyncOperation (callback) {
   // 花费2毫秒
   fs.readFile(__dirname + '/' + __filename, callback);
@@ -16,7 +17,9 @@ setTimeout(function () {
 
 someAsyncOperation(function () {
   fileReadtime = Date.now();
-  while(Date.now() - fileReadtime < 20) {
+  while(Date.now() - fileReadTime < 20) {
 
   }
 });
+
+console.log('task end')
