@@ -226,11 +226,11 @@ console.log(person2.friends);
 
 // 稳妥构造对象
 function Person(name, age, job) {
-    let o = new Object();
-    o.sayName = function() {
-        console.log(name);
-    };
-    return o;
+  let o = new Object();
+  o.sayName = function () {
+    console.log(name);
+  };
+  return o;
 }
 let friend = Person('huang', 20, 'Software Engineer');
 console.log(friend);
@@ -313,29 +313,31 @@ alert(instance1.name); //mywei
 alert(instance1 instanceof SuperType); //false
 */
 //=========================
-/**组合继承 */
-function SuperType(name) {
+{
+
+  // 组合继承
+  function SuperType(name) {
     this.colors = ["red", "blue", "green"]; // 父类对象中存在着引用类型，这里是一个数组类型
     this.name = name;
-}
+  }
 
-SuperType.prototype.sayName = function() {
+  SuperType.prototype.sayName = function () {
     alert(this.name);
-};
+  };
 
-function SubType(name, age) {
+  function SubType(name, age) {
     SuperType.call(this, name); // 别忘记将this对象传递进去,继承了SuperType的属性
     this.age = age;
-}
+  }
 
-SubType.prototype = new SuperType(); // 继承方法
-SubType.prototype.constructor = SubType;
+  SubType.prototype = new SuperType(); // 继承方法
+  SubType.prototype.constructor = SubType;
 
-SubType.prototype.sayAge = function() {
+  SubType.prototype.sayAge = function () {
     alert(this.age);
-};
+  };
 
-window.onload = function() {
+  window.onload = function () {
     var instance_1 = new SubType("大头", 22);
     instance_1.colors.push("black");
     alert(instance_1.colors);
@@ -344,4 +346,53 @@ window.onload = function() {
     var instance_2 = new SubType("shenlei", 23);
     alert(instance_2.colors);
     alert("name : " + instance_2.name + " age : " + instance_2.age);
-};
+  };
+}
+/*
+{
+  // 16
+  // function SuperType(){
+  //     this.friends=["gay1","gay2"];
+  // }
+  // function SubType(){
+  // }
+  // SubType.prototype=new SuperType();
+  // var instance1=new SubType();
+  // var instance1.friends.push("gay3");
+  // alert(instance1.friends);
+  // var instance2=new SubType();
+  // alert(instance2.friends);
+  // alert(instance1 instanceof SuperType);  //true
+  // //gay1,gay2,gay3 这个实例里为什么会有gay3 可以简单解释为 SuperType中的friends
+  // 是instance1和instance2所在的作用域链共享的
+  //==================
+  //构造函数无参数
+  function SuperType() {
+      this.friends = ["gay1", "gay2"];
+  }
+  SubType.prototype = new SuperType(); //继承
+  function SubType() {
+      SuperType.call(this); //这样实现了继承 与上段代码的继承方式有什么不同?
+  }
+  var instance1 = new SubType();
+  var instance2 = new SubType();
+  instance1.friends.push("gay3");
+  console.log(instance1.friends); //gay1,gay2,gay3
+  console.log(instance2.friends); //gay1,gay2
+  //-----------------------------邪恶的分割线-------------------------//
+  //构造函数有参数
+
+  function SuperType(name) {
+    this.name = name;
+  }
+
+  function SubType(name) {
+    SuperType.call(this, name); //等同于SuperType.apply(this,[name]) 或 SuperType.apply(this,arguments)
+  }
+  var instance1 = new SubType("nUll");
+  var instance2 = new SubType("mywei");
+  console.log(instance1.name); //nUll
+  console.log(instance2.name); //mywei
+  console.log(instance1 instanceof SuperType); //false
+}
+ */
