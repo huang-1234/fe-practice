@@ -1,0 +1,19 @@
+{
+  "go.buildOnSave": true, //在保存代码时自动编译代码
+  "go.lintOnSave": true, //在保存代码时自动检查代码可以优化的地方，并给出建议
+  "go.vetOnSave": true, //在保存代码时自动检查潜在的错误
+  "go.buildTags": "",
+  "go.buildFlags": [],
+  "go.lintTool": "golint", //使用 golint 库来执行 lint操作，你也可以选择使用gometalinter
+  "go.lintFlags": [],
+  "go.vetFlags": [],
+  "go.coverOnSave": false, //在保存代码时执行测试，并显示测试覆盖率
+  "go.useCodeSnippetsOnFunctionSuggest": true, //使用代码片段作为提示
+  "go.formatOnSave": true, //在保存代码时自动格式化代码
+  "go.formatTool": "goimports", //使用 goimports 工具进行代码格式化，或者使用 goreturns和gofmt
+  "go.formatFlags": [],
+  "go.gocodeAutoBuild": true, //代码自动编译构建
+  "go.goroot": "/usr/local/Cellar/go/1.8.3/libexec", //设置 goroot，正常编译 go 代码。
+  "go.gopath": "/Users/junv/gocode:/Users/junv/mygocode", // 设置 gopath，有利于自动导入库
+
+}
