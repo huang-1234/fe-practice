@@ -4,6 +4,8 @@
  * [121] 买卖股票的最佳时机
  */
 
+{/* <a href="https://zhuanlan.zhihu.com/p/92908822"></a> */}
+
 // @lc code=start
 /**
  * @param {number[]} prices
