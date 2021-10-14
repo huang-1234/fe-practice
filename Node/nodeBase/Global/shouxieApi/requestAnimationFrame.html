@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 下一次重绘之前更新动画帧所调用的函数(即上面所说的回调函数)。该回调函数会被传入DOMHighResTimeStamp参数，该参数与performance.now()的返回值相同，它表示requestAnimationFrame() 开始去执行回调函数的时刻
+    function requestAnimationFrameCb(DOMHighResTimeStamp){
+      console.log(`hello the rAF DOMHighResTimeStamp is ${DOMHighResTimeStamp}`)
+    }
+    const timer = window.requestAnimationFrame(requestAnimationFrameCb)
+    console.log(timer)
+    const timer2 = window.requestAnimationFrame(requestAnimationFrameCb)
+    console.log(timer2)
+  </script>
+</body>
+</html>
