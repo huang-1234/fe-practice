@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件阶段</title>
+</head>
+<body>
+  <button id="button">button</button>
+  <script>
+    const btn1 = document.getElementById("button")
+    btn1.onclick = function(e) {
+      console.log(event.eventPhase)
+    }
+    document.body.addEventListener("click", (event) => {
+      console.log(event.eventPhase)
+    }, true);
+    document.body.onclick = (event) => {
+      console.log(event.eventPhase)
+    }
+    document.addEventListener("load",() => {
+      console.log("load over...")
+    })
+    console.log(`下面是 IE 浏览器的 Event 模型`)
+    console.log(btn1.attachEvent)
+    if(btn1.attachEvent){
+
+      const event = window.event;
+      console.log(event.type)
+    }
+    // resize
+    window.addEventListener("resize", () => {
+      console.log('resized')
+    })
+  </script>
+</body>
+</html>
