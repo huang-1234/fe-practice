@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>inputAttribute</title>
+  <link rel="stylesheet" href="./input.css">
+  <style>
+    .formContainer{
+      width: 40vw;
+      background-color: aquamarine;
+      margin: auto;
+    }
+    label{
+      display: inline-block;
+      width: 5rem;
+      border: 1px solid red;
+    }
+  </style>
+</head>
+<body>
+  <div class="formContainer">
+    <!-- <form action="" method="post"> -->
+      <section>
+        <label for="search">search:</label>
+        <input type="search" name="search" id="search"
+          required
+          multiple
+        />
+      </section>
+      <section>
+        <label for="text">文本输入:</label>
+        <input type="text"
+          required
+          autocomplete="off"
+          multiple
+        />
+      </section>
+
+      <button type="submit">提交</button>
+    <!-- </form> -->
+  </div>
+</body>
+</html>
