@@ -1,11 +1,11 @@
 import React from 'react'
-import { FirstSass } from './testSass/FirstSass'
+import { TestSass } from './testSass'
 
 
 export default function TestWebpack() {
   return (
     <div>
-      <FirstSass />
+      <TestSass />
     </div>
   )
 }

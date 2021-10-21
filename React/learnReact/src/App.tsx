@@ -38,8 +38,8 @@ export default function App() {
       {/* <Provider store={store}>
         < UseReduxHello  />
       </Provider> */}
-      {/* <TestWebpack /> */}
-      <MyTable />
+      <TestWebpack />
+      {/* <MyTable /> */}
     </div>
   )
 }

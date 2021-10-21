@@ -1,6 +1,6 @@
 import React from 'react'
 
-import s from './FirstSass.m.sass'
+import s from './FirstSass.m.scss'
 
 export function FirstSass() {
 
@@ -8,7 +8,6 @@ export function FirstSass() {
     <>
       <div className={s.firstSassContainer} >
         <span>hello world</span>
-
       </div>
     </>
   )

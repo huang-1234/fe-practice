@@ -26,8 +26,20 @@ module.exports = {
       },
       // {
       //   test: /\.css$/,
-      //   loader: "style-loader!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader"
+      //   loader: "style-loader!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]__[hash:base64:5]!postcss-loader"
       // },
+      {
+        test: /\.css$/,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: true
+            }
+          }
+        ]
+      },
       {
         test: /\.m\.s[ac]ss$/i,
         use: [
@@ -36,7 +48,8 @@ module.exports = {
             loader: "css-loader",
             options: {
               modules: {
-                localIdentName: "[name]__[local]--[hash:base64:5]",
+                // localIdentName: "[name]__[local]__[hash:base64:5]",
+                auto: true
               },
             },
           },
@@ -65,15 +78,6 @@ module.exports = {
           },
         ],
       },
-      {
-        test: /\.css$/,
-        use: [
-          "style-loader",
-          {
-            loader: "css-loader",
-          }
-        ]
-      }
     ],
   },
   plugins: [
