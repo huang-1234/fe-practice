@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>联动</title>
+  <style>
+    .container{
+      display: flex;
+
+    }
+    .editor{
+      justify-content: center;
+      flex-direction: row;
+      width: 300px;
+      height: 400px;
+      overflow-y: auto;
+      margin: auto;
+      border: 1px solid pink;
+    }
+    .ediitor{
+      width: 60px;
+      height: 100px;
+      background-color: rgb(201, 201, 216);
+      display: block;
+      margin: auto;
+      margin-bottom: 4px;
+      border: 1px solid blue;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="editor editorLeft">
+      <ul class="editorLeftItem">
+        <li class="ediitor"></li>
+        <li class="ediitor"></li>
+        <li class="ediitor"></li>
+        <li class="ediitor"></li>
+        <li class="ediitor"></li>
+        <li class="ediitor"></li>
+        <li class="ediitor"></li>
+        <li class="ediitor"></li>
+        <li class="ediitor"></li>
+        <li class="ediitor"></li>
+      </ul>
+    </div>
+    <div class="editor editorRight">
+      <ul class="editorRightItem">
+        <li class="ediitor"></li>
+        <li class="ediitor"></li>
+        <li class="ediitor"></li>
+        <li class="ediitor"></li>
+        <li class="ediitor"></li>
+        <li class="ediitor"></li>
+        <li class="ediitor"></li>
+        <li class="ediitor"></li>
+        <li class="ediitor"></li>
+        <li class="ediitor"></li>
+      </ul>
+    </div>
+  </div>
+  <!-- <script src="./联动utils.js" type="module"></script> -->
+  <script>
+    let leftDom = document.querySelector('.editorLeft'),
+        rightDom = document.querySelector('.editorRight')
+
+    leftDom.addEventListener('scroll', function(e){
+      if(e.clientX > leftDom.left && e.clientX < leftDom.right && e.lientY > leftDom.top){
+        rightDom.scrollTop = leftDom.scrollTop;
+        console.log(leftDom.scrollTop)
+      }
+
+    })
+    rightDom.addEventListener('scroll', function(e){
+      if(e.clientX > leftDom.left && e.clientX < leftDom.right && e.lientY > leftDom.top){
+        leftDom.scrollTop = rightDom.scrollTop
+        console.log(leftDom.scrollTop)
+      }
+
+    })
+
+
+    /* 看上去很不错，然而，哪有那么简单的事情。
+      这个时候你再用鼠标滚轮进行滚动的时候，却发现滚动得有点吃力，两个容器元素的滚动似乎被什么阻碍住了，很难滚动。
+      仔细分析，原因很简单，当你在左边滚动的时候，触发了左边的滚动事件，于是右边跟随滚动，但是与此同时右边的跟随滚动也是滚动，
+      于是也触发了右边的滚动，于是左边也要跟随右边滚动...然后就进入了一个类似于相互触发的情况，所以就会发现滚动得很吃力。 */
+
+      /* 解决scroll事件同时触发的问题
+      想要解决上述问题，暂时有以下两种方案。
+      将 scroll事件换成 mousewheel事件
+      由于 scroll事件不仅会被鼠标主动滚动触发，同时改变容器元素的 scrollTop也会触发，元素的主动滚动其实就是鼠标滚轮触发的，所以可以将scroll事件换成一个对鼠标滚动敏感而不是元素滚动敏感的事件：'mousewheel'，于是上述监听代码变成了：*/
+    // leftDom.addEventListener('mousewheel', function(){
+    //   rightDom.scrollTop = leftDom.scrollTop;
+    //   console.log(leftDom.scrollTop)
+    // })
+    // rightDom.addEventListener('mousewheel', function(){
+    //   leftDom.scrollTop = rightDom.scrollTop
+    //   console.log(leftDom.scrollTop)
+    // })
+  </script>
+</body>
+</html>
