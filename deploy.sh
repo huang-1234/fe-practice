@@ -2,7 +2,7 @@ set -e
 
 
 git add .
-git commit -m 'update al'
+git commit -m 'update daily'
 
 git remote -v
 
