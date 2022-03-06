@@ -10,17 +10,27 @@
  * @return {number}
  */
 var trap = function (height) {
-  if (height.length < 3) {
+  if (height.length === 0) {
     return 0
   }
-  let sum = 0;
-  const Len = height.length;
-  let left = 0, right = left+1
-
-  while (left < right && left >= 0 && right < Len) {
-    let curIndex = 0
+  const len = height.length;
+  const leftMax = new Array(len).fill(0);
+  leftMax[0] = height[0];
+  const rightMax = new Array(len).fill(0);
+  rightMax[len - 1] = height[len - 1];
+  for (let i = 1; i < len; i++) {
+    leftMax[i] = Math.max(leftMax[i - 1], height[i])
   }
-
+  for (let i = len-2; i >= 0; i--) {
+    rightMax[i] = Math.max(rightMax[i + 1], height[i])
+  };
+  let ans = 0;
+  for (let i = 0; i < len; i++) {
+    const min = Math.min(leftMax[i], rightMax[i]);
+    console.log(min - height[i])
+    ans += min - height[i];
+  };
+  return ans;
 };
 // @lc code=end
 
