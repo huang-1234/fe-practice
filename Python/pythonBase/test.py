@@ -1,2 +1,2 @@
-a = 45
-print(a)
+import torchvision;
+print(torchvision.__version)
