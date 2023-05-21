@@ -34,7 +34,6 @@
     "java": "cd $dir && javac $fileName && java $fileNameWithoutExt",
     "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt"
   },
-
   "[cpp]": {
     "editor.defaultFormatter": "ms-vscode.cpptools"
   },
@@ -43,7 +42,6 @@
   "[c]": {
     "editor.defaultFormatter": "ms-vscode.cpptools"
   },
-
   "editor.tokenColorCustomizations": {
     "[Visual Studio Dark]": {
       "comments": "#7e3648",
@@ -133,19 +131,19 @@
       ]
     }
   },
-  "powermode.enabled":true,
-  "powermode.enableShake":false,
-  "powermode.presets":"flames",
-  "powermode":{
-    "enabled":true,
-      //样式
+  "powermode.enabled": true,
+  "powermode.enableShake": false,
+  "powermode.presets": "flames",
+  "powermode": {
+    "enabled": true,
+    //样式
     // "presets":"fireworks",
-    "presets":"flames",
+    "presets": "flames",
     // 时间间隔
-    "comboTimeout":10,
+    "comboTimeout": 10,
     // 抖动
-    "enableShake":false,
-    "backgroundMode":"mask"
+    "enableShake": false,
+    "backgroundMode": "mask"
   },
   // "workbench.colorTheme": "Visual Studio Dark",
   "workbench.colorCustomizations": {
@@ -175,17 +173,18 @@
   //   "ignore": ["src/test.js", "*/test.scss", "**/spec/*", "**/src/**/*"], // 禁止文件和文件夹自动格式化和编译
   //   "watch": ["sass/test.sass", "**/less/**/*"] // 监听对应文件或者文件夹，保存的时候触发编译，一般配合 Compile Hero: On 开关打开使用
   // },
-
-  "editor":{
-    "parameterHints":true,
-    "quickSuggestions":{
+  "editor": {
+    "parameterHints": true,
+    "quickSuggestions": {
       "other": true,
       "comments": true,
       "strings": true
     }
   },
-  "files.trimTrailingWhitespace":true,
+  "files.trimTrailingWhitespace": true,
   "leetcode.endpoint": "leetcode-cn",
   "leetcode.workspaceFolder": "G:\\Study\\Code\\Web\\myNotes\\learnFrontTest\\Algorithm\\leetcode",
   "leetcode.defaultLanguage": "javascript",
+  "fileheader.Author": "huangsq",
+  "fileheader.LastModifiedBy": "huangsq",
 }
