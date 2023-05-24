@@ -23,3 +23,20 @@ function preMax(height, isPre = true) {
 let testData = [4,2,3]
 
 console.log(preMax(testData, false));
+{
+  // var trap = function(height) {
+  //   let res = 0;
+  //   const stack = [];
+  //   // 单调递减栈
+  //   for(let i = 0; i < height.length; i++) {
+  //       while(stack.length && height[i] > height[stack[stack.length - 1]]) {
+  //          const index = stack.pop();
+  //          if(!stack.length) break;
+  //           const left = stack[stack.length - 1]
+  //          res += (Math.min(height[left], height[i]) - height[index]) * (i - left - 1);
+  //       }
+  //       stack.push(i)
+  //   }
+  //   return res;
+  // };
+}
