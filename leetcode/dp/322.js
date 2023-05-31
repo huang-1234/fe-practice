@@ -11,27 +11,27 @@
  * @return {number}
  */
 
-var coinChange = function(coins, amount) {
+var coinChange = function (coins, amount) {
   const memo = new Array(amount + 1).fill(-666);
 
   function findMin(coins, n) {
-      if(n <= 0) {
-          return n === 0 ? 0 : -1;
-      }
-      if(memo[n] !== -666) {
-          return memo[n];
-      }
-      let res = Number.MAX_SAFE_INTEGER;
-      for(co of coins) {
-          const subPro = findMin(coins, n - co);
-          if(subPro === -1) {
-              continue;
-          }
-          res = Math.min(res, 1 + subPro)
-      }
-
-      memo[n] = res === Number.MAX_SAFE_INTEGER ? -1 : res;
+    if (n <= 0) {
+      return n === 0 ? 0 : -1;
+    }
+    if (memo[n] !== -666) {
       return memo[n];
+    }
+    let res = Number.MAX_SAFE_INTEGER;
+    for (co of coins) {
+      const subPro = findMin(coins, n - co);
+      if (subPro === -1) {
+        continue;
+      }
+      res = Math.min(res, 1 + subPro)
+    }
+
+    memo[n] = res === Number.MAX_SAFE_INTEGER ? -1 : res;
+    return memo[n];
   }
   return findMin(coins, amount)
 };
@@ -45,6 +45,28 @@ function calcPerf() {
   console.log('running cost time is:', end - start)
 }
 calcPerf()
+
+/**
+ * use dp array
+ */
+/**
+ * @param {number[]} coins
+ * @param {number} amount
+ * @return {number}
+ */
+var coinChange = function (coins, amount) {
+  const dp = new Array(amount + 1).fill(Infinity);
+  dp[0] = 0;
+  for (let i = 0;i < coins.length;i++) {
+    for (let j = coins[i];j <= amount;j++) {
+      dp[j] = Math.min(dp[j], dp[j - coins[i]] + 1);
+    }
+  }
+  if (dp[amount] == Infinity) {
+    return -1;
+  }
+  return dp[amount];
+};
 
 // @lc code=end
 
