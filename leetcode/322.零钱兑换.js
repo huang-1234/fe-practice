@@ -11,27 +11,27 @@
  * @return {number}
  */
 
-var coinChange = function(coins, amount) {
+var coinChange = function (coins, amount) {
   const memo = new Array(amount + 1).fill(-666);
 
   function findMin(coins, n) {
-      if(n <= 0) {
-          return n === 0 ? 0 : -1;
-      }
-      if(memo[n] !== -666) {
-          return memo[n];
-      }
-      let res = Number.MAX_SAFE_INTEGER;
-      for(co of coins) {
-          const subPro = findMin(coins, n - co);
-          if(subPro === -1) {
-              continue;
-          }
-          res = Math.min(res, 1 + subPro)
-      }
-
-      memo[n] = res === Number.MAX_SAFE_INTEGER ? -1 : res;
+    if (n <= 0) {
+      return n === 0 ? 0 : -1;
+    }
+    if (memo[n] !== -666) {
       return memo[n];
+    }
+    let res = Number.MAX_SAFE_INTEGER;
+    for (co of coins) {
+      const subPro = findMin(coins, n - co);
+      if (subPro === -1) {
+        continue;
+      }
+      res = Math.min(res, 1 + subPro)
+    }
+
+    memo[n] = res === Number.MAX_SAFE_INTEGER ? -1 : res;
+    return memo[n];
   }
   return findMin(coins, amount)
 };
