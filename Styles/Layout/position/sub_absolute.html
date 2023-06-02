@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sub absolute</title>
+  <style>
+    .parent {
+      position: relative;
+    }
+    .parent .sub {
+      position: absolute;
+      height: 100px;
+    }
+    .parent .sub1 {
+      position: absolute;
+      height: 100px;
+      width: 300px;
+      background-color: aqua;
+    }
+    .parent .sub2 {
+      position: absolute;
+      height: 200px;
+      width: 200px;
+      background-color: aquamarine;
+    }
+    .parent .sub3 {
+      position: absolute;
+      width: 100px;
+      height: 300px;
+      background-color: blue;
+    }
+  </style>
+</head>
+<body>
+  <div class="parent">
+    <section
+      class="sub sub1"
+    >sub
+
+    </section>
+    <section
+      class="sub sub2"
+    >sub
+
+    </section>
+    <section
+      class="sub sub3"
+    >sub
+
+    </section>
+  </div>
+</body>
+</html>
