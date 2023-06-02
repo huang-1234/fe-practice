@@ -30,6 +30,7 @@ public class SkipList{
           while (node.right.data!=Integer.MAX_VALUE && node.right.data<=data) {
               node = node.right;
           }
+          // 向下走一层时先判断下一层有无
           if (node.down == null) {
               break;
           }
