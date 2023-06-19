@@ -93,8 +93,8 @@ prependListener 方法的实现： */
 // prependListener 方法
 // 添加事件监听，从数组的前面追加
 EventEmitter.prototype.prependListener = function (type, callback) {
-    // 第三个参数为 true 表示从 _events 对应事件类型的数组前面添加 callback
-    this.on(type, callback, true);
+  // 第三个参数为 true 表示从 _events 对应事件类型的数组前面添加 callback
+  this.on(type, callback, true);
 }
 
 // once 方法的实现：
@@ -102,18 +102,18 @@ EventEmitter.prototype.prependListener = function (type, callback) {
 // once 方法
 // 添加事件监听，只能执行一次
 EventEmitter.prototype.once = function (type, callback, flag) {
-    let wrap = (...args) => {
-        callback(...args);
+  let wrap = (...args) => {
+    callback(...args);
 
-        // 执行 callback 后立即从数组中移除 callback
-        this.removeListener(type, wrap);
-    }
+    // 执行 callback 后立即从数组中移除 callback
+    this.removeListener(type, wrap);
+  }
 
-    // 存储 callback，确保单独使用 removeListener 删除传入的 callback 时可以被删除掉
-    wrap.realCallback = callback;
+  // 存储 callback，确保单独使用 removeListener 删除传入的 callback 时可以被删除掉
+  wrap.realCallback = callback;
 
-    // 调用 on 添加事件监听
-    this.on(type, wrap, flag);
+  // 调用 on 添加事件监听
+  this.on(type, wrap, flag);
 }
 
 /* 想让事件只执行一次，需要在执行 callback 之后就立即在数组中移除这个函数，由于是同步执行，直接操作 callback 是很难实现的，添加事件其实就是添加 callback 到 _events 对应类型的数组中，我们在使用 once 的时候将 callback 包一层函数名为 wrap，将这个外层函数存入数组，wrap 的内部逻辑就是真正 callback 的调用和移除 wrap，这里涉及到事件监听的移除方法 removeListener 在后面来详细说明。

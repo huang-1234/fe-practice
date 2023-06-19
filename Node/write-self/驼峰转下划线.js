@@ -8,7 +8,7 @@ const transMode = {
       return letter.toUpperCase();
     });
   }
-  // 下划线转换驼峰
+  //  驼峰 转换 下划线
   function toLine(name) {
     return name.replace(/([A-Z])/g, "_$1").toLowerCase();
   }
