@@ -1,8 +1,7 @@
-const  EventEmitter =  require('node:events');
-const e = new EventEmitter();
-
-function eEmitter() {
-  e.emit('click', {
+const { evtIns } = require('./base');
+function eEmitter(eventName) {
+  const _eventName = eventName ?? 'click';
+  evtIns.emit(_eventName, {
     name: 'huangsq',
     age: 18
   });
