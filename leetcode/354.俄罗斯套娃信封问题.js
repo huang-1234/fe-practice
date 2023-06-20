@@ -14,16 +14,27 @@ var lengthOfLIS = function (nums) {
   if (len <= 1) {
     return len;
   }
-  const dp = new Array(len).fill(1);
-  dp[0] = 1;
-  for (let i = 0;i < len;i++) {
-    for (let j = 0;j < i;j++) {
-      if (nums[i] > nums[j]) {
-        dp[i] = Math.max(dp[i], dp[j] + 1);
+  const top = new Array(len).fill(0);
+  let piles = 0;
+  for(let i = 0; i < len; i++) {
+      const curVal = nums[i];
+      let [left, right] = [0, piles];
+      while(left < right) {
+          const mid = Math.floor((right - left) / 2) +  left;
+          if (top[mid] > curVal) {
+              right = mid;
+          } else if(top[mid] < curVal) {
+              left = mid + 1;
+          } else {
+              right = mid;
+          }
       }
-    }
+      if(left === piles) {
+          piles++
+      }
+      top[left] = curVal;
   }
-  return Math.max(...dp);
+  return piles;
 };
 var maxEnvelopes = function (envelopes) {
   const len = envelopes.length;
@@ -37,15 +48,19 @@ var maxEnvelopes = function (envelopes) {
       return a[0] - b[0];
     }
   });
-  console.log(envelopeSorted)
   const heights = new Array(len).fill(0).map((_, i) => envelopeSorted[i][1]);
-  console.log('height', heights)
   return lengthOfLIS(heights)
 
 };
 
-const envelopes = [[4,5],[4,6],[6,7],[2,3],[1,1]]
+function getTimeDiff(start, end) {
+  return start.getMilliseconds();
+}
 
-console.log('res', maxEnvelopes(envelopes))
+const envelopes = [[5,4],[6,4],[6,7],[2,3]]
+const start = new Date();
+console.log('res', maxEnvelopes(envelopes));
+const end = new Date();
+console.log(getTimeDiff(start, end))
 // @lc code=end
 
