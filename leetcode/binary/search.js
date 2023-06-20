@@ -60,7 +60,7 @@
       // 当 nums[mid] > target，因为 target 只可能出现在左侧，所以要把 right 更新到 mid - 1
       if (nums[mid] == target) {
         right = mid - 1;
-      } else if(nums[mid] < target) {
+      } else if (nums[mid] < target) {
         left = mid + 1;
       } else if (nums[mid] > target) {
         right = mid - 1;
@@ -100,5 +100,76 @@
   const target = 99;
   const [left_b, right_b] = [left_bound(td, target), right_bound(td, target)];
   console.log(`left_b is ${left_b}. right_b is ${right_b}`);
+
+}
+
+// std
+{
+  // 注意：javascript 代码由 chatGPT🤖 根据我的 java 代码翻译，旨在帮助不同背景的读者理解算法逻辑。
+  // 本代码还未经过力扣测试，仅供参考，如有疑惑，可以参照我写的 java 代码对比查看。
+
+  const binary_search = function (nums, target) {
+    let left = 0, right = nums.length - 1;
+    while (left <= right) {
+      const mid = left + Math.floor((right - left) / 2);
+      if (nums[mid] < target) {
+        left = mid + 1;
+      } else if (nums[mid] > target) {
+        right = mid - 1;
+      } else if (nums[mid] == target) {
+        // 直接返回
+        return mid;
+      }
+    }
+    // 直接返回
+    return -1;
+  }
+
+  const left_bound = function (nums, target) {
+    let left = 0, right = nums.length - 1;
+    while (left <= right) {
+      const mid = left + Math.floor((right - left) / 2);
+      if (nums[mid] < target) {
+        left = mid + 1;
+      } else if (nums[mid] > target) {
+        right = mid - 1;
+      } else if (nums[mid] == target) {
+        // 别返回，锁定左侧边界
+        right = mid - 1;
+      }
+    }
+    // 判断 target 是否存在于 nums 中
+    if (left < 0 || left >= nums.length) {
+      return -1;
+    }
+    // 判断一下 nums[left] 是不是 target
+    return nums[left] == target ? left : -1;
+  }
+
+  const right_bound = function (nums, target) {
+    let left = 0, right = nums.length - 1;
+    while (left <= right) {
+      const mid = left + Math.floor((right - left) / 2);
+      if (nums[mid] < target) {
+        left = mid + 1;
+      } else if (nums[mid] > target) {
+        right = mid - 1;
+      } else if (nums[mid] == target) {
+        // 别返回，锁定右侧边界
+        left = mid + 1;
+      }
+    }
+    // 判断 target 是否存在于 nums 中
+    // if (left - 1 < 0 || left - 1 >= nums.length) {
+    //     return -1;
+    // }
+
+    // 由于 while 的结束条件是 right == left - 1，且现在在求右边界
+    // 所以用 right 替代 left - 1 更好记
+    if (right < 0 || right >= nums.length) {
+      return -1;
+    }
+    return nums[right] == target ? right : -1;
+  }
 
 }
