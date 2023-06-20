@@ -1,3 +1,16 @@
+const lunch = {
+  one: 0,
+  tow: 1,
+  three: 2,
+}
+const lunchSc = lunch.three;
+function excFindBound(leftBoundFn, rightBoundFn, lunchSc, target = 99) {
+  let td = [1, 3, 3, 3, 6, 5, 10, 10, 10, 13, 13, 14, 18, 99, 99, 99, 99, 100, 100];
+  console.log(`nums length is ${td.length}, we choose the ${lunchSc} to exc`);
+  const [left_b, right_b] = [leftBoundFn(td, target), rightBoundFn(td, target)];
+  console.log(`left_b is ${left_b}. right_b is ${right_b}`);
+  return [left_b, right_b];
+}
 {
 
   // 注意：javascript 代码由 chatGPT🤖 根据我的 java 代码翻译，旨在帮助不同背景的读者理解算法逻辑。
@@ -41,8 +54,9 @@
     return nums[left - 1] == target ? left - 1 : -1;
   }
 
-
-
+  if (lunchSc === lunch.one) {
+    excFindBound(left_bound, right_bound, lunchSc);
+  }
 }
 
 {
@@ -95,12 +109,10 @@
     }
     return nums[left - 1] == target ? (left - 1) : -1;
   };
-  let td = [1, 3, 3, 3, 6, 5, 10, 10, 10, 13, 13, 14, 18, 99, 99, 99, 99, 100, 100];
-  console.log(`nums length is ${td.length}`);
-  const target = 99;
-  const [left_b, right_b] = [left_bound(td, target), right_bound(td, target)];
-  console.log(`left_b is ${left_b}. right_b is ${right_b}`);
 
+  if (lunchSc === lunch.tow) {
+    excFindBound(left_bound, right_bound, lunchSc);
+  }
 }
 
 // std
@@ -172,4 +184,7 @@
     return nums[right] == target ? right : -1;
   }
 
+  if (lunchSc === lunch.three) {
+    excFindBound(left_bound, right_bound, lunchSc);
+  }
 }
