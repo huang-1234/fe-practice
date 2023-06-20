@@ -150,6 +150,8 @@ function excFindBound(leftBoundFn, rightBoundFn, lunchSc, target = 99) {
         right = mid - 1;
       }
     }
+
+    console.log(left, right)
     // 判断 target 是否存在于 nums 中
     if (left < 0 || left >= nums.length) {
       return -1;
@@ -171,6 +173,7 @@ function excFindBound(leftBoundFn, rightBoundFn, lunchSc, target = 99) {
         left = mid + 1;
       }
     }
+    console.log(left, right)
     // 判断 target 是否存在于 nums 中
     // if (left - 1 < 0 || left - 1 >= nums.length) {
     //     return -1;
