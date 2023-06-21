@@ -1,0 +1,34 @@
+{
+  "st": 0,
+  "code": 0,
+  "msg": "",
+  "data": {
+    "shop_score_list": [
+      {
+        "tag_no": 0,
+        "tag_name": "不限"
+      },
+      {
+        "tag_no": 1,
+        "tag_name": "≥65"
+      },
+      {
+        "tag_no": 2,
+        "tag_name": "≥70"
+      },
+      {
+        "tag_no": 3,
+        "tag_name": "≥75"
+      },
+      {
+        "tag_no": 4,
+        "tag_name": "≥85"
+      }
+    ]
+  },
+  "total": 0,
+  "extra": {
+    "log_id": "202306201721089686E181D20C660EE2D4",
+    "now": 1687252868969
+  }
+}
