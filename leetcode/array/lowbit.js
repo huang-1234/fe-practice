@@ -30,7 +30,7 @@ class TreeArray {
     console.log('len', len)
     for (let i = 1;i < len;i++){
       let p = i + this.lowbit(i);
-      if (p < len) {
+      if (p <= len) {
         this.tree[p] += this.tree[i];
       }
     }
@@ -54,6 +54,7 @@ class TreeArray {
 function preSums(nums) {
   const len = nums.length;
   const treeArray = new TreeArray(nums);
+  treeArray.add(2, 100)
   const res = new Array(len).fill(0);
   treeArray.tree.forEach((n, i) => {
     res[i] = treeArray.preSum(i);
