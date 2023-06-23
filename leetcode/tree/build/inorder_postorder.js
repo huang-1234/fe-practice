@@ -1,3 +1,4 @@
+
 /**
  * Definition for a binary tree node.
  * function TreeNode(val, left, right) {
@@ -12,9 +13,9 @@
  * @return {TreeNode}
  */
 function TreeNode(val, left, right) {
-    this.val = (val===undefined ? 0 : val)
-    this.left = (left===undefined ? null : left)
-    this.right = (right===undefined ? null : right)
+  this.val = (val === undefined ? 0 : val)
+  this.left = (left === undefined ? null : left)
+  this.right = (right === undefined ? null : right)
 }
 const valToIndex = new Map();
 function initMap(nums) {
@@ -23,19 +24,20 @@ function initMap(nums) {
     valToIndex.set(nums[i], i);
   }
 }
-const buildTreeByInPre = function (preorder, inorder) {
-  const [preStart, preEnd, inStart, inEnd] = [0, preorder.length - 1, 0, inorder.legnth - 1];
+const buildTreeByInPost = function (inorder, postorder) {
+  const [inStart, inEnd, postStart, postEnd] = [0, inorder.length - 1, 0, postorder.length - 1];
   initMap(inorder);
-  return buildByInPre(preorder, preStart, preEnd, inorder, inStart, inEnd);
+  return buildByInPost(inorder, inStart, inEnd, postorder, postStart, postEnd);
 };
 
-const buildByInPre = function (preorder, preStart, preEnd, inorder, inStart, inEnd) {
-  if (preStart > preEnd) {
+
+const buildByInPost = function (inorder, inStart, inEnd, postorder, postStart, postEnd) {
+  if (inStart > inEnd) {
     // 如果没有节点了，则返回 null
     return null;
   }
   // 先取出根节点
-  const rootVal = preorder[preStart];
+  const rootVal = postorder[postEnd];
   // 在中序遍历中取出根节点的位置
   const rootIdx = valToIndex.get(rootVal);
 
@@ -45,15 +47,18 @@ const buildByInPre = function (preorder, preStart, preEnd, inorder, inStart, inE
   // 构造出当前根节点
   const root = new TreeNode(rootVal);
 
-  // 递归构造左右子树
-  root.left = buildByInPre(preorder, preStart + 1, preStart + leftSize,inorder, inStart, rootIdx - 1);
+  console.log('rootVal', rootVal)
 
-  root.right = buildByInPre(preorder, preStart + leftSize + 1, preEnd, inorder, rootIdx + 1, inEnd);
+  // 递归构造左右子树
+
+  root.left = buildByInPost(inorder, inStart, rootIdx - 1, postorder, postStart, postStart + leftSize - 1);
+  root.right = buildByInPost(inorder, rootIdx + 1, inEnd, postorder, postStart + leftSize, postEnd - 1);
   return root;
 };
 
-const preorder = [3, 9, 20, 15, 7];
 const inorder = [9, 3, 15, 20, 7];
+const postorder = [3, 9, 20, 15, 7];
 
 
-console.log('buildTreeByInPre', buildTreeByInPre(preorder, inorder))
+console.log('buildTreeByInPost', buildTreeByInPost(inorder, postorder))
+
