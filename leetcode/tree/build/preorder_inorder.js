@@ -37,18 +37,18 @@ const build = function (preorder, preStart, preEnd, inorder, inStart, inEnd) {
   // 先取出根节点
   const rootVal = preorder[preStart];
   // 在中序遍历中取出根节点的位置
-  const index = valToIndex.get(rootVal);
+  const rootIdx = valToIndex.get(rootVal);
 
   // 计算左子树的长度
-  const leftSize = index - inStart;
+  const leftSize = rootIdx - inStart;
 
   // 构造出当前根节点
   const root = new TreeNode(rootVal);
 
   // 递归构造左右子树
-  root.left = build(preorder, preStart + 1, preStart + leftSize,inorder, inStart, index - 1);
+  root.left = build(preorder, preStart + 1, preStart + leftSize, inorder, inStart, rootIdx - 1);
 
-  root.right = build(preorder, preStart + leftSize + 1, preEnd, inorder, index + 1, inEnd);
+  root.right = build(preorder, preStart + leftSize + 1, preEnd, inorder, rootIdx + 1, inEnd);
   return root;
 };
 
