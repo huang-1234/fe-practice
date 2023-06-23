@@ -1,30 +1,3 @@
-
-function lowBit(n) {
-  return n & (-n);
-}
-
-function compLowBitCnt(num) {
-  let cnt = 0;
-  let lowBitVal = num;
-  while (lowBitVal - lowBit(lowBitVal) !== 0) {
-    lowBitVal = lowBitVal - lowBit(lowBitVal);
-    console.log('lowBitVal', lowBitVal)
-    cnt++;
-  }
-  return cnt;
-}
-
-
-function preSum(nums, i) {
-  let lowBitIdx = i;
-  let sum = 0;
-  while (lowBitIdx > 0) {
-    sum += nums[lowBitIdx];
-    lowBitIdx -= lowBit(lowBitIdx);
-  }
-  return sum;
-}
-
 const td = new Array(10).fill().map((_, idx) => {
   if (false) {
     return idx * 2;
