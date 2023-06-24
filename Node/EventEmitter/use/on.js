@@ -1,9 +1,8 @@
-const  EventEmitter =  require('node:events');
-const e = new EventEmitter();
-
-function eOn() {
-  e.on('click', (e) => {
-    console.log('on click', e)
+const { evtIns } = require('./base');
+function eOn(eventName) {
+  const _eventName = eventName ?? click;
+  evtIns.on(_eventName, (e) => {
+    console.log(`on ${_eventName}`, e)
   });
 }
 

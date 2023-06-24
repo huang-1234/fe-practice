@@ -11,6 +11,7 @@
   "keywords": [
     "huang"
   ],
+  "type": "commonjs",
   "author": "hsq",
   "license": "ISC",
   "dependencies": {

@@ -1,7 +1,9 @@
-const { eOn } = require('./on')
-const { eEmitter } = require('./emitter');
+const { EventEmitter } = require('node:events');
 
-eOn();
-eEmitter();
+class MyEmitter extends EventEmitter {}
 
-console.log('e', eOn, eEmitter)
+const myEmitter = new MyEmitter();
+myEmitter.on('event', () => {
+  console.log('an event occurred!');
+});
+myEmitter.emit('event');

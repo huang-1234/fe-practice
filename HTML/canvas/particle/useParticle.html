@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Particle</title>
+</head>
+<body>
+  <canvas class="particle_one">particle_one</canvas>
+  <canvas id="particle_2">particle_one</canvas>
+  <script type="module" crossorigin="anonymous" src="./run.js"></script>
+  <script>
+    var cvs = document.getElementById('particle_2');
+    var ctx = cvs.getContext('2d');
+
+    var timeStart = (new Date()).getTime();
+    var count;
+    for (var i = 0; i < Math.pow(10, 7); i++) {
+        // ctx.fillStyle = '#f00';
+        // count = '#f00';
+    };
+    var timeEnd = (new Date()).getTime();
+    console.log('during:::', timeEnd - timeStart);
+  </script>
+</body>
+</html>
