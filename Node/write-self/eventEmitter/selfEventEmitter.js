@@ -63,7 +63,7 @@ class SelfEventEmitter {
       const idx = this._events[name].findIndex((fn) => fn === realCb);
       if (-1 !== idx) {
         this._events[name].splice(idx, 1);
-        console.log('off', idx, this._events[name])
+        // console.log('off', idx, this._events[name])
         return idx;
       }
       return idx;
@@ -88,8 +88,6 @@ class SelfEventEmitter {
     }
     this._events[name].forEach(fn => {
       isFunc(fn) && fn(...args);
-
-      console.log('emit', this._events[name])
     });
     return true;
   }
@@ -152,32 +150,44 @@ class SelfEventEmitter {
 
 }
 
-const selfEv = new SelfEventEmitter();
-const func1 = (name, age) => {
-  console.log(`on1. name is ${name}, age is ${age}` )
-}
-selfEv.on('huangsq', func1);
+// {
+//   const selfEv = new SelfEventEmitter();
+//   const func1 = (name, age) => {
+//     console.log(`on1. name is ${name}, age is ${age}`)
+//   }
+//   selfEv.on('huangsq', func1);
 
-const func2 = (name, age) => {
-  console.log(`on2. name is ${name}, age is ${age}` )
-}
-selfEv.on('huangsq', func2);
+//   const func2 = (name, age) => {
+//     console.log(`on2. name is ${name}, age is ${age}`)
+//   }
+//   selfEv.on('huangsq', func2);
 
-selfEv.prependOnceListener('huangsq', (name, age) => {
-  console.log(`on3. name is ${name}, age is ${age}` )
-});
-// selfEv.once('huangsq', (name, age) => {
-//   console.log(`on3. name is ${name}, age is ${age}` )
-// });
-// selfEv.off('huangsq', func2)
-
-// selfEv.emit('huangsq', func2, '1-1', '1-2')
-// selfEv.emitOnce('huangsq', func2, 234, 232)
-selfEv.emit('huangsq', 'huangsq', '19', (err) => {
-  if (err) {
-    console.log('===', err)
+//   selfEv.prependOnceListener('huangsq', (name, age) => {
+//     console.log(`on3. name is ${name}, age is ${age}`)
+//   });
+//   selfEv.emit('huangsq', 'huangsq', '19', (err) => {
+//     if (err) {
+//       console.log('===', err)
+//     }
+//     console.log('====')
+//   })
+//   selfEv.emit('huangsq', 'huangsq', '19');
+// }
+{
+  // test has a bug
+  const insEvm = new SelfEventEmitter();
+  const func1 = (...args) => {
+    console.log("on1", args.length, args);
   }
-  console.log('====')
-})
-selfEv.emit('huangsq', 'huangsq', '19');
-// selfEv.emit('huangsq', 'huangsq', '19')
+  insEvm.addListener("data", func1);
+
+
+  const func2 = (...args) => {
+    console.log('on2', args)
+  };
+  insEvm.prependOnceListener('data',func2)
+
+  insEvm.emit("data", 1, 2, 3);
+  insEvm.emit("data", 1, 2, 3);
+  insEvm.emit("data", 1, 2, 3);
+}
