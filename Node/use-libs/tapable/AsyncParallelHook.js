@@ -13,14 +13,14 @@ console.time("time");
 asyncParallelHook.tapAsync("login", (name, done) => {
   setTimeout(() => {
     console.log("login", name, new Date());
-    done();
-  }, 1000);
+    // done();
+  }, 3000);
 });
 
 asyncParallelHook.tapAsync("register", (name, done) => {
   setTimeout(() => {
     console.log("register", name, new Date());
-    done();
+    // done();
     console.timeEnd("time");
   }, 2000);
 });
