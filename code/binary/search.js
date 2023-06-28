@@ -12,10 +12,6 @@ function excFindBound(leftBoundFn, rightBoundFn, lunchSc, target = 99) {
   return [left_b, right_b];
 }
 {
-
-  // 注意：javascript 代码由 chatGPT🤖 根据我的 java 代码翻译，旨在帮助不同背景的读者理解算法逻辑。
-  // 本代码还未经过力扣测试，仅供参考，如有疑惑，可以参照我写的 java 代码对比查看。
-
   const left_bound = function (nums, target) {
     let [left, right] = [0, nums.length];
 
@@ -87,8 +83,6 @@ function excFindBound(leftBoundFn, rightBoundFn, lunchSc, target = 99) {
     }
     return nums[left] == target ? left : -1;
   }
-  // 注意：javascript 代码由 chatGPT🤖 根据我的 java 代码翻译，旨在帮助不同背景的读者理解算法逻辑。
-  // 本代码还未经过力扣测试，仅供参考，如有疑惑，可以参照我写的 java 代码对比查看。
 
   const right_bound = function (nums, target) {
     let left = 0, right = nums.length - 1;
@@ -117,9 +111,6 @@ function excFindBound(leftBoundFn, rightBoundFn, lunchSc, target = 99) {
 
 // std
 {
-  // 注意：javascript 代码由 chatGPT🤖 根据我的 java 代码翻译，旨在帮助不同背景的读者理解算法逻辑。
-  // 本代码还未经过力扣测试，仅供参考，如有疑惑，可以参照我写的 java 代码对比查看。
-
   const binary_search = function (nums, target) {
     let left = 0, right = nums.length - 1;
     while (left <= right) {
