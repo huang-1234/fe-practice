@@ -4,7 +4,7 @@
   "description": "test",
   "main": "index.js",
   "scripts": {
-    "test": "Test",
+    "test": "jest",
     "dev": "node http/firstServer.js",
     "mysql": "node server/MySQL/connectingMysql.js"
   },
