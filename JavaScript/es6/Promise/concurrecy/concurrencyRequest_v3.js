@@ -18,6 +18,7 @@ const concurrencyRequest = (requestList, maxNum) => {
       index++;
       console.log('index', index);
       curRequest().then(resp => {
+        console.log('resp', resp.data)
         results[i] = resp;
       }).catch(err => {
         // err 加入到results
@@ -47,18 +48,16 @@ for (let i = 1;i <= 7;i++) {
     requestList.push(() => {
       return new Promise((resolve, reject) => {
         setTimeout(() => {
-          axios(`https://jsonplaceholder.typicode.com/todos/${i * 2}`, { idx: i }).then(res => {
-            resolve(res)
-          })
-        }, 4000);
+          resolve(axios(`https://jsonplaceholder.typicode.com/todos/${i}`, { idx: i }))
+        }, 10000);
       })
     })
   } else {
-    requestList.push(() => axios(`https://jsonplaceholder.typicode.com/todos/${i * 2}`, { idx: i }))
+    requestList.push(() => axios(`https://jsonplaceholder.typicode.com/todos/${i}`, { idx: i }))
   }
 }
 concurrencyRequest(requestList, 3).then(response => {
   response.forEach(res => {
-    console.log(res?.data)
+    console.log(res?.data.id)
   })
 })

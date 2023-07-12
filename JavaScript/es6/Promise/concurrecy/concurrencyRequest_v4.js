@@ -47,9 +47,7 @@ for (let i = 1;i <= 7;i++) {
     requestList.push(() => {
       return new Promise((resolve, reject) => {
         setTimeout(() => {
-          axios(`https://jsonplaceholder.typicode.com/todos/${i * 2}`, { idx: i }).then(res => {
-            resolve(res)
-          })
+          resolve(axios(`https://jsonplaceholder.typicode.com/todos/${i * 2}`, { idx: i }))
         }, 4000);
       })
     })
