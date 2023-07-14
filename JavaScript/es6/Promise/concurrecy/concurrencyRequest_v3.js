@@ -1,4 +1,4 @@
-const axios = require('axios')
+import axios from 'axios';
 // 并发请求函数
 const concurrencyRequest = (requestList, maxNum) => {
   return new Promise((resolve) => {
