@@ -1,5 +1,7 @@
 const axios = require('axios')
 // 并发请求函数
+const rejectHandler = reason => ({ status: "rejected", reason })
+const resolveHandler = value => ({ status: "fulfilled", value })
 const concurrencyRequest = (requestList, maxNum) => {
   return new Promise((resolve) => {
     if (requestList.length === 0) {
@@ -18,10 +20,10 @@ const concurrencyRequest = (requestList, maxNum) => {
       index++;
       console.log('index', index);
       curRequest().then(resp => {
-        results[i] = resp;
+        results[i] = resolveHandler(resp.data);
       }).catch(err => {
         // err 加入到results
-        results[i] = err;
+        results[i] = rejectHandler(err);
       }).finally(() => {
         count++;
         // 判断是否所有的请求都已完成
@@ -57,6 +59,6 @@ for (let i = 1;i <= 7;i++) {
 }
 concurrencyRequest(requestList, 3).then(response => {
   response.forEach(res => {
-    console.log(res?.data)
+    console.log(res)
   })
 })

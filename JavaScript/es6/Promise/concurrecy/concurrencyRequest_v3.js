@@ -1,4 +1,4 @@
-import axios from 'axios';
+const axios = require('axios')
 // 并发请求函数
 const concurrencyRequest = (requestList, maxNum) => {
   return new Promise((resolve) => {
@@ -58,6 +58,6 @@ for (let i = 1;i <= 7;i++) {
 }
 concurrencyRequest(requestList, 3).then(response => {
   response.forEach(res => {
-    console.log(res?.data.id)
+    console.log(res?.data)
   })
 })
