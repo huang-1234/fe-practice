@@ -15,3 +15,6 @@ Webpack/xc-cli
 ./Node/node_modules/**
 
 /**/node_modules/**
+
+
+**/*/coverage/*

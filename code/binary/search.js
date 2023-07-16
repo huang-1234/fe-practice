@@ -3,19 +3,15 @@ const lunch = {
   tow: 1,
   three: 2,
 }
-const lunchSc = lunch.three;
+const lunchSc = lunch.tow;
 function excFindBound(leftBoundFn, rightBoundFn, lunchSc, target = 99) {
   let td = [1, 3, 3, 3, 6, 5, 10, 10, 10, 13, 13, 14, 18, 99, 99, 99, 99, 100, 100];
-  console.log(`nums length is ${td.length}, we choose the ${lunchSc} to exc`);
+  console.log(`nums length is: ${td.length}, we choose the ${lunchSc} to exc`);
   const [left_b, right_b] = [leftBoundFn(td, target), rightBoundFn(td, target)];
-  console.log(`left_b is ${left_b}. right_b is ${right_b}`);
+  console.log(`left_b is: ${left_b}. right_b is: ${right_b}`);
   return [left_b, right_b];
 }
 {
-
-  // 注意：javascript 代码由 chatGPT🤖 根据我的 java 代码翻译，旨在帮助不同背景的读者理解算法逻辑。
-  // 本代码还未经过力扣测试，仅供参考，如有疑惑，可以参照我写的 java 代码对比查看。
-
   const left_bound = function (nums, target) {
     let [left, right] = [0, nums.length];
 
@@ -87,8 +83,6 @@ function excFindBound(leftBoundFn, rightBoundFn, lunchSc, target = 99) {
     }
     return nums[left] == target ? left : -1;
   }
-  // 注意：javascript 代码由 chatGPT🤖 根据我的 java 代码翻译，旨在帮助不同背景的读者理解算法逻辑。
-  // 本代码还未经过力扣测试，仅供参考，如有疑惑，可以参照我写的 java 代码对比查看。
 
   const right_bound = function (nums, target) {
     let left = 0, right = nums.length - 1;
@@ -104,10 +98,10 @@ function excFindBound(leftBoundFn, rightBoundFn, lunchSc, target = 99) {
       }
     }
     // 最后改成返回 left - 1
-    if (left - 1 < 0 || left - 1 >= nums.length) {
+    if (right < 0 || right >= nums.length) {
       return -1;
     }
-    return nums[left - 1] == target ? (left - 1) : -1;
+    return nums[right] == target ? (right) : -1;
   };
 
   if (lunchSc === lunch.tow) {
@@ -117,9 +111,6 @@ function excFindBound(leftBoundFn, rightBoundFn, lunchSc, target = 99) {
 
 // std
 {
-  // 注意：javascript 代码由 chatGPT🤖 根据我的 java 代码翻译，旨在帮助不同背景的读者理解算法逻辑。
-  // 本代码还未经过力扣测试，仅供参考，如有疑惑，可以参照我写的 java 代码对比查看。
-
   const binary_search = function (nums, target) {
     let left = 0, right = nums.length - 1;
     while (left <= right) {
@@ -150,8 +141,6 @@ function excFindBound(leftBoundFn, rightBoundFn, lunchSc, target = 99) {
         right = mid - 1;
       }
     }
-
-    console.log(left, right)
     // 判断 target 是否存在于 nums 中
     if (left < 0 || left >= nums.length) {
       return -1;
@@ -166,14 +155,13 @@ function excFindBound(leftBoundFn, rightBoundFn, lunchSc, target = 99) {
       const mid = left + Math.floor((right - left) / 2);
       if (nums[mid] < target) {
         left = mid + 1;
-      } else if (nums[mid] > target) {
-        right = mid - 1;
       } else if (nums[mid] == target) {
         // 别返回，锁定右侧边界
         left = mid + 1;
+      } else if (nums[mid] > target) {
+        right = mid - 1;
       }
     }
-    console.log(left, right)
     // 判断 target 是否存在于 nums 中
     // if (left - 1 < 0 || left - 1 >= nums.length) {
     //     return -1;
