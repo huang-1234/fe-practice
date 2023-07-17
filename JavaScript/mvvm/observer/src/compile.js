@@ -1,4 +1,4 @@
-var Watcher = require('./watcher')
+let Watcher = require('./watcher')
 function Compile(el, vm) {
   this.vm = vm;
   this.el = document.querySelector(el);
@@ -17,8 +17,8 @@ Compile.prototype = {
     }
   },
   nodeToFragment: function (el) {
-    var fragment = document.createDocumentFragment();
-    var child = el.firstChild;
+    let fragment = document.createDocumentFragment();
+    let child = el.firstChild;
     while (child) {
       // 将Dom元素移入fragment中
       fragment.appendChild(child);
@@ -27,11 +27,11 @@ Compile.prototype = {
     return fragment;
   },
   compileElement: function (el) {
-    var childNodes = el.childNodes;
-    var self = this;
+    let childNodes = el.childNodes;
+    let self = this;
     [].slice.call(childNodes).forEach(function (node) {
-      var reg = /\{\{(.*)\}\}/;
-      var text = node.textContent;
+      let reg = /\{\{(.*)\}\}/;
+      let text = node.textContent;
 
       if (self.isElementNode(node)) {
         self.compile(node);
@@ -45,13 +45,13 @@ Compile.prototype = {
     });
   },
   compile: function (node) {
-    var nodeAttrs = node.attributes;
-    var self = this;
+    let nodeAttrs = node.attributes;
+    let self = this;
     Array.prototype.forEach.call(nodeAttrs, function (attr) {
-      var attrName = attr.name;
+      let attrName = attr.name;
       if (self.isDirective(attrName)) {
-        var exp = attr.value;
-        var dir = attrName.substring(2);
+        let exp = attr.value;
+        let dir = attrName.substring(2);
         if (self.isEventDirective(dir)) {  // 事件指令
           self.compileEvent(node, self.vm, exp, dir);
         } else {  // v-model 指令
@@ -62,31 +62,31 @@ Compile.prototype = {
     });
   },
   compileText: function (node, exp) {
-    var self = this;
-    var initText = this.vm[exp];
+    let self = this;
+    let initText = this.vm[exp];
     this.updateText(node, initText);
     new Watcher(this.vm, exp, function (value) {
       self.updateText(node, value);
     });
   },
   compileEvent: function (node, vm, exp, dir) {
-    var eventType = dir.split(':')[1];
-    var cb = vm.methods && vm.methods[exp];
+    let eventType = dir.split(':')[1];
+    let cb = vm.methods && vm.methods[exp];
 
     if (eventType && cb) {
       node.addEventListener(eventType, cb.bind(vm), false);
     }
   },
   compileModel: function (node, vm, exp, dir) {
-    var self = this;
-    var val = this.vm[exp];
+    let self = this;
+    let val = this.vm[exp];
     this.modelUpdater(node, val);
     new Watcher(this.vm, exp, function (value) {
       self.modelUpdater(node, value);
     });
 
     node.addEventListener('input', function (e) {
-      var newValue = e.target.value;
+      let newValue = e.target.value;
       if (val === newValue) {
         return;
       }
