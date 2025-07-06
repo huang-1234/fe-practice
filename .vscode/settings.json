@@ -8,7 +8,6 @@
     "vcFormat.space.insertAfterSemicolon": true,
     "updateChannel": "Insiders",
     "vcFormat.newLine.closeBraceSameLine.emptyFunction": true,
-    // "autocompleteAddParentheses": true,
     "vcFormat.space.betweenEmptyParameterListParentheses": true,
     "vcFormat.newLine.beforeOpenBrace.block": "sameLine",
     "vcFormat.newLine.beforeOpenBrace.function": "sameLine",
@@ -162,7 +161,6 @@
       "textSeparator.foreground": "#316f8f"
     },
   },
-  // "compile-hero.disable-compile-files-on-did-save-code": true,
   // "compile-hero": {
   //   "disable-compile-files-on-did-save-code": false, // 全局开关，false 为开启自动编译， 默认 true 为开启不自动编译
   //   "notification-toggle": false, // 关闭编译失败时候右下角的弹窗提醒

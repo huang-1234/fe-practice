@@ -5,9 +5,16 @@ node_modules
 
 /node_modules
 
-**/node_modules
+**/node_modules/**
 
 Webpack/xc-cli
 
 
 /**/.DS_Store
+
+./Node/node_modules/**
+
+/**/node_modules/**
+
+
+**/*/coverage/*

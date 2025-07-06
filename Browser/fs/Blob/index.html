@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blob</title>
+  </head>
+  <body>
+    <script>
+      const obj = { hello: 'world' };
+      const blob = new Blob([JSON.stringify(obj, null, 2)], { type: 'application/json' });
+      blob.text().then(res => {
+        console.log(res)
+      })
+    </script>
+  </body>
+</html>

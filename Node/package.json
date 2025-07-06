@@ -4,7 +4,7 @@
   "description": "test",
   "main": "index.js",
   "scripts": {
-    "test": "Test",
+    "test": "jest --passWithNoTests",
     "dev": "node http/firstServer.js",
     "mysql": "node server/MySQL/connectingMysql.js"
   },
@@ -15,8 +15,10 @@
   "author": "hsq",
   "license": "ISC",
   "dependencies": {
+    "jest": "^29.6.1",
     "mysql": "^2.18.1",
     "querystring": "^0.2.1",
+    "tapable": "^2.2.1",
     "url": "^0.11.0",
     "ws": "^8.2.2"
   }

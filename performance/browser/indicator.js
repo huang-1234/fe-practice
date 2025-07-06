@@ -28,9 +28,9 @@ if(navigation) {
     PerformanceObj['navigation']['进入页面方式'] = navigationType[navigation.type] || '进入页面方式加载异常'
 }
 if(memory) {
-  // setInterval(() => {
-  //   console.log(memory.jsHeapSizeLimit, memory.totalJSHeapSize)
-  // }, 300);
+  setInterval(() => {
+    console.log(memory.jsHeapSizeLimit, memory.totalJSHeapSize)
+  }, 300);
   setInterval(() => {
     console.log('PerformanceObj', PerformanceObj)
   }, 4000)

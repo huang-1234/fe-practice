@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul id="container">
+      <li id="domA">A</li>
+      <li id="domB">B</li>
+      <li id="domC">C</li>
+      <li id="domD">D</li>
+    </ul>
+    <script>
+      const oldNodes = [
+        { key: "A", el: domA, tag: "li" },
+        { key: "B", el: domB, tag: "li" },
+        { key: "C", el: domC, tag: "li" },
+        { key: "D", el: domD, tag: "li" },
+      ];
+
+      const newNodes = [
+        { key: "C", tag: "li" },
+        { key: "A", tag: "li" },
+        { key: "F", tag: "li" },
+        { key: "G", tag: "li" },
+        { key: "B", tag: "li" },
+      ];
+
+      /**
+       * 看两个节点是否相同节点， 对比tag和key是否一样
+       * @param {*} newVnode
+       * @param {*} oldVnode
+       */
+      function isSameVnode(newVnode, oldVnode) {
+        return newVnode.tag === oldVnode.tag && newVnode.key == oldVnode.key;
+      }
+
+      /**
+       *
+       * @param {*} el 真实dom节点
+       * @param {*} oldChildren 老虚拟dom
+       * @param {*} newChildren 新虚拟dom
+       */
+      function domDiff(el, oldChildren, newChildren) {
+        // 老的开始索引
+        let oldStartIndex = 0;
+        // 老的开始节点
+        let oldStartVnode = oldChildren[0];
+        // 老的结束索引
+        let oldEndIndex = oldChildren.length - 1;
+        // 老的结束节点
+        let oldEndVnode = oldChildren[oldEndIndex];
+
+        // 新的开始索引
+        let newStartIndex = 0;
+        // 新的开始节点
+        let newStartVnode = newChildren[0];
+        // 新的结束索引
+        let newEndIndex = newChildren.length - 1;
+        // 新的结束节点
+        let newEndVnode = newChildren[newEndIndex];
+
+        // 根据老的节点，构造一个map
+        let oldNodeMap = oldChildren.reduce((memo, item, index) => {
+          // A: 0  记录位置
+          memo[item.key] = index;
+          return memo;
+        }, {});
+
+        // 双指针对比，从两端向中间遍历，当指针交叉的时候，就是对比完成了
+        while (oldStartIndex <= oldEndIndex && newStartIndex <= newEndIndex) {
+          // 指针移动的时候，可能元素已经被移走了，那就跳过这一项
+          if (!oldStartVnode) {
+            oldStartVnode = oldChildren[++oldStartIndex];
+            console.log("1. oldStartVnode 为空");
+          } else if (!oldEndVnode) {
+            oldEndVnode = oldChildren[--oldEndIndex];
+            console.log("2. oldEndVnode 为空");
+          } else if (isSameVnode(oldStartVnode, newStartVnode)) {
+            console.log("3. 头头相同", newStartVnode.key);
+            // 头头比较，如果相同就移动头指针
+            oldStartVnode = oldChildren[++oldStartIndex];
+            newStartVnode = newChildren[++newStartIndex];
+          } else if (isSameVnode(oldEndVnode, newEndVnode)) {
+            console.log("4. 尾尾相同", newEndVnode.key);
+            // 尾尾比较，如果相同，移动尾指针
+            oldEndVnode = oldChildren[--oldEndIndex];
+            newEndVnode = newChildren[--newEndIndex];
+          } else if (isSameVnode(oldStartVnode, newEndVnode)) {
+            console.log(
+              `5. 头尾相同 移动 ${oldStartVnode.key} 到 ${oldEndVnode.key}的下一节点之前`
+            );
+            // 头尾比较
+            // 将oldStartVnode.el 老节点的真实dom，移动到老的节点的最后
+            el.insertBefore(oldStartVnode.el, oldEndVnode.el.nextSibling);
+            oldStartVnode = oldChildren[++oldStartIndex];
+            newEndVnode = newChildren[--newEndIndex];
+          } else if (isSameVnode(oldEndVnode, newStartVnode)) {
+            // 尾头比较
+            console.log(
+              `6. 尾头相同 移动${oldEndVnode.key} 到${oldStartVnode.key}之前`
+            );
+            el.insertBefore(oldEndVnode.el, oldStartVnode.el);
+            oldEndVnode = oldChildren[--oldEndIndex];
+            newStartVnode = newChildren[++newStartIndex];
+          } else {
+            // 上面都是特殊情况
+            // 头头、尾尾、头尾、尾头都对比完了
+            // 对比乱序的
+            let moveIndex = oldNodeMap[newStartVnode.key];
+            if (moveIndex === undefined) {
+              // 找不到索引， 是新的节点，要创建一下
+              el.insertBefore(createElm(newStartVnode), oldStartVnode.el);
+              console.log(`7. 创建新节点${newStartVnode.key} 插入到 ${oldStartVnode.key}之前`);
+            } else {
+              // 找到了
+              let moveVnode = oldChildren[moveIndex];
+              el.insertBefore(moveVnode.el, oldStartVnode.el);
+              // 将已经移动的节点标记为undefine
+              oldChildren[moveIndex] = undefined;
+              console.log(
+                `8. 移动乱序节点${moveVnode.key} 到 ${oldStartVnode.key} 之前`
+              );
+            }
+            newStartVnode = newChildren[++newStartIndex];
+          }
+        }
+
+        // 新的多，那么就将多的插入进去即可
+        if (newStartIndex <= newEndIndex) {
+          // 参照物
+          let anchor =
+            newChildren[newEndIndex + 1] === null
+              ? null
+              : newChildren[newEndIndex + 1].el;
+          for (let i = newStartIndex;i <= newEndIndex;i++) {
+            console.log("插入", newChildren[i].key);
+            el.insertBefore(createElm(newChildren[i]), anchor);
+          }
+        }
+
+        // 老的多余，需要清理掉，删除即可
+        if (oldStartIndex <= oldEndIndex) {
+          for (let i = oldStartIndex;i <= oldEndIndex;i++) {
+            let child = oldChildren[i];
+            console.log("删除", child.key);
+            child && el.removeChild(child.el);
+          }
+        }
+      }
+
+      /**
+       * 根据虚拟dom创建真实dom
+       * @param {*} vnode
+       * @returns
+       */
+      function createElm(vnode) {
+        let { tag, text, key } = vnode;
+
+        if (typeof tag === "string") {
+          vnode.el = document.createElement(tag);
+          vnode.el.innerText = key;
+        } else {
+          vnode.el = document.createTextNode(text);
+        }
+        return vnode.el;
+      }
+
+      domDiff(container, oldNodes, newNodes);
+    </script>
+  </body>
+</html>
