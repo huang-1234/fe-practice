@@ -185,4 +185,8 @@
   "leetcode.defaultLanguage": "javascript",
   "fileheader.Author": "huangsq",
   "fileheader.LastModifiedBy": "huangsq",
+  "cSpell.words": [
+    "Nums",
+    "Subarrays"
+  ],
 }
