@@ -16,7 +16,7 @@ function get(url) {
 function post() {
   let xhr = new XMLHttpRequest() //1、创建连接
   const postData = {
-    userName: 'zhangshan',
+    userName: 'huangsq',
     passWord: 'xxx'
   }
   xhr.open('POST', url, true) //2、连接服务器

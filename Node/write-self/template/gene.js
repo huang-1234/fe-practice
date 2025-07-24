@@ -16,7 +16,7 @@ module.exports = {
 
 let template = '我是{{name}}，年龄{{age}}，性别{{sex}}';
 let person = {
-    name: '布兰',
+    name: 'huangsq',
     age: 12
 }
 console.log(render(template, person)) // 我是布兰，年龄12，性别undefined
