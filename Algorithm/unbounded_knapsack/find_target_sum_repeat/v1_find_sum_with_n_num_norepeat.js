@@ -17,6 +17,8 @@ function find_sum_with_n_num_no_repeat(array, target) {
     }
   }
 
+  const minLen = Math.max(n - 1, targetIdx);
+
   function dfs(startIdx, sum, sumPath = []) {
     if (sum === target) {
       ans.push([...sumPath])
@@ -25,7 +27,7 @@ function find_sum_with_n_num_no_repeat(array, target) {
     /**
      * @desc 每次递归都从下一个数字进行遍历、防止重复组合、列如 [4, 5] 和 [5, 4] 实际是重复的组合
      */
-    for (let i = startIdx; i < targetIdx; i++) {
+    for (let i = startIdx; i <= minLen; i++) {
       const currentEle = arraySort[i];
       // 剪枝
       if (sum + arraySort[i] > target) {

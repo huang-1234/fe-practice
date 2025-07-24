@@ -5,7 +5,7 @@
  * @param {number} target
  * @returns
  */
-function find_sum_with_n_num_repeat_or_not(array, target) {
+function v1_find_sum_with_n_num_repeat(array, target) {
   const ans = [], n = array.length;
   const arraySort = array.sort((a, b) => a - b);
   let targetIdx = n;
@@ -16,6 +16,7 @@ function find_sum_with_n_num_repeat_or_not(array, target) {
       break;
     }
   }
+  const minLen = Math.max(n - 1, targetIdx);
 
   function dfs(startIdx, sumCurrent, sumPath = []) {
     if (sumCurrent === target) {
@@ -25,15 +26,15 @@ function find_sum_with_n_num_repeat_or_not(array, target) {
     /**
      * @desc 每次递归都从下一个数字进行遍历、防止重复组合、列如 [4, 5] 和 [5, 4] 实际是重复的组合
      */
-    for (let i = startIdx;i < targetIdx;i++) {
+    for (let i = startIdx;i <= minLen;i++) {
       const currentEle = arraySort[i];
       // 剪枝
       if (sumCurrent + arraySort[i] > target) {
         break;
       }
-      if (i > startIdx && arraySort[i] === arraySort[i - 1]) {
-        continue;
-      }
+      // if (i > startIdx && arraySort[i] === arraySort[i - 1]) {
+      //   continue;
+      // }
       // 添加当前数字
       sumPath.push(currentEle)
       /**
@@ -54,5 +55,7 @@ function find_sum_with_n_num_repeat_or_not(array, target) {
 
   return ans;
 }
-console.log(find_sum_with_n_num_repeat_or_not([1, 10, 12, 14, 2, 3, 4, 5], 10))
-// console.log(v1_find_sum_with_n_num_repeat([4, 3, 1, 2], 6))
+// console.log(v1_find_sum_with_n_num_repeat([1, 10, 12, 14, 2, 3, 4, 5], 10))
+console.log(v1_find_sum_with_n_num_repeat([2,3,6,7], 7))
+// console.log(v1_find_sum_with_n_num_repeat([1,2,7], 7))
+// console.log(v1_find_sum_with_n_num_repeat([1,2,7], 11))
