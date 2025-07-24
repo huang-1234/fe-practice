@@ -1,5 +1,17 @@
-const p = new Promise((resolve,reject)=>{
-  resolve('hello world')
+const p = new Promise((resolve, reject) => {
+  const flag = true;
+  if (flag) {
+    resolve({
+      status: 'resolved',
+      value: ' success'
+    })
+  } else {
+    reject({
+      status: 'rejected',
+      value: ' error'
+    })
+  }
+
 });
 
 p.then(

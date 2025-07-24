@@ -1,18 +1,78 @@
 
-/*
-var name = '黄水清';
-var doSth = function () {
-  console.log(this);
-  console.log(this.name);
-}
-var student = {
-  name: 'vnues',
-  doSth: doSth,
-  other: { name: 'other', doSth: doSth, }
-}
-student.doSth(); // 'vnues'
-student.other.doSth(); // 'other'
- */
+// var name = '黄水清';
+// var doSth = function () {
+//   console.log(this);
+//   console.log(this.name);
+// }
+// var student = {
+//   name: 'vnues',
+//   doSth: doSth,
+//   other: { name: 'other', doSth: doSth, }
+// }
+// student.doSth(); // 'vnues'
+// student.other.doSth(); // 'other'
+
+
+(function (key) {
+  const a = {
+    a1() {
+      console.log(this);
+    },
+    a2: () => {
+      console.log(this);
+    },
+    a3: function () {
+      return {
+        b1: () => {
+          console.log(this);
+        },
+        b2() {
+          console.log(this);
+        }
+      }
+    },
+    a4: () => {
+      return {
+        b1: () => {
+          console.log(this);
+        },
+        b2() {
+          console.log(this);
+        }
+      }
+    }
+  }
+  switch (key) {
+    case 0:
+      a.a1();
+      a.a2();
+      a.a3();
+      a.a4()();
+      break;
+    case 1:
+      const a1 = a.a1;
+      const a2 = a.a2;
+      const a3 = a.a3;
+      const a4 = a.a4;
+      a1();
+      a2();
+      a3();
+      a4()();
+      break;
+    case 2:
+      const b1 = a.a3().b1;
+      const b2 = a.a3().b2;
+      b1();
+      b2();
+      const b3 = a.a4().b1;
+      const b4 = a.a4().b2;
+      b3();
+      b4();
+      break;
+    default:
+      break;
+  }
+})(2)
 
 
 /* //
