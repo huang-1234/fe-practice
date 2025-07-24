@@ -47,10 +47,5 @@ function findTargetSum(array, target) {
 
   return ans;
 }
-/**
- * [1,2,3,4,5], 10
-
-[4,3,1, 2], 6
- */
-// const [a, b] = [, 10]
 console.log(findTargetSum([1, 2, 3, 4, 5], 10))
+console.log(findTargetSum([4, 3, 1, 2], 6))
