@@ -5,7 +5,7 @@
  * @param {number} target
  * @returns
  */
-function findTargetSum(array, target) {
+function find_sum_with_n_num_no_repeat(array, target) {
   const ans = [], n = array.length;
   const arraySort = array.sort((a, b) => a - b);
   let targetIdx = n;
@@ -22,13 +22,16 @@ function findTargetSum(array, target) {
       ans.push([...sumArr])
       return;
     }
-    for (let i = startIdx; i < targetIdx; i++) {
+    for (let i = startIdx;i < targetIdx;i++) {
       const currentEle = arraySort[i];
       if (sum + arraySort[i] > target) {
         break;
       }
+      if (i > startIdx && arraySort[i] === arraySort[i - 1]) {
+        continue;
+      }
       sumArr.push(currentEle)
-      dfs(startIdx + 1, sum + currentEle, sumArr)
+      dfs(i + 1, sum + currentEle, sumArr)
       sumArr.pop()
     }
   }
@@ -42,4 +45,4 @@ function findTargetSum(array, target) {
 [4,3,1, 2], 6
  */
 // const [a, b] = [, 10]
-console.log(findTargetSum([1, 10, 12, 14, 2, 3, 4, 5], 10))
+console.log(find_sum_with_n_num_no_repeat([1, 2, 3, 4, 5], 10))
