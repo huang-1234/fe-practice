@@ -47,6 +47,7 @@ function find_sum_with_n_num_repeat_or_not(nums, target, is_should_repeat = true
       }
       // 添加当前数字
       sumPath.push(currentEle)
+      // 选择当前数字：当前数字+1 代表不可重复；当前数组不+1、代表可以重复
       const nextIdx = is_should_repeat ? i : i + 1
       dfs(nextIdx, sum + currentEle, sumPath)
       // 回溯、撤销选择
