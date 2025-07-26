@@ -27,7 +27,7 @@ class BasePrimes {
   geneNumPrimes(n) {
     try {
       const sqrtNum = Math.floor(Math.sqrt(n));
-      const isPrimes = new Array(n).fill(true);
+      const isPrimes = new Uint8Array(n + 1).fill(1)
       for (let i = 2;i < sqrtNum;i++) {
         if (isPrimes[i - 2]) {
           for (let j = i * i;j <= n;j += i) {
@@ -123,62 +123,27 @@ class BasePrimes {
   }
 }
 
-function calcUnit(n) {
-  let logNum = 0, unit = 1, unitChinese = '';
-  const targetLog = Math.log10(n);
-  switch (targetLog) {
-    case [0, 1, 2, 3].includes(targetLog):
-      unitChinese = '万'
-      logNum = Math.floor(Math.log10(n) / 2) + 1;
-      break;
-    case [4, 5, 6, 7]?.includes(targetLog):
-      unitChinese = '亿'
-      logNum = Math.floor(Math.log10(n) / 2) + 2;
-      break;
-    case [8, 9, 10, 11]?.includes(targetLog):
-      unitChinese = '万亿'
-      logNum = Math.floor(Math.log10(n) / 2) + 3;
-      break;
-    case [12, 13, 14, 15]?.includes(targetLog):
-      unitChinese = '京'
-      logNum = Math.floor(Math.log10(n) / 2) + 4;
-      break;
-    case [16, 17, 18, 19]?.includes(targetLog):
-      unitChinese = '垓'
-      logNum = Math.floor(Math.log10(n) / 2) + 5;
-      break;
-    case [20, 21, 22, 23]?.includes(targetLog):
-      unitChinese = '秭'
-      logNum = Math.floor(Math.log10(n) / 2) + 6;
-      break;
-    case [24, 25, 26, 27]?.includes(targetLog):
-      unitChinese = '穰'
-      logNum = Math.floor(Math.log10(n) / 2) + 7;
-      break;
-    case [28, 29, 30, 31]?.includes(targetLog):
-      unitChinese = '沟'
-      logNum = Math.floor(Math.log10(n) / 2) + 8;
-      break;
-    case [32, 33, 34, 35]?.includes(targetLog):
-      unitChinese = '涧'
-      logNum = Math.floor(Math.log10(n) / 2) + 9;
-      break;
-    case [36, 37, 38, 39]?.includes(targetLog):
-      break;
-    default:
-      return '请输入正确的数字'
+function formatLargeNumber(n) {
+  const units = ['', '万', '亿', '万亿', '京', '垓'];
+  const exponents = [0, 4, 8, 12, 16, 20];
+
+  for (let i = exponents.length - 1; i >= 0; i--) {
+    if (n >= 10 ** exponents[i]) {
+      return (n / 10 ** exponents[i]).toFixed(2) + units[i];
+    }
   }
-  return {
-    logNum,
-    unit,
-    unitChinese
-  }
+  return n.toString();
 }
 const target0 = 200;
 const target1 = 99999; // 十万
 const target2 = 999999; // 一百万
 const target3 = 9999999; // 一千万
 const target4 = 99999999; // 一亿
+const target5 = 999999999; // 一十亿
+const target6 = 9999999999; // 一百亿
+const target7 = 99999999999; // 一千亿
+const target8 = 999999999999; // 一万亿
+const target9 = 9999999999999; // 十万亿
 [
   target0,
   // target1,
@@ -215,13 +180,13 @@ function calcDurationInCalcPrimes(target, method = METHOD.slow) {
     console.log(error)
     throw error
   }
-  console.log(`now is ${now}, that use method is ${method}  duration is ${duration} ms`)
+  console.log(`target length is ${String(target).length}, that use method is ${method}  duration is ${duration} ms`)
 }
-
+const t = target5
 //
-calcDurationInCalcPrimes(target4, METHOD.fast)
+calcDurationInCalcPrimes(t, METHOD.fast)
 // 普通方法
-calcDurationInCalcPrimes(target4, METHOD.slow)
+calcDurationInCalcPrimes(t, METHOD.slow)
 BasePrimes.prototype.findPreNumPrimes = function (n) {
   const primes = [];
   for (let i = 2;i <= n;i++) {
