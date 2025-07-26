@@ -14,6 +14,9 @@ class BasePrimes {
     if (should_init) {
       this.init(n);
     }
+    this.n = n;
+    this.baseCache = new Map(); // 缓存基数素数
+    this.rangeCache = new Map(); // 缓存查询结果
   }
   init(n) {
     this._primes = this.getPrimesInRange(2, n);
@@ -56,6 +59,9 @@ class BasePrimes {
       return [];
     }
     try {
+      if (this.baseCache.has(n)) {
+        return this.baseCache.get(n);
+      }
       const isPrimes = new Uint8Array(n + 1).fill(1);
       isPrimes[0] = isPrimes[1] = 0;
       const nLen = isPrimes.length;
@@ -66,7 +72,9 @@ class BasePrimes {
           }
         }
       }
-      return Array.from({ length: n + 1 }, (v, i) => i).filter(i => isPrimes[i]);
+      const ans = Array.from({ length: n + 1 }, (v, i) => i).filter(i => isPrimes[i]);
+      this.baseCache.set(n, ans);
+      return ans;
     } catch (error) {
       console.log(`getBasePrimes: ${error}`);
       throw error;
@@ -91,7 +99,7 @@ class BasePrimes {
       for (const p of basePrimes) {
         if (p === 2) continue;
         const firstMultiple = Math.max(Math.ceil(start / p) * p, p * p);
-        for (let i = firstMultiple;i <= b; i += p) {
+        for (let i = firstMultiple;i <= b;i += p) {
           if (i >= start) {
             isPrime[i - start] = 0;
           }
@@ -121,13 +129,19 @@ class BasePrimes {
     if (b < low) return [];
     return this.getPrimesInStrictRange(low, b)
   }
+  * chunkedSieve(start, end, chunkSize = 1e6) {
+    for (let chunkStart = start;chunkStart <= end;chunkStart += chunkSize) {
+      const chunkEnd = Math.min(chunkStart + chunkSize - 1, end);
+      yield this.getPrimesInStrictRange(chunkStart, chunkEnd);
+    }
+  }
 }
 
 function formatLargeNumber(n) {
   const units = ['', '万', '亿', '万亿', '京', '垓'];
   const exponents = [0, 4, 8, 12, 16, 20];
 
-  for (let i = exponents.length - 1; i >= 0; i--) {
+  for (let i = exponents.length - 1;i >= 0;i--) {
     if (n >= 10 ** exponents[i]) {
       return (n / 10 ** exponents[i]).toFixed(2) + units[i];
     }
@@ -135,15 +149,19 @@ function formatLargeNumber(n) {
   return n.toString();
 }
 const target0 = 200;
-const target1 = 99999; // 十万
-const target2 = 999999; // 一百万
-const target3 = 9999999; // 一千万
-const target4 = 99999999; // 一亿
-const target5 = 999999999; // 一十亿
-const target6 = 9999999999; // 一百亿
-const target7 = 99999999999; // 一千亿
-const target8 = 999999999999; // 一万亿
-const target9 = 9999999999999; // 十万亿
+const target2 = 9; // 十
+const target3 = 99; // 百
+const target4 = 999; // 千
+const target5 = 9999; // 万
+const target6 = 99999; // 十万
+const target7 = 999999; // 一百万
+const target8 = 9999999; // 一千万
+const target9 = 99999999; // 一亿
+const target10 = 999999999; // 一十亿
+const target11 = 9999999999; // 一百亿
+const target12 = 99999999999; // 一千亿
+const target13 = 999999999999; // 一万亿
+const target14 = 9999999999999; // 十万亿
 [
   target0,
   // target1,
@@ -182,7 +200,7 @@ function calcDurationInCalcPrimes(target, method = METHOD.slow) {
   }
   console.log(`target length is ${String(target).length}, that use method is ${method}  duration is ${duration} ms`)
 }
-const t = target5
+const t = target10
 //
 calcDurationInCalcPrimes(t, METHOD.fast)
 // 普通方法
