@@ -74,5 +74,5 @@ function find_sum_repeat_or_not_with_iterative(nums, target, is_should_repeat = 
   return ans;
 }
 
-console.log(find_sum_repeat_or_not_with_iterative([1, 10, 12, 14, 2, 3, 4, 5], 10, false))
-console.log(find_sum_repeat_or_not_with_iterative([4, 3, 1, 2], 6))
+// console.log(find_sum_repeat_or_not_with_iterative([1, 10, 12, 14, 2, 3, 4, 5], 10, false))
+console.log(find_sum_repeat_or_not_with_iterative([2,3,6,7], 7))

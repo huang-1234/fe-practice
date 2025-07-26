@@ -18,6 +18,7 @@ function find_sum_with_n_num_repeat_or_not(nums, target, is_should_repeat = true
       break;
     }
   }
+  const safeLen = n - 1 < targetIdx ? n - 1 : targetIdx;
 
   /**
    * @desc 递归
@@ -36,7 +37,7 @@ function find_sum_with_n_num_repeat_or_not(nums, target, is_should_repeat = true
     /**
      * @desc 每次递归都从下一个数字进行遍历、防止重复组合、列如 [4, 5] 和 [5, 4] 实际是重复的组合
      */
-    for (let i = startIdx;i < targetIdx;i++) {
+    for (let i = startIdx;i <= safeLen;i++) {
       const currentEle = arraySort[i];
       // 剪枝
       if (sum + arraySort[i] > target) {
@@ -60,3 +61,4 @@ function find_sum_with_n_num_repeat_or_not(nums, target, is_should_repeat = true
 }
 // console.log(find_sum_with_n_num_repeat_or_not([1, 10, 12, 14, 2, 3, 4, 5], 10, false))
 // console.log(find_sum_with_n_num_repeat_or_not([4, 3, 1, 2], 6))
+console.log(find_sum_with_n_num_repeat_or_not([2,3,6,7], 7))

@@ -1,0 +1,286 @@
+/**
+ * @fileOverview 基数质数
+ * @param {number} n
+ */
+class BasePrimes {
+  /**
+   * @type {number[]}
+   */
+  _primes = [];
+  /**
+   * @param {number} n
+   */
+  constructor(n = 2, should_init = false) {
+    if (should_init) {
+      this.init(n);
+    }
+  }
+  init(n) {
+    this._primes = this.getPrimesInRange(2, n);
+    return this;
+  }
+  /**
+   *
+   * @param {number} n
+   * @returns
+   */
+  geneNumPrimes(n) {
+    try {
+      const sqrtNum = Math.floor(Math.sqrt(n));
+      const isPrimes = new Array(n).fill(true);
+      for (let i = 2;i < sqrtNum;i++) {
+        if (isPrimes[i - 2]) {
+          for (let j = i * i;j <= n;j += i) {
+            isPrimes[j - 2] = false;
+          }
+        }
+      }
+      return isPrimes.reduce((pre, cur, index) => {
+        if (cur) {
+          pre.push(index + 2);
+        }
+        return pre;
+      }, []);
+    } catch (error) {
+      return error;
+    }
+
+  }
+  /**
+   * @desc 获取[2, n] 范围内的所有素数（基础筛法）
+   * @param {number} n - 最大值
+   * @returns {number[]} - 所有素数
+   */
+  getBasePrimes(n) {
+    if (n < 2) {
+      return [];
+    }
+    try {
+      const isPrimes = new Uint8Array(n + 1).fill(1);
+      isPrimes[0] = isPrimes[1] = 0;
+      const nLen = isPrimes.length;
+      for (let i = 2;i < nLen;i++) {
+        if (isPrimes[i]) {
+          for (let j = i * i;j <= n;j += i) {
+            isPrimes[j] = 0;
+          }
+        }
+      }
+      return Array.from({ length: n + 1 }, (v, i) => i).filter(i => isPrimes[i]);
+    } catch (error) {
+      console.log(`getBasePrimes: ${error}`);
+      throw error;
+    }
+  }
+  /**
+   * @desc 获取区间内的质数
+   * @param {number} a
+   * @param {number} b
+   * @satisfies a < b; 已经明确 a < b
+   * @returns {number[]}
+   */
+  getPrimesInStrictRange(a, b) {
+    try {
+      if (a > b || b < 2) return [];
+      let start = Math.max(a, 2);
+      // 获取[2, √end]内的素数作为筛子基数
+      const basePrimes = this.getBasePrimes(Math.floor(Math.sqrt(b)));
+      const isPrime = new Uint8Array(b + 1).fill(1)
+      const primes = [];
+      if (start <= 2) primes.push(2);
+      for (const p of basePrimes) {
+        if (p === 2) continue;
+        const firstMultiple = Math.max(Math.ceil(start / p) * p, p * p);
+        for (let i = firstMultiple;i <= b; i += p) {
+          if (i >= start) {
+            isPrime[i - start] = 0;
+          }
+        }
+      }
+      // 收集素数结果（跳过偶数）
+      for (let i = start % 2 ? start : start + 1;i <= b;i += 2) {
+        if (isPrime[i - start]) {
+          primes.push(i);
+        }
+      }
+      return primes;
+    } catch (error) {
+      console.error(`getPrimesInStrictRange: ${error?.message}`);
+      throw error;
+    }
+  }
+  /**
+   * @desc 获取指定范围内的质数
+   * @param {number} a
+   * @param {number} b
+   * @returns  {number[]}
+   */
+  getPrimesInRange(a, b) {
+    if (b < 2) return [];
+    const low = Math.max(2, a);
+    if (b < low) return [];
+    return this.getPrimesInStrictRange(low, b)
+  }
+}
+
+function calcUnit(n) {
+  let logNum = 0, unit = 1, unitChinese = '';
+  const targetLog = Math.log10(n);
+  switch (targetLog) {
+    case [0, 1, 2, 3].includes(targetLog):
+      unitChinese = '万'
+      logNum = Math.floor(Math.log10(n) / 2) + 1;
+      break;
+    case [4, 5, 6, 7]?.includes(targetLog):
+      unitChinese = '亿'
+      logNum = Math.floor(Math.log10(n) / 2) + 2;
+      break;
+    case [8, 9, 10, 11]?.includes(targetLog):
+      unitChinese = '万亿'
+      logNum = Math.floor(Math.log10(n) / 2) + 3;
+      break;
+    case [12, 13, 14, 15]?.includes(targetLog):
+      unitChinese = '京'
+      logNum = Math.floor(Math.log10(n) / 2) + 4;
+      break;
+    case [16, 17, 18, 19]?.includes(targetLog):
+      unitChinese = '垓'
+      logNum = Math.floor(Math.log10(n) / 2) + 5;
+      break;
+    case [20, 21, 22, 23]?.includes(targetLog):
+      unitChinese = '秭'
+      logNum = Math.floor(Math.log10(n) / 2) + 6;
+      break;
+    case [24, 25, 26, 27]?.includes(targetLog):
+      unitChinese = '穰'
+      logNum = Math.floor(Math.log10(n) / 2) + 7;
+      break;
+    case [28, 29, 30, 31]?.includes(targetLog):
+      unitChinese = '沟'
+      logNum = Math.floor(Math.log10(n) / 2) + 8;
+      break;
+    case [32, 33, 34, 35]?.includes(targetLog):
+      unitChinese = '涧'
+      logNum = Math.floor(Math.log10(n) / 2) + 9;
+      break;
+    case [36, 37, 38, 39]?.includes(targetLog):
+      break;
+    default:
+      return '请输入正确的数字'
+  }
+  return {
+    logNum,
+    unit,
+    unitChinese
+  }
+}
+const target0 = 200;
+const target1 = 99999; // 十万
+const target2 = 999999; // 一百万
+const target3 = 9999999; // 一千万
+const target4 = 99999999; // 一亿
+[
+  target0,
+  // target1,
+  // target2, target3,
+  // target4
+].forEach(target => {
+});
+
+const METHOD = {
+  slow: 'slow',
+  fast: 'fast'
+}
+/**
+ * @param {number} target
+ */
+function calcDurationInCalcPrimes(target, method = METHOD.slow) {
+  const basePrimes = new BasePrimes()
+  const now = Date.now();
+  let duration = 0;
+  try {
+    if (method === METHOD.slow) {
+      const a = basePrimes.geneNumPrimes(target)
+      // console.log('BasePrimes', a)
+      duration = Date.now() - now;
+    } else if (method === METHOD.fast) {
+      const b = basePrimes.getPrimesInStrictRange(0, target)
+      // console.log('BasePrimes', b)
+      duration = Date.now() - now;
+    } else {
+      console.log(method)
+      throw new Error('method error')
+    }
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
+  console.log(`now is ${now}, that use method is ${method}  duration is ${duration} ms`)
+}
+
+//
+calcDurationInCalcPrimes(target4, METHOD.fast)
+// 普通方法
+calcDurationInCalcPrimes(target4, METHOD.slow)
+BasePrimes.prototype.findPreNumPrimes = function (n) {
+  const primes = [];
+  for (let i = 2;i <= n;i++) {
+    if (primes.every(prime => i % prime)) {
+      primes.push(i);
+    }
+  }
+  return {
+    primes,
+    count: primes.length
+  };
+}
+/**
+ *
+ * @param {number} n
+ * @returns
+ */
+BasePrimes.prototype.isPrime = function (n) {
+  for (let i = 2;i < n;i++) {
+    if (n % i === 0) {
+      return false;
+    }
+  }
+  return true;
+}
+/**
+ *
+ * @param {number[]} primes
+ */
+BasePrimes.prototype.findAllNoPrimes = function (primes) {
+  return primes.filter(prime => !this.isPrime(prime));
+}
+/**
+ * @desc 找到一个数的所有因数
+ * @param {number} n
+ */
+BasePrimes.prototype.findNumAllFactors = function (n) {
+  let factor = [];
+  for (let i = 2;i < n;i++) {
+    if (n % i === 0) {
+      factor.push(i);
+    }
+  }
+  return factor;
+}
+/**
+ * @desc 找到多个数所有因数
+ * @param {number[]} nums
+ */
+BasePrimes.prototype.findNumsAllFactors = function (nums) {
+  const factors = new Map();
+  for (let i = 0;i < nums.length;i++) {
+    factors.set(nums[i], this.findNumAllFactors(nums[i]));
+  }
+  return factors;
+}
+
+const primes26 = [
+  2, 3, 5, 7, 11, 13, 17, 19, 23, 29,
+  31, 37, 41, 43, 47, 53, 59, 61, 67, 71,
+  73, 79, 83, 89, 97, 101, 103, 107, 109, 113
+]
