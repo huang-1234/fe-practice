@@ -60,5 +60,5 @@ function find_sum_with_n_num_repeat_or_not(nums, target, is_should_repeat = true
   return ans;
 }
 // console.log(find_sum_with_n_num_repeat_or_not([1, 10, 12, 14, 2, 3, 4, 5], 10, false))
-// console.log(find_sum_with_n_num_repeat_or_not([4, 3, 1, 2], 6))
-console.log(find_sum_with_n_num_repeat_or_not([2,3,6,7], 7))
+console.log(find_sum_with_n_num_repeat_or_not([4, 3, 1, 2], 6))
+// console.log(find_sum_with_n_num_repeat_or_not([2,3,6,7], 7))
