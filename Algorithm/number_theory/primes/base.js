@@ -1,4 +1,35 @@
 /**
+ * @fileOverview 时间类
+ * @desc 测量一个计算过程的耗时、存在嵌套过程
+ * @description 测量一个过程的耗时、并存储起来、使用 toJSON、toString 来获取所有记录
+ */
+class Timer {
+  record = {}
+
+  constructor(namespace) {
+    this.startTime = Date.now();
+  }
+  /**
+   * @desc 测量一个过程的耗时、并存储起来、使用 toJSON、toString 来获取所有记录
+   * @param {string} name
+   * @param {boolean} isNested
+   */
+  measure(name, isNested = false) {
+
+  }
+  measureNested(name) {
+    this.measure(name, true);
+  }
+  toJSON() {
+    return this.record;
+  }
+  toString() {
+    return JSON.stringify(this.record);
+  }
+
+}
+
+/**
  * @fileOverview 基数质数
  * @param {number} n
  */
@@ -202,9 +233,9 @@ function calcDurationInCalcPrimes(target, method = METHOD.slow) {
 }
 const t = target10
 //
-calcDurationInCalcPrimes(t, METHOD.fast)
-// 普通方法
-calcDurationInCalcPrimes(t, METHOD.slow)
+// calcDurationInCalcPrimes(t, METHOD.fast)
+// // 普通方法
+// calcDurationInCalcPrimes(t, METHOD.slow)
 BasePrimes.prototype.findPreNumPrimes = function (n) {
   const primes = [];
   for (let i = 2;i <= n;i++) {
@@ -250,6 +281,8 @@ BasePrimes.prototype.findNumAllFactors = function (n) {
   }
   return factor;
 }
+// const fakePrime = Math.pow(2, 32) + 1
+// console.log('fakePrime', BasePrimes.prototype.findNumAllFactors(fakePrime))
 /**
  * @desc 找到多个数所有因数
  * @param {number[]} nums
@@ -262,8 +295,62 @@ BasePrimes.prototype.findNumsAllFactors = function (nums) {
   return factors;
 }
 
-const primes26 = [
-  2, 3, 5, 7, 11, 13, 17, 19, 23, 29,
-  31, 37, 41, 43, 47, 53, 59, 61, 67, 71,
-  73, 79, 83, 89, 97, 101, 103, 107, 109, 113
-]
+class SegmentedPrimeSieve {
+  static BLOCK_SIZE = 1e6; // 每块1百万元素
+  constructor(blockSize = SegmentedPrimeSieve.BLOCK_SIZE) {
+    SegmentedPrimeSieve.BLOCK_SIZE = blockSize;
+    this.primes = [];
+    this.sieve = new Uint32Array(SegmentedPrimeSieve.BLOCK_SIZE).fill(true);
+    this.sieve[0] = this.sieve[1] = false;
+  }
+
+  static *generatePrimes(start, end) {
+    const sqrtEnd = Math.sqrt(end);
+    const basePrimes = new BasePrimes().getBasePrimes(sqrtEnd);
+
+    // 分块处理
+    for (let blockStart = start;blockStart <= end;blockStart += this.BLOCK_SIZE) {
+      const blockEnd = Math.min(blockStart + this.BLOCK_SIZE - 1, end);
+      yield* this._processBlock(blockStart, blockEnd, basePrimes);
+    }
+  }
+
+  static *_processBlock(start, end, basePrimes) {
+    const size = end - start + 1;
+    const sieve = new Uint8Array(size).fill(1);
+
+    for (const p of basePrimes) {
+      if (p === 2) continue;
+
+      let firstMultiple = Math.ceil(start / p) * p;
+      if (firstMultiple < p * p) firstMultiple = p * p;
+      if (firstMultiple > end) continue;
+
+      for (let num = firstMultiple;num <= end;num += p) {
+        sieve[num - start] = 0;
+      }
+    }
+
+    // 生成当前块的素数
+    for (let i = 0;i < size;i++) {
+      const num = start + i;
+      if (num < 2) continue;
+      if (sieve[i]) yield num;
+    }
+  }
+  testGenePrimes(start = 0, end = 1e5, blockSize = 1e3) {
+    // 使用示例
+    const primeGenerator = SegmentedPrimeSieve.generatePrimes(start, end);
+    let primes200 = []
+    for (const prime of primeGenerator) {
+      if (primes200.length < blockSize) {
+        primes200.push(prime);
+      } else {
+        console.log('primes200', primes200)
+        primes200 = []
+      }
+    }
+  }
+}
+
+new SegmentedPrimeSieve(1e4).testGenePrimes();
