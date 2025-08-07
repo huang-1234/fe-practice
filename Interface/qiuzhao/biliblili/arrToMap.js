@@ -1,4 +1,19 @@
 
+/**
+ * @desc
+ * 这个函数用于查找数组中出现频率最高的前 k 个元素。
+
+主要步骤：
+1. 创建所有元素的频率映射
+2. 重复查找并移除最大频率元素 k 次
+3. 通过包含与第 k 个最高频率相同的所有元素来处理并列情况
+4. 打印结果
+
+注意：该逻辑在处理并列情况和输出格式方面存在一些问题。
+ * @param {number} nums
+ * @param {number} k
+ * @returns
+ */
 function counter(nums, k) {
   const len = nums.length;
   if (len <= 1) {
