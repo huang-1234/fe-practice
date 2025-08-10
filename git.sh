@@ -11,7 +11,7 @@ echo "当前分支名: $branch"
 
 # git ci
 ciAction="feat: "
-ciMessage="init readme"
+ciMessage="add lengthOfLongestSubstring function to leetcode 3"
 git add .
 
 git ci -m "$ciAction $ciMessage"

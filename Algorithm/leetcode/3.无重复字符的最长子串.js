@@ -26,6 +26,7 @@
  * @param {string} s
  * @return {number}
  */
+
 var lengthOfLongestSubstring = function(s) {
   let left = 0, maxLen = 0;
   const charMap = new Map(); // 存储字符及其最新索引
@@ -40,5 +41,30 @@ var lengthOfLongestSubstring = function(s) {
   }
   return maxLen;
 };
+/**
+ * @param {string} s
+ * @desc 滑动窗口、错误实现
+ * @return {number}
+ */
+// var lengthOfLongestSubstring = function (s) {
+//   if (s.length === 0) return 0;
+//   if (s.length === 1) return 1;
+//   let left = 0, maxLen = 0, right = 0;
+//   const charMap = new Map(); // 存储字符及其最新索引
+
+//   while (right < s.length) {
+//     const char = s[right];
+//     console.log('right', right, 'left', left, 'char', char);
+//     if (charMap.has(char)) {
+//       charMap.delete(char)
+//       left = right + 1; // 直接移动左边界
+//     } else {
+//       charMap.set(char, right); // 更新字符位置
+//       maxLen = Math.max(maxLen, right - left + 1);
+//       right++; // 扩大右边界
+//     }
+//   }
+//   return maxLen;
+// };
 // @lc code=end
 
