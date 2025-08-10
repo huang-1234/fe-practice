@@ -9,6 +9,10 @@ promise.then(() => {
   console.log(3);
 });
 console.log(4);
-setTimeout(function() {
- console.log(6);
+setTimeout(function () {
+  console.log(6);
 });
+
+/**
+ * // 1 2 4 5 3 6
+ */

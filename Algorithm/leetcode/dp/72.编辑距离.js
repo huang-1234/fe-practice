@@ -22,15 +22,16 @@ var minDistance = function (word1, word2) {
       return minDis(i - 1, j - 1);
     } else {
       return Math.min(
-        minDis(i - 1, j - 1) + 1 ,
-        minDis(i, j - 1) + 1 ,
-        minDis(i-1, j) + 1
+        minDis(i - 1, j - 1) + 1 , // 替换
+        minDis(i, j - 1) + 1 , // 插入
+        minDis(i-1, j) + 1 // 删除
       )
     }
   }
   return minDis(len1,len2)
 };
 // @lc code=end
+
 /*
  * @lc app=leetcode.cn id=72 lang=javascript
  *
