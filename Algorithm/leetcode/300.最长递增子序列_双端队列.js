@@ -35,15 +35,26 @@ var lengthOfLIS = function (nums) {
  * 解释: 最长递增子序列是 [2, 3, 7, 101]，它的长度是 4。
  */
   if (!nums || nums.length === 0) return 0;
-  const dp = new Array(nums.length).fill(1);
   let maxRes = 1;
-  for (let i = 1;i < nums.length;i++) {
-    for (let j = 0;j < i;j++) {
-      if (nums[i] > nums[j]) {
-        dp[i] = Math.max(dp[i], dp[j] + 1); // dp[i] = Math.max(dp[i], dp[j] + 1);
-        maxRes = Math.max(maxRes, dp[i]);
+  // 采用双端队列来优化时间复杂度
+  const deque = [];
+  for (let i = 0; i < nums.length; i++) {
+    if (deque.length === 0 || nums[i] > nums[deque[deque.length - 1]]) {
+      deque.push(i);
+    } else {
+      let left = 0;
+      let right = deque.length - 1;
+      while (left <= right) {
+        const mid = Math.floor((left + right) / 2);
+        if (nums[deque[mid]] < nums[i]) {
+          left = mid + 1;
+        } else {
+          right = mid - 1;
+        }
       }
+      deque[left] = i;
     }
+    maxRes = Math.max(maxRes, deque.length);
   }
   return maxRes;
 };
