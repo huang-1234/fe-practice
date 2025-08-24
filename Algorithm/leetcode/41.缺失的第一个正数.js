@@ -10,27 +10,19 @@
  * @return {number}
  */
 var firstMissingPositive = function (nums) {
-  nums.sort((a, b) => a - b);
-  const len = nums.length;
-  let start = 0, ans = 1;
-  for (let i = 0;i < len;i++) {
-    if (nums[i] <= 0) {
-      continue;
-    } else if (i === len) {
-      break;
-    } else {
-      if (nums[i] === 1) {
-        ans = nums[i];
-        break;
-      } else if (nums[i + 1] === nums[i] + 1) {
-        continue;
-      } else {
-        ans = nums[i] + 1;
-        break;
-      }
-    }
+  if (nums.length === 0) return 1;
+  if (nums.length === 1) {
+    return nums[0] === 1 ? 2 : 1;
   }
-  return ans;
+  const numsSet = new Set(nums);
+  if (!numsSet.has(1)) return 1;
+  for (let i = 1;i <= nums.length;i++) {
+    if (!numsSet.has(i)) return i;
+  }
+  if (numsSet.has(nums.length)) {
+    return nums.length + 1;
+  }
+  return nums.length
 };
 // @lc code=end
 
