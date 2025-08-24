@@ -4,6 +4,39 @@
  * [300] 最长递增子序列
  */
 
+function findLeftBound(nums, target) {
+  let left = 0;
+  let right = nums.length - 1;
+  let result = nums.length; // 默认不存在时为数组长度[6,7](@ref)
+
+  while (left <= right) {
+    const mid = Math.floor(left + (right - left) / 2); // 防溢出
+    if (nums[mid] >= target) {
+      result = mid;      // 记录位置
+      right = mid - 1;   // 继续向左收缩[6](@ref)
+    } else {
+      left = mid + 1;    // 向右收缩
+    }
+  }
+  return result; // 返回第一个≥target的索引[7](@ref)
+}
+
+function findRightBound(nums, target) {
+  let left = 0;
+  let right = nums.length - 1;
+  let result = -1; // 默认不存在[6](@ref)
+
+  while (left <= right) {
+    const mid = Math.floor(left + (right - left) / 2);
+    if (nums[mid] <= target) {
+      result = mid;      // 记录位置
+      left = mid + 1;   // 继续向右收缩[7](@ref)
+    } else {
+      right = mid - 1;  // 向左收缩
+    }
+  }
+  return result; // 返回最后一个≤target的索引[6](@ref)
+}
 // @lc code=start
 /**
  * @param {number[]} nums
@@ -35,17 +68,29 @@ var lengthOfLIS = function (nums) {
  * 解释: 最长递增子序列是 [2, 3, 7, 101]，它的长度是 4。
  */
   if (!nums || nums.length === 0) return 0;
-  const dp = new Array(nums.length).fill(1);
   let maxRes = 1;
-  for (let i = 1;i < nums.length;i++) {
-    for (let j = 0;j < i;j++) {
-      if (nums[i] > nums[j]) {
-        dp[i] = Math.max(dp[i], dp[j] + 1); // dp[i] = Math.max(dp[i], dp[j] + 1);
-        maxRes = Math.max(maxRes, dp[i]);
+  // 采用尾端队列来优化时间复杂度
+  const tails = [];
+  for (const num of nums) {
+    // 二分查找替换位置
+    let left = 0;
+    let right = tails.length - 1;
+    while (left <= right) {
+      const mid = Math.floor((left + right) / 2);
+      if (tails[mid] < num) {
+        left = mid + 1;
+      } else {
+        right = mid - 1;
       }
     }
+    // 替换或追加
+    if (left === tails.length) {
+      tails.push(num); // 扩展序列
+    } else {
+      tails[left] = num; // 替换以维持最小末尾值[3,5](@ref)
+    }
   }
-  return maxRes;
+  return tails.length; // 长度即最长递增子序列长度
 };
 // @lc code=end
 
