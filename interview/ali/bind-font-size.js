@@ -11,7 +11,7 @@ css 中经常有类似 background-image 这种通过 - 连接的字符，
 
 // const { resolve } = require("node:path");
 
-/* 
+/*
 function tranStr(str1) {
   const len = str1.length;
   let L = 0; R = len - 1;
@@ -53,17 +53,17 @@ function cssStyle2DomStyle(sName) {
     }
   }
   // console.log(pname)
-  let Str = ''
+  let finalStr = ''
   for (let index = 0, len = pname.length;index < len;index++) {
     if (index == 0) {
-      Str += pname[index]
+      finalStr += pname[index]
     } else {
-      let Fletter = pname[index].slice(0, 1).toUpperCase()
-      let Rest = pname[index].slice(1)
-      Str += Fletter + Rest
+      let firstChar = pname[index].slice(0, 1).toUpperCase()
+      let restChars = pname[index].slice(1)
+      finalStr += firstChar + restChars
     }
   }
-  return Str
+  return finalStr
 }
 let str = '-webkit-border-image'
 console.log(cssStyle2DomStyle(str))
